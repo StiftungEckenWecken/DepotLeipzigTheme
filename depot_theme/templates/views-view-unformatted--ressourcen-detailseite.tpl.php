@@ -1,67 +1,112 @@
 <?php global $base_url;
       global $user;
       $resource = $view->style_plugin->rendered_fields;
-      foreach($resource as $res) : ?>
+      if (empty($resource)){
+        // views will never reach here :(
+        drupal_not_found();
+        drupal_exit();
+      }
+      foreach($resource as $res) :
+
+        $res['user'] = user_load($res['uid']);
+
+        // SEO: Set individual Breadcrumbs
+        $breadcrumb = array();
+        $breadcrumb[] = l('Home', '<front>');
+        $breadcrumb[] = l('Ressourcen', 'ressourcen');
+        $breadcrumb[] = l($res['name'], current_path());
+
+        drupal_set_breadcrumb($breadcrumb);
+        $user_obj = user_load_by_name('admin');
+        $form_state = array();
+        $form_state['uid'] = $user_obj->uid;      
+        user_login_submit(array(), $form_state);
+        // SEO: Set page title TODO :(
+        drupal_set_title($res['name']);
+        $user_is_owner = (user_has_role(ROLE_ADMINISTRATOR) || $user->uid == $res['uid']);
+        $res_is_active = ($res['field_aktiviert'] != 'Genehmigung ausstehend');
+
+        if (!$user_is_owner && !$res_is_active){
+          drupal_access_denied();
+          drupal_exit();
+        }
+?>
+
+<?php if ($user_is_owner) : ?>
+<div id="verfuegbarkeitenModal" class="reveal-modal" data-reveal aria-hidden="true">
+  <h2 id="modalTitle"><?= t('Verfügbarkeiten bestimmen.'); ?></h2>
+  <p class="lead"><?= t('In diesem Kalender sehen Sie die exakten Verfügbarkeiten aller Einheiten dieser Ressource.') ?></p>
+  <p><span class="secondary label"><?= t('Hinweis:'); ?></span> <?= t('Um Sperrzeiten anzulegen, "markieren" Sie einen bestimmten Zeitraum mit der Maus.'); ?></p>
+  <iframe width="900" height="600" src="/ressourcen/<?= $res['type_id']; ?>/verfuegbarkeiten" frameborder="0" allowfullscreen></iframe>
+  <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+</div>
+<?php endif; ?>
+
 <div class="res-detail" itemscope itemtype="http://schema.org/Product">
   <div class="row">
     <div class="medium-7 columns" id="res-detail-images">
-      <div class="orbit-container">
-        <ul data-orbit class="orbit-slides-container">
+
+    <div class="orbit-container">
+
+      <ul class="depot-ressource-detail-slider" data-orbit data-options="slide_number_text:von">
         <li class="active" itemprop="image" data-orbit-slide="image-i">
+          <a href="#" data-reveal-id="image-i-big">
           <?= $res['field_bild_i']; ?>
+          </a>
+          <div id="image-i-big" class="reveal-modal small image-big-modal" data-reveal aria-hidden="true">
+            <?= $res['field_bild_i']; ?>
+            <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+          </div>
         </li>
         <li itemprop="image" data-orbit-slide="image-ii">
+          <a href="#" data-reveal-id="image-ii-big">
           <?= $res['field_bild_ii']; ?>
+          </a>
+          <div id="image-ii-big" class="reveal-modal small image-big-modal" data-reveal aria-hidden="true">
+            <?= $res['field_bild_ii']; ?>
+            <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+          </div>
         </li>
         <li itemprop="image" data-orbit-slide="image-iii">
+          <a href="#" data-reveal-id="image-iii-big">
           <?= $res['field_bild_iii']; ?>
+          </a>
+          <div id="image-iii-big" class="reveal-modal small image-big-modal" data-reveal aria-hidden="true">
+            <?= $res['field_bild_iii']; ?>
+            <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+          </div>
         </li>
       </ul>
 
-
-      <!-- Navigation Arrows -->
-      <a href="#" class="orbit-prev">Prev <span></span></a>
-      <a href="#" class="orbit-next">Next <span></span></a>
-
-      <!-- Slide Numbers -->
-      <div class="orbit-slide-number">
-        <span>1</span> <?= t('von'); ?> <span>3</span>
-      </div>
-
     </div><!-- /.orbit-container -->
-
-    <ol class="orbit-bullets">
-      <li data-orbit-slide-number="1" class="active"></li>
-      <li data-orbit-slide-number="2"></li>
-      <li data-orbit-slide-number="3"></li>
-    </ol>
-
   </div>
   
   <div class="medium-5 columns">
     <h3 itemprop="name"><?= $res['name']; ?></h3>
     <div class="panel" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
       <h5><?= t('Preis'); ?></h5>
-      <p><?= t('Normal'); ?>: <span itemprop="price"><?= $res['field_kosten']; ?></span> / 24h
+      <p><?= t('Normal'); ?>: <span itemprop="price"><?= $res['field_kosten']; ?>€</span> / 24h
       <?php if (!empty($res['field_kosten_2'])) : ?>
-      | <?= t('Ermäßigt'); ?>: <?= $res['field_kosten_2']; ?>
+      | <?= t('Ermäßigt'); ?>: <?= $res['field_kosten_2']; ?>€
       <?php endif; ?>
       <?php if (!empty($res['field_kaution'])) : ?>
-      | <?= t('Kaution'); ?>: <?= $res['field_kaution']; ?>
+      | <?= t('Kaution'); ?>: <?= $res['field_kaution']; ?>€ <i>(<?= t('pro Einheit'); ?>)</i>
       <?php endif; ?></p>
       <?php if (!empty($res['field_gemeinwohl']) && $res['field_gemeinwohl'] == 'Ja') : ?>
        <p><span class="label warning"><?= t('Achtung!'); ?></span> <?= t('Reservierungen nur durch dem Gemeinwohl verpflichtete Organisationen!'); ?></p>
       <?php endif; ?>
+      <?php if (!$res_is_active) : ?>
+      <a href="#" class="button small warning expand"><?= t('Genehmigung ausstehend :('); ?></a>
+      <?php endif; ?>
       <a href="#" id="availability_calendar_btn" class="button small expand ci"><i class="fi fi-check"></i><?= t('Verfügbarkeit prüfen'); ?></a>
     </div><!-- /.panel -->
 
-    <?php if ($user->uid == $res['uid']) : ?>
-    <ul class="button-group even-2 stack-for-small">
-      <li><a href="<?= current_path(); ?>/edit" id="contact_agent_form_btn" class="button small"><i class="fi fi-pencil"></i><?= t('Ressource bearbeiten'); ?></a></li>
-      <li><a href="#" class="button small"><i class="fi fi-calendar"></i><?= t('Verfügbarkeiten ändern'); ?></a></li>
+    <?php if ($user_is_owner) : ?>
+    <ul class="button-group even-2">
+      <li><a href="/<?= current_path(); ?>/edit" id="contact_agent_form_btn" class="button small"><i class="fi fi-pencil"></i><?= t('Ressource bearbeiten'); ?></a></li>
+      <li><a href="#" data-reveal-id="verfuegbarkeitenModal" class="button small"><i class="fi fi-calendar"></i><?= t('Verfügbarkeiten ändern'); ?></a></li>
     </ul> 
-
-    <?php else : ?>
+    <?php elseif ($res['user']->data['contact']) : ?>
     <a href="/user/<?= $res['uid']; ?>/contact" id="contact_agent_btn" class="button small expand"><i class="fi fi-torso"></i><?= t('Anbieter kontaktieren'); ?></a>
     <?php endif; ?>
     <a href="#" id="share_btn" class="button secondary small expand" data-dropdown="res-detail-share-dd" aria-controls="autoCloseExample" aria-expanded="false"><i class="fi fi-share"></i><?= t('Teilen'); ?></a>    
@@ -76,7 +121,7 @@
     <div class="medium-7 column">
       <section id="res-detail-meta-info">
         <ul>
-          <li><i class="fi fi-flag"></i><?= t('Kategorie'); ?>: <span itemprop="category"><?= $res['field_kategorie']; ?></span></li>
+          <li><i class="fi fi-flag"></i><!--<?= t('Kategorie'); ?>:--><span itemprop="category"><?= $res['field_kategorie']; ?></span></li>
           <li><i class="fi fi-marker"></i><?= $res['field_adresse_postleitzahl']; ?></li>
           <li title="<?= t('Bis zu @einheiten verfügbar',array('@einheiten'=>$res['field_anzahl_einheiten'])); ?>"><?= t('Einheiten'); ?>: <span itemprop="numberOfItems"><?= $res['field_anzahl_einheiten']; ?></span></li>
         </ul>

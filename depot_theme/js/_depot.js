@@ -15,16 +15,20 @@
       window.location = target;
     });
 
-    $('.page-ressourcen-neu #edit-field-links-i input[type="text"]').keyup(function(){
+    $('.page-ressourcen-neu #edit-link-i input[type="text"]').keyup(function(){
       if ($(this).val().length >= 1){
-        $('.page-ressourcen-neu #edit-field-links-ii').removeClass('hide');
+        $('.page-ressourcen-neu #edit-link-ii').removeClass('hide');
       }
     });
 
-    $('.page-ressourcen-neu #edit-field-links-ii input[type="text"]').keyup(function(){
+    $('.page-ressourcen-neu #edit-link-ii input[type="text"]').keyup(function(){
       if ($(this).val().length >= 1){
-        $('.page-ressourcen-neu #edit-field-links-iii').removeClass('hide');
+        $('.page-ressourcen-neu #edit-link-iii').removeClass('hide');
       }
+    });
+
+    $('.fieldset-toggle legend').click(function(){
+      $(this).closest('.fieldset-toggle').toggleClass('toggled');
     });
 
 }); 
