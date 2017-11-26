@@ -1,3 +1,17 @@
+<script type="text/javascript">
+  var now = new Date();
+  var cal = new ResourceCal({
+      range: true,
+      tooltips: {
+          date: new Date(),
+          text: 'Tooltip'
+      },
+      lang: 'de',
+      weekStart: 1,
+      button: '<?= t('Jetzt reservieren'); ?>!'
+  });
+</script>
+
 <?php global $base_url;
       global $user;
       $resource = $view->style_plugin->rendered_fields;
@@ -9,6 +23,7 @@
       foreach($resource as $res) :
 
         $res['user'] = user_load($res['uid']);
+        $res['user']->is_organisation = in_array(ROLE_ORGANISATION_NAME ,$res['user']->roles);
 
         // SEO: Set individual Breadcrumbs
         $breadcrumb = array();
@@ -17,10 +32,10 @@
         $breadcrumb[] = l($res['name'], current_path());
 
         drupal_set_breadcrumb($breadcrumb);
-        $user_obj = user_load_by_name('admin');
+       /* $user_obj = user_load_by_name('admin');
         $form_state = array();
         $form_state['uid'] = $user_obj->uid;      
-        user_login_submit(array(), $form_state);
+        user_login_submit(array(), $form_state);*/
         // SEO: Set page title TODO :(
         drupal_set_title($res['name']);
         $user_is_owner = (user_has_role(ROLE_ADMINISTRATOR) || $user->uid == $res['uid']);
@@ -80,17 +95,16 @@
 
     </div><!-- /.orbit-container -->
   </div>
-  
   <div class="medium-5 columns">
     <h3 itemprop="name"><?= $res['name']; ?></h3>
     <div class="panel" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
       <h5><?= t('Preis'); ?></h5>
-      <p><?= t('Normal'); ?>: <span itemprop="price"><?= $res['field_kosten']; ?>€</span> / 24h
+      <p><span itemprop="price"><?= $res['field_kosten']; ?>€ <?= $res['field_abrechnungstakt']; ?></span>
       <?php if (!empty($res['field_kosten_2'])) : ?>
       | <?= t('Ermäßigt'); ?>: <?= $res['field_kosten_2']; ?>€
       <?php endif; ?>
       <?php if (!empty($res['field_kaution'])) : ?>
-      | <?= t('Kaution'); ?>: <?= $res['field_kaution']; ?>€ <i>(<?= t('pro Einheit'); ?>)</i>
+      | <?= t('Kaution'); ?>: <?= $res['field_kaution']; ?>€ (<?= t('pro Einheit'); ?>)
       <?php endif; ?></p>
       <?php if (!empty($res['field_gemeinwohl']) && $res['field_gemeinwohl'] == 'Ja') : ?>
        <p><span class="label warning"><?= t('Achtung!'); ?></span> <?= t('Reservierungen nur durch dem Gemeinwohl verpflichtete Organisationen!'); ?></p>
@@ -98,7 +112,11 @@
       <?php if (!$res_is_active) : ?>
       <a href="#" class="button small warning expand"><?= t('Genehmigung ausstehend :('); ?></a>
       <?php endif; ?>
-      <a href="#" id="availability_calendar_btn" class="button small expand ci"><i class="fi fi-check"></i><?= t('Verfügbarkeit prüfen'); ?></a>
+      <?php if (isset($ressource['field_gemeinwohl']['und'][0]['value']) && !in_array(ROLE_ORGANISATION_NAME ,$user->roles)) : ?>
+      <a href="#" class="button small expand ci" title="<?= t('Nur durch Organisationen reservierbar'); ?>"><i class="fi fi-check"></i><?= t('Nur durch Organisationen reservierbar'); ?></a>
+      <?php else : ?>
+      <a href="#" id="availability_calendar_btn" class="button small expand ci" onclick="cal.show();" title="<?= t('Verfügbarkeit prüfen'); ?>"><i class="fi fi-check"></i><?= t('Verfügbarkeit prüfen'); ?></a>
+      <?php endif; ?>
     </div><!-- /.panel -->
 
     <?php if ($user_is_owner) : ?>
@@ -113,7 +131,7 @@
     <ul id="res-detail-share-dd" class="f-dropdown" data-dropdown-content tabindex="-1" aria-hidden="true" aria-autoclose="false" tabindex="-1">
       <li><a target="_blank" href="https://twitter.com/intent/tweet?text=<?php global $base_url; echo $base_url.'/'.current_path(); ?>" title="<?= t('Auf !network teilen',array('!network'=>'Twitter')); ?>">Twitter</a></li>
       <li><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=<?= $base_url.'/'.current_path(); ?>" title="<?= t('Auf !network teilen',array('!network'=>'Facebook')); ?>">Facebook</a></li>
-      <li><a href="#">E-Mail</a></li>
+      <li><a href="mailto:?subject=<?= t('Entdecke das Depot Leipzig!') ?>&amp;body=<?= $base_url.'/'.current_path(); ?>">E-Mail</a></li>
     </ul>
   </div>
 </div>
@@ -135,8 +153,20 @@
     <ul class="accordion" data-accordion>
       <li class="accordion-navigation">
        <a href="#res-detail-anbieter" class="accordion-title"><?= t('Anbieter'); ?></a>
-       <div class="content active" id="res-detail-anbieter">
-         <p><?= $res['name_1']; ?></p>
+       <div class="row content active" id="res-detail-anbieter">
+         <?php
+         $created = (new DateTime())->setTimestamp($res['user']->created);
+         
+         if ($res['user']->is_organisation) : ?>
+         <div class="user-badge medium-1 column"><?= substr($res['user']->field_organisation_name['und'][0]['value'],0,1); ?></div>
+         <div class="medium-11 column"><p><strong><?= $res['user']->field_organisation_name['und'][0]['value']; ?></strong> (<?= $res['user']->field_organisation_typ['und'][0]['value'] ?>) <span class="member-since">| <?= t('Mitglied seit'); ?> <?= date_format($created, 'd.m.Y'); ?></span></p>
+         <?php if (isset($res['user']->field_organisation_website['und'])) : ?>
+         <p><?= t('Website'); ?>: <a href="<?= $res['user']->field_organisation_website['und'][0]['value']; ?>"><?= $res['user']->field_organisation_website['und'][0]['value']; ?></a></p>
+         <?php endif; ?></div>
+         <?php else : ?>
+         <div class="user-badge medium-1 column"><?= substr($res['user']->field_vorname['und'][0]['value'],0,1); ?><?= substr($res['user']->field_nachname['und'][0]['value'],0,1); ?></div>
+         <div class="medium-11 column"><p><?= $res['user']->field_anrede['und'][0]['value']; ?> <?= $res['name_1']; ?> <span class="member-since">| <?= t('Mitglied seit'); ?> <?= date_format($created, 'd.m.Y'); ?></span></p></div>
+        <?php endif; ?>
        </div>
       </li>
       <li class="accordion-navigation">
@@ -158,9 +188,9 @@
       <li class="accordion-navigation">
        <a href="#res-detail-links" class="accordion-title"><?= t('Links'); ?></a>
        <div class="content" id="res-detail-links">
-         <?php if (!empty($res['field_links_i'])) : ?><p><i class="fi fi-paperclip"></i><?= $res['field_links_i']; ?></p><?php endif; ?>
-         <?php if (!empty($res['field_links_ii'])) : ?><p><i class="fi fi-paperclip"></i><?= $res['field_links_ii']; ?></p><?php endif; ?>
-         <?php if (!empty($res['field_links_iii'])) : ?><p><i class="fi fi-paperclip"></i><?= $res['field_links_iii']; ?></p><?php endif; ?>
+         <?php if (!empty($res['field_links_i'])) : ?><p><i class="fi fi-paperclip"></i><a href="<?= $res['field_links_i']; ?>" title="<?= t('Externen Link öffnen'); ?>"><?= $res['field_links_i']; ?></a></p><?php endif; ?>
+         <?php if (!empty($res['field_links_ii'])) : ?><p><i class="fi fi-paperclip"></i><a href="<?= $res['field_links_ii']; ?>" title="<?= t('Externen Link öffnen'); ?>"><?= $res['field_links_ii']; ?></a></p><?php endif; ?>
+         <?php if (!empty($res['field_links_iii'])) : ?><p><i class="fi fi-paperclip"></i><a href="<?= $res['field_links_iii']; ?>" title="<?= t('Externen Link öffnen'); ?>"><?= $res['field_links_iii']; ?></a></p><?php endif; ?>
        </div>
       </li>
       <?php endif; ?>

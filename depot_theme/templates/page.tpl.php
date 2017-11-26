@@ -39,9 +39,11 @@ h1, h2, h3, h4, h5, h6 { font-family: 'Roboto Slab', serif; }
   #availability_calendar_btn { position:fixed;width:100%;margin:0;left:0;bottom:0;z-index:999; }
 }
 
+.user-badge { width: 40px; height: 40px; border-radius:40px;padding-top:9px;font-size:0.8em; background-color: #e03b00; color: #fff; text-align:center; }
+
 #main-content { margin-top:35px !important; }
 .page-user .breadcrumbs { display:none; }
-
+.alert-box { z-index:999; }
 .res-elem { background-color: #fff; }
 .res-elem .views-field-nothing .button.secondary { margin-top:12px; }
 .res-elem.res-mein-depot-elem .views-field-nothing .button.secondary { margin-bottom:2px; }
@@ -79,7 +81,8 @@ h1, h2, h3, h4, h5, h6 { font-family: 'Roboto Slab', serif; }
 .reveal-modal-bg { z-index:998; }
 #verfuegbarkeitenModal { top:5px !important; }
 .image-big-modal { text-align:center;padding:5px;top:40px !important; }
-
+.view-ressourcen-detailseite .accordion-navigation .user-badge { margin-left:6px; }
+.member-since { font-size: 0.8em;color:grey; }
 .button.margin-top-ten { margin-top:25px; }
 .section-user .field-label { float:left; }
 form label { padding-bottom:6px; }

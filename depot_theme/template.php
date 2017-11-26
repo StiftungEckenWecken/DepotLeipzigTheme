@@ -5,6 +5,9 @@
  */
 function depot_theme_preprocess_html(&$variables) {
   drupal_add_css('https://fonts.googleapis.com/css?family=Open+Sans:400,700,700i|Roboto+Slab:300,400', array('type' => 'external'));
+  drupal_add_css(path_to_theme(). '/RessourceCalendar/src/css/resourceCal.css');
+  drupal_add_js(path_to_theme().'/RessourceCalendar/src/js/resourceCal.js');
+  drupal_add_html_head(array('#tag' => 'meta', '#attributes' => array('name' => 'flattr:id','content' => 'pdz00n',),'flattr_id'));
 }
 
 /**
