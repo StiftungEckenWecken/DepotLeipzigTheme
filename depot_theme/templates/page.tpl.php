@@ -40,6 +40,7 @@ h1, h2, h3, h4, h5, h6 { font-family: 'Roboto Slab', serif; }
 }
 
 .user-badge { width: 40px; height: 40px; border-radius:40px;padding-top:9px;font-size:0.8em; background-color: #e03b00; color: #fff; text-align:center; }
+.user-badge.two-digits { padding-left: 10px; }
 
 #main-content { margin-top:35px !important; }
 .page-user .breadcrumbs { display:none; }
@@ -94,8 +95,14 @@ fieldset legend { font-size:1.2em; }
 .fieldset-toggle legend:before { content:'▴';position:relative;transform:rotate(180deg);font-size:1.5em;cursor:pointer;margin-top:-6px;margin-left:-40px;color:#323131;background:#fff;transition:0.25s transform; }
 .fieldset-toggle.toggled { height:auto; }
 .fieldset-toggle.toggled legend:before { transform:rotate(90deg);}
+#edit-field-buchung-bedingungen { margin-bottom:15px; }
+#user-profile-form #edit-field-organisation-website { display:none; }
+#user-profile-form #edit-field-organisation-name { display:none; }
+#user-profile-form #edit-field-organisation-typ { display:none; }
 
-.form-type-checkbox:not(.form-item-field-verleihvertrag--und) .description { float:right;margin-top:-32px;margin-left:3.5em; }
+#booking-status { float:right; }
+
+.form-type-checkbox:not(.form-item-field-verleihvertrag--und) .description { margin-top:-32px;margin-left:3.5em; }
 #wannabe-hero { display:none;background:url('/sites/all/themes/depot_theme/images/hero_sandwich.jpg') repeat-x;height:232px;opacity:0.7;width:100%;position:absolute;top:62px;}
 .l-footer { border-top:1px solid #d8d8d8;padding-top:12px;margin-top:20px;background-color:rgba(255,255,255,0.7); }
 .l-footer:after { opacity:0.7;content:'';background:url('sites/all/themes/depot_theme/images/logo_s.png') no-repeat;width:238px;height:238px;bottom:-50px;left:-50px;z-index:-1;position:fixed; }
@@ -107,6 +114,11 @@ fieldset legend { font-size:1.2em; }
 #depot-footer-menu ul { list-style:none;float:right; }
 #depot-footer-menu ul li { float:left;padding-left:20px; }
 #depot-footer-menu ul li.active-trail a { font-weight:bold; }
+
+#buchung-header {}
+#buchung-header h4 i { font-size: 1em;padding-right:12px; }
+#buchung-header div p { padding-left: 29px;margin-bottom: 0; }
+#buchung-header .fi-info { float:right;opacity:0.5;margin-top:-32px; }
 </style>
 <!-- TEMPORARY!! -->
 <header id="wannabe-hero"></header>

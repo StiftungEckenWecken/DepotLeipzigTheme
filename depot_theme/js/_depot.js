@@ -12,24 +12,32 @@
       if (targetKategorie != '')
           target += '?kategorie_id=' + targetKategorie;
 
-      window.location = target;
+      window.location = target;  
     });
 
-    $('.page-ressourcen-neu #edit-link-i input[type="text"]').keyup(function(){
+    $('#edit-field-links-i input[type="text"]').keyup(function(){
       if ($(this).val().length >= 1){
-        $('.page-ressourcen-neu #edit-link-ii').removeClass('hide');
+        $('#edit-field-links-ii').removeClass('hide');
       }
     });
 
-    $('.page-ressourcen-neu #edit-link-ii input[type="text"]').keyup(function(){
+    $('#edit-field-links-ii input[type="text"]').keyup(function(){
       if ($(this).val().length >= 1){
-        $('.page-ressourcen-neu #edit-link-iii').removeClass('hide');
+        $('#edit-field-links-iii').removeClass('hide');
       }
     });
 
     $('.fieldset-toggle legend').click(function(){
       $(this).closest('.fieldset-toggle').toggleClass('toggled');
     });
+
+    if ($('body').hasClass('section-ressourcen')){
+      var url = window.location.pathname;
+      if (url.search('av') > 1){
+        $('#verfuegbarkeitenModal').trigger('click');
+      }
+
+    }
 
 }); 
   
