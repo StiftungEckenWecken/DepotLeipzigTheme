@@ -1,20 +1,3 @@
-<script type="text/javascript">
- var maxAmount = 2;
- var blockedEvents = demoEvents.filter(function(e) {
-    return !!e.blocking;
- });
- console.log(blockedEvents);
- var now = new Date();
- var cal = new ResourceCal({
-   range: true,
-   lang: 'de',
-   weekStart: 1,
-   button: '<?= t('Jetzt reservieren'); ?>!',
-   blockedPeriods: blockedEvents,
-   totalAmount: maxAmount
-  });
-    
-</script>
 <?php global $base_url;
       global $user;
       $resource = $view->style_plugin->rendered_fields;
@@ -23,24 +6,11 @@
         drupal_not_found();
         drupal_exit();
       }
-      foreach($resource as $res) :
+      foreach($resource as $res) : 
 
         $res['user'] = user_load($res['uid']);
         $res['user']->is_organisation = in_array(ROLE_ORGANISATION_NAME ,$res['user']->roles);
 
-        // SEO: Set individual Breadcrumbs
-        $breadcrumb = array();
-        $breadcrumb[] = l('Home', '<front>');
-        $breadcrumb[] = l('Ressourcen', 'ressourcen');
-        $breadcrumb[] = $res['name'];
-
-        drupal_set_breadcrumb($breadcrumb);
-       /* $user_obj = user_load_by_name('admin');
-        $form_state = array();
-        $form_state['uid'] = $user_obj->uid;      
-        user_login_submit(array(), $form_state);*/
-        // SEO: Set page title TODO :(
-        drupal_set_title($res['name']);
         $user_is_owner = (user_has_role(ROLE_ADMINISTRATOR) || $user->uid == $res['uid']);
         $res_is_active = ($res['field_aktiviert'] != 'Genehmigung ausstehend');
 
@@ -48,13 +18,65 @@
           drupal_access_denied();
           drupal_exit();
         }
-?>
 
+        // Append ONLY blocked events to DOM
+        $blocked_events = depot_get_available_units_by_rid($res['type_id'], (new DateTime(date('Y-m-d')))->format('Y-m-d H:i'), (new DateTime(date('Y-m-d',strtotime(date("Y-m-d", time()) . " + 365 day"))))->format('Y-m-d H:i'));
+        foreach ($blocked_events as $key => $event){
+          if (!$event['blocking'])
+            unset($blocked_events[$key]);
+        }
+        
+        // SEO: Set individual Breadcrumbs
+        $breadcrumb = array();
+        $breadcrumb[] = l('Home', '<front>');
+        $breadcrumb[] = l('Ressourcen', 'ressourcen');
+        $breadcrumb[] = $res['name'].($user_is_owner ? ' ('.t('Eigene Ressource').')' : '');
+        drupal_set_breadcrumb($breadcrumb);
+
+        // SEO: Set page title TODO :(
+        drupal_set_title($res['name']);
+        
+?>
+<script type="text/javascript">
+  $ = jQuery;
+  $(document).ready(function(){
+    $('#availability_calendar_btn').click(function(){
+      <?php if (!user_is_logged_in()): ?>
+      $('.d-confirm-button').html('<?= t('Jetzt einloggen und reservieren'); ?>!');
+      <?php endif; ?>
+    });
+  });
+  // kept here for debugging purpose
+  var blockedEvents = <?= json_encode($blocked_events); ?>;
+
+  console.log(blockedEvents);
+  var now = new Date();
+  var cal = new ResourceCal({
+    range: true,
+    lang: 'de',
+    weekStart: 1,
+    button: '<?= t('Jetzt reservieren'); ?>!',
+    blockedPeriods: blockedEvents,
+    totalAmount: <?= $res['field_anzahl_einheiten']; ?>,
+    onConfirm: function () {
+        $('#calResFormBegin').val(this.selectedDates[0]/1000);
+        $('#calResFormEnd').val(this.selectedDates[1]/1000);
+        $('#calResFormEinheiten').val(this.selectedAmount);
+        $('#calResForm').submit();
+    }
+  });
+</script>
+<form id="calResForm" method="GET" action="<?= (!user_is_logged_in() ? '/user/login?destination=' : '') ?>/reservierungen/neu">
+ <input type="hidden" id="calResFormRid" name="rid" value="<?= $res['type_id']; ?>" />
+ <input type="hidden" id="calResFormEinheiten" name="einheiten" value="" />
+ <input type="hidden" id="calResFormBegin" name="begin" value="" />
+ <input type="hidden" id="calResFormEnd" name="end" value="" />
+</form>
 <?php if ($user_is_owner) : ?>
 <div id="verfuegbarkeitenModal" class="reveal-modal" data-reveal aria-hidden="true">
   <h2 id="modalTitle"><?= t('Verfügbarkeiten bestimmen.'); ?></h2>
   <p class="lead"><?= t('In diesem Kalender sehen Sie die exakten Verfügbarkeiten aller Einheiten dieser Ressource.') ?></p>
-  <p><span class="secondary label"><?= t('Hinweis:'); ?></span> <?= t('Um Sperrzeiten anzulegen, "markieren" Sie einen bestimmten Zeitraum mit der Maus.'); ?></p>
+  <p><span class="secondary label"><?= t('Hinweis:'); ?></span> <?= t('Um Sperrzeiten anzulegen, "markieren" Sie einen bestimmten Zeitraum mit der Maus. Bestehende Termine können auch via Drag & Drop arrangiert werden.'); ?></p>
   <iframe width="900" height="600" src="/ressourcen/<?= $res['type_id']; ?>/verfuegbarkeiten" frameborder="0" allowfullscreen></iframe>
   <a class="close-reveal-modal" aria-label="Close">&#215;</a>
 </div>

@@ -113,6 +113,20 @@ function depot_theme_menu_local_tasks_alter(&$data, $router_item, $root_path){
       '#active' => false // $router_item['path'] == $root_path,
     );
     } */
+
+    $data['tabs'][0]['output'][] = array(
+      '#theme' => 'menu_local_task',
+      '#link' => array(
+        'title' => t('Mein Depot'),
+        'href' => 'mein-depot',
+        'localized_options' => array(
+          'attributes' => array(
+            'title' => t('Ressourcen & Reservierungen einsehen'),
+          ),
+        ),
+      ),
+      '#active' => false // $router_item['path'] == $root_path,
+    );
     
     $data['tabs'][0]['output'][] = array(
       '#theme' => 'menu_local_task',

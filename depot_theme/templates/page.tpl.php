@@ -5,7 +5,7 @@
 h1, h2, h3, h4, h5, h6 { font-family: 'Roboto Slab', serif; }
 .rs, .accordion-title, .l-footer *,.form-type-checkbox:not(.form-item-field-verleihvertrag--und) .description, fieldset legend, label { font-family: 'Roboto Slab', serif !important; }
 
-.top-bar { border-bottom:#d8d8d8; box-shadow: 0 0 6px #6f6f6f99; }
+.top-bar { border-bottom:#d8d8d8;box-shadow: 0 0 6px rgba(64,64,64,0.5); }
 .top-bar-section ul li { background-color:#fff; }
 
 .logged-in #button-group-logged-out { display:none; }
