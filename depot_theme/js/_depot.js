@@ -9,8 +9,9 @@
       var targetKategorie = $(this).val();
       var target = '/ressourcen';
       
-      if (targetKategorie != '')
+      if (targetKategorie !== '') {
           target += '?kategorie_id=' + targetKategorie;
+      }
 
       window.location = target;  
     });
