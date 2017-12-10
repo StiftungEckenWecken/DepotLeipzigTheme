@@ -119,7 +119,27 @@ fieldset legend { font-size:1.2em; }
 #buchung-header h4 i { font-size: 1em;padding-right:12px; }
 #buchung-header div p { padding-left: 29px;margin-bottom: 0; }
 #buchung-header .fi-info { float:right;opacity:0.5;margin-top:-32px; }
+
+/* Animated throbber
+   TODO: Build as :after, animate via transform:rotate() */
+html.js input.form-autocomplete {
+  transition: 0.25s background-image;
+}
+html.js input.throbbing {
+  background-image: url('/sites/all/themes/depot_theme/images/favicon.png');
+  background-size: 20px;
+}
+.form-item-field-fake-kategorie { margin-top:36px; }
+.form-item-field-nutzungsbedingungen-und .option { display:none; }
 </style>
+<script type="text/javascript">
+$ = jQuery;
+$(document).ready(function(){
+  $('#edit-field-fake-kategorie').change(function(){
+    $('#edit-field-kategorie-und-0-state-id').val($(this).val());
+  });
+});
+</script>
 <!-- TEMPORARY!! -->
 <header id="wannabe-hero"></header>
 
