@@ -1,0 +1,70 @@
+
+.form-type-checkbox .option {
+  padding-left: 8px;
+  position: absolute;
+  margin-top: -4px;
+}
+
+.form-type-textarea .description {
+  padding-top: 10px;
+}
+
+.fieldset-toggle {
+  height: 0;
+  overflow: hidden;
+  padding-top: 0;
+}
+
+.fieldset-toggle legend {
+  margin-left: 32px;
+  cursor: pointer;
+}
+
+.fieldset-toggle legend:before {
+  content: '▴';
+  position: relative;
+  transform: rotate(180deg);
+  font-size: 1.5em;
+  cursor: pointer;
+  margin-top: -6px;
+  margin-left: -40px;
+  color: #323131;
+  background: #fff;
+  transition: 0.25s transform;
+}
+
+.fieldset-toggle.toggled {
+  height: auto;
+}
+
+.fieldset-toggle.toggled legend:before {
+  transform: rotate(90deg);
+}
+
+#edit-field-buchung-bedingungen {
+  margin-bottom: 15px;
+}
+
+#user-profile-form #edit-field-organisation-website {
+  display: none;
+}
+
+#user-profile-form #edit-field-organisation-name {
+  display: none;
+}
+
+#user-profile-form #edit-field-organisation-typ {
+  display: none;
+}
+
+#user-profile-form #edit-field-agb {
+  display: none;
+}
+
+.form-item-field-fake-kategorie {
+  margin-top: 36px;
+}
+
+.form-item-field-nutzungsbedingungen-und .option {
+  display: none;
+}

@@ -1,0 +1,20 @@
+.logged-in #button-group-logged-out {
+  display: none;
+}
+
+.not-logged-in #button-group-logged-in {
+  display: none;
+}
+
+.button-group li.active a {
+  background-color: #fff;
+  border-bottom: 2px solid #e03b00;
+}
+
+.button.ci {
+  background-color: $primary-color;
+}
+
+.button.ci:hover {
+  background-color: #AC2F02;
+}

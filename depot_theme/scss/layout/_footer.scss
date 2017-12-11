@@ -1,1 +1,53 @@
 // Non-modular or client styles for .l-footer region.
+
+.l-footer {
+  border-top: 1px solid #d8d8d8;
+  padding-top: 12px;
+  margin-top: 20px;
+  background-color: rgba(255, 255, 255, 0.7);
+
+  @media only screen and (max-width: 40.063em) {
+
+    ul {
+      display: none;
+    }
+  }
+
+  &:after {
+    opacity: 0.7;
+    content: '';
+    background: url('sites/all/themes/depot_theme/images/logo_s.png') no-repeat;
+    width: 238px;
+    height: 238px;
+    bottom: -50px;
+    left: -50px;
+    z-index: -1;
+    position: fixed;
+  }
+}
+
+#depot-footer-menu ul li a, .l-footer p {
+  font-size: 0.85em;
+}
+
+#depot-footer-menu ul {
+  list-style: none;
+  float: right;
+
+  li {
+    float: left;
+    padding-left: 20px;
+
+    a {
+      color: inherit;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+
+    &.active-trail a {
+      font-weight: bold;
+    }
+  }
+}

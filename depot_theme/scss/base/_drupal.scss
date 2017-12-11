@@ -34,3 +34,197 @@
 .inline {
   @include inline-list;
 }
+
+/* Animated throbber
+   TODO: Build as :after, animate via transform:rotate() */
+html.js input.form-autocomplete {
+  transition: 0.25s background-image;
+}
+
+html.js input.throbbing {
+  background-image: url('/sites/all/themes/depot_theme/images/favicon.png');
+  background-size: 20px;
+}
+
+/* 20% darker by default */
+.l-messages {
+  position: absolute;
+  left: -50%;
+  right: -50%;
+}
+
+.orbit-bullets {
+  margin-bottom: 5px;
+}
+
+.fieldset-wrapper .form-type-checkbox .option {
+  display: none;
+}
+
+.form-item-pass-pass1.password-parent {
+  width: auto;
+}
+
+.form-item-pass-pass2 {
+  padding-top: 36px;
+}
+
+.views-label {
+  float: left;
+}
+
+@media only screen and (min-width: 40.063em) {
+  .page-user #main-content {
+    max-width: 50%;
+    margin: 0 auto;
+  }
+  #depot-global-select-kategorie {
+    margin: 13px 0 0 4px;
+  }
+}
+
+@media only screen and (max-width: 40.063em) {
+  #depot-global-select-kategorie {
+    margin-bottom: 5px;
+  }
+  #views-exposed-form-ressourcen-bersicht-page input, #views-exposed-form-ressourcen-bersicht-page select {
+    width: 100%;
+  }
+  #availability_calendar_btn {
+    position: fixed;
+    width: 100%;
+    margin: 0;
+    left: 0;
+    bottom: 0;
+    z-index: 999;
+  }
+}
+
+.user-badge {
+  width: 40px;
+  height: 40px;
+  border-radius: 40px;
+  padding-top: 9px;
+  font-size: 0.8em;
+  background-color: #e03b00;
+  color: #fff;
+  text-align: center;
+}
+
+.user-badge.two-digits {
+  padding-left: 10px;
+}
+
+#main-content {
+  margin-top: 35px !important;
+}
+
+.page-user .breadcrumbs {
+  display: none;
+}
+
+.alert-box {
+  z-index: 999;
+}
+
+#res-detail-desc {
+  padding-top: 60px;
+}
+
+.accordion {
+  margin-left: 0;
+}
+
+.ressource-page-button-group .fi {
+  font-size: 1.3em;
+  padding-right: 6px;
+}
+
+.view-ressourcen-detailseite .fi {
+  margin-right: 7px;
+}
+
+.view-ressourcen-detailseite #page-title {
+  display: none;
+}
+
+.view-ressourcen-detailseite .callout {
+  border: 1px solid #b9b9b9;
+  padding: 14px;
+  margin-bottom: 10px;
+}
+
+.view-ressourcen-detailseite #res-detail-meta-info ul {
+  list-style: none;
+}
+
+.view-ressourcen-detailseite #res-detail-meta-info ul li {
+  text-align: center;
+  font-size: 0.85em;
+  line-height: 2.5em;
+  float: left;
+  width: 33.3%;
+  border-right: 1px solid #b9b9b9;
+}
+
+.view-ressourcen-detailseite #res-detail-meta-info ul li:last-child {
+  border-right: unset;
+}
+
+.depot-ressource-detail-slider {
+  max-height: 400px;
+}
+
+.reveal-modal-bg {
+  z-index: 998;
+}
+
+#verfuegbarkeitenModal {
+  top: 5px !important;
+}
+
+.image-big-modal {
+  text-align: center;
+  padding: 5px;
+  top: 40px !important;
+}
+
+.view-ressourcen-detailseite .accordion-navigation .user-badge {
+  margin-left: 6px;
+}
+
+.member-since {
+  font-size: 0.8em;
+  color: grey;
+}
+
+.button.margin-top-ten {
+  margin-top: 25px;
+}
+
+.section-user .field-label {
+  float: left;
+}
+
+#booking-status {
+  float: right;
+}
+
+.form-type-checkbox:not(.form-item-field-verleihvertrag--und) .description {
+  margin-top: -32px;
+  margin-left: 3.5em;
+}
+
+#wannabe-hero {
+  display: none;
+  background: url('/sites/all/themes/depot_theme/images/hero_sandwich.jpg') repeat-x;
+  height: 232px;
+  opacity: 0.7;
+  width: 100%;
+  position: absolute;
+  top: 62px;
+}
+
+.front #wannabe-hero {
+  display: block !important;
+}

@@ -1,1 +1,20 @@
 // Non-modular or client styles for .l-header region.
+
+#buchung-header {
+
+  h4 i {
+    font-size: 1em;
+    padding-right: 12px;
+  }
+
+  div p {
+    padding-left: 29px;
+    margin-bottom: 0;
+  }
+
+  .fi-info {
+    float: right;
+    opacity: 0.5;
+    margin-top: -32px;
+  }
+}

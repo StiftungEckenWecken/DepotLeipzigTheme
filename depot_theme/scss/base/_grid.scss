@@ -1,0 +1,32 @@
+.views-view-grid {
+  background-color: transparent;
+  width: 100%;
+  border: none;
+
+  tbody {
+    background-color: transparent;
+    width: 100%;
+    border: none;
+  }
+
+  [class*="row-"] {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    background-color: transparent;
+  }
+
+
+
+  @for $i from 1 through 6 {
+
+    &.cols-#{$i} {
+
+      [class*="col-"] {
+        width: calc(#{100% / $i} - 10px);
+      }
+    }
+  }
+
+}
