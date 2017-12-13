@@ -73,12 +73,9 @@ html.js input.throbbing {
   float: left;
 }
 
-@media only screen and (min-width: 40.063em) {
-  .page-user #main-content {
-    max-width: 50%;
-    margin: 0 auto;
-  }
-  #depot-global-select-kategorie {
+#depot-global-select-kategorie {
+
+  @media only screen and (min-width: 40.063em) {
     margin: 13px 0 0 4px;
   }
 }

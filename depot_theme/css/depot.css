@@ -5336,19 +5336,19 @@ h1, h2, h3, h4, h5, h6 {
     line-height: 0; }
 
 h1 {
-  font-size: 2.125rem; }
+  font-size: 1.125rem; }
 
 h2 {
-  font-size: 1.6875rem; }
+  font-size: 0.875rem; }
 
 h3 {
-  font-size: 1.375rem; }
+  font-size: 0.9375rem; }
 
 h4 {
-  font-size: 1.125rem; }
+  font-size: 0.875rem; }
 
 h5 {
-  font-size: 1.125rem; }
+  font-size: 1.0625rem; }
 
 h6 {
   font-size: 1rem; }
@@ -5512,15 +5512,15 @@ blockquote p {
   h1, h2, h3, h4, h5, h6 {
     line-height: 1.4; }
   h1 {
-    font-size: 2.75rem; }
+    font-size: 1.75rem; }
   h2 {
-    font-size: 2.3125rem; }
+    font-size: 1.5rem; }
   h3 {
-    font-size: 1.6875rem; }
+    font-size: 1.25rem; }
   h4 {
-    font-size: 1.4375rem; }
+    font-size: 1.1875rem; }
   h5 {
-    font-size: 1.125rem; }
+    font-size: 1.0625rem; }
   h6 {
     font-size: 1rem; } }
 
@@ -5618,7 +5618,7 @@ blockquote p {
     line-height: 2.8125rem;
     margin: 0; }
   .tab-bar h1, .tab-bar h2, .tab-bar h3, .tab-bar h4 {
-    font-size: 1.125rem; }
+    font-size: 1.0625rem; }
 
 .left-small {
   width: 2.8125rem;
@@ -6351,9 +6351,6 @@ html.js input.throbbing {
   float: left; }
 
 @media only screen and (min-width: 40.063em) {
-  .page-user #main-content {
-    max-width: 50%;
-    margin: 0 auto; }
   #depot-global-select-kategorie {
     margin: 13px 0 0 4px; } }
 
@@ -6561,14 +6558,32 @@ fieldset legend {
   display: none; }
 
 .button-group li.active a {
-  background-color: #fff;
-  border-bottom: 2px solid #e03b00; }
+  background-color: #e13b01; }
+  .button-group li.active a:hover {
+    background-color: #c83401; }
 
 .button.ci {
   background-color: #e13b01; }
 
 .button.ci:hover {
-  background-color: #AC2F02; }
+  background-color: #c83401; }
+
+.page main#main-content {
+  background-color: #fff;
+  box-shadow: 0 0 6px rgba(102, 102, 102, 0.2); }
+  @media only screen and (min-width: 40.063em) {
+    .page main#main-content {
+      max-width: 970px;
+      margin: 0 auto; } }
+  @media only screen and (min-width: 40.063em) {
+    .page main#main-content .main {
+      padding: 2rem; } }
+
+label {
+  font-size: 1rem; }
+
+.form-item {
+  margin-top: .2rem; }
 
 .form-type-checkbox .option {
   padding-left: 8px;
@@ -6728,5 +6743,42 @@ fieldset legend {
 
 .top-bar-section ul li {
   background-color: #fff; }
+
+@media only screen and (min-width: 40.063em) {
+  .page-user main#main-content {
+    max-width: 600px;
+    margin: 0 auto; } }
+
+.page-user main#main-content #page-title {
+  font-size: 1.5rem;
+  padding: .5rem .2rem .4rem; }
+
+@media only screen and (min-width: 40.063em) {
+  .page-user main#main-content .main {
+    padding: 1rem; } }
+
+.page-user main#main-content .main .button-group {
+  text-align: center; }
+
+.page-user form#user-login, .page-user form#user-pass, .page-user form#user-register-form {
+  padding: 0 1rem 1rem; }
+  .page-user form#user-login::after, .page-user form#user-pass::after, .page-user form#user-register-form::after {
+    clear: both;
+    content: "";
+    display: table; }
+  @media only screen and (min-width: 40.063em) {
+    .page-user form#user-login .medium-6, .page-user form#user-pass .medium-6, .page-user form#user-register-form .medium-6 {
+      width: 100%; } }
+  @media only screen and (min-width: 40.063em) {
+    .page-user form#user-login .form-item input[type='text'], .page-user form#user-login .form-item input[type='password'], .page-user form#user-login .form-item input[type='email'], .page-user form#user-login .form-item select, .page-user form#user-login .form-item textarea, .page-user form#user-pass .form-item input[type='text'], .page-user form#user-pass .form-item input[type='password'], .page-user form#user-pass .form-item input[type='email'], .page-user form#user-pass .form-item select, .page-user form#user-pass .form-item textarea, .page-user form#user-register-form .form-item input[type='text'], .page-user form#user-register-form .form-item input[type='password'], .page-user form#user-register-form .form-item input[type='email'], .page-user form#user-register-form .form-item select, .page-user form#user-register-form .form-item textarea {
+      width: 75%; } }
+  .page-user form#user-login .form-item.form-type-checkbox .description, .page-user form#user-pass .form-item.form-type-checkbox .description, .page-user form#user-register-form .form-item.form-type-checkbox .description {
+    margin-top: .2rem; }
+  @media only screen and (min-width: 40.063em) {
+    .page-user form#user-login #edit-submit, .page-user form#user-pass #edit-submit, .page-user form#user-register-form #edit-submit {
+      width: auto;
+      padding-left: 2rem;
+      padding-right: 2rem;
+      float: right; } }
 
 /*# sourceMappingURL=depot.css.map */

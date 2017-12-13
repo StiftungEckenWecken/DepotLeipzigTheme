@@ -1,3 +1,6 @@
+button, .button {
+}
+
 .logged-in #button-group-logged-out {
   display: none;
 }
@@ -7,8 +10,11 @@
 }
 
 .button-group li.active a {
-  background-color: #fff;
-  border-bottom: 2px solid #e03b00;
+  background-color: $primary-color;
+
+  &:hover {
+    background-color: darken($primary-color, 5);
+  }
 }
 
 .button.ci {
@@ -16,5 +22,5 @@
 }
 
 .button.ci:hover {
-  background-color: #AC2F02;
+  background-color: darken($primary-color, 5);
 }
