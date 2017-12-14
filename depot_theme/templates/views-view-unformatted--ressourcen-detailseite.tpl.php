@@ -135,7 +135,7 @@
       <?php if (!$res_is_active) : ?>
       <a href="#" class="button small warning expand"><?= t('Genehmigung ausstehend :('); ?></a>
       <?php endif; ?>
-      <?php if (isset($ressource['field_gemeinwohl']['und'][0]['value']) && !in_array(ROLE_ORGANISATION_NAME, $user->roles)) : ?>
+      <?php if (isset($ressource['field_gemeinwohl']['und'][0]['value']) && !in_array(ROLE_ORGANISATION_AUTH_NAME, $user->roles)) : ?>
       <a href="#" class="button small expand ci" title="<?= t('Nur durch gemeinnützige Organisationen reservierbar'); ?>"><i class="fi fi-check"></i><?= t('Nur durch Organisationen reservierbar'); ?></a>
       <?php else : ?>
       <a href="#" id="availability_calendar_btn" class="button small expand ci" onclick="cal.show();" title="<?= t('Verfügbarkeit prüfen'); ?>"><i class="fi fi-check"></i><?= t('Verfügbarkeit prüfen'); ?></a>
