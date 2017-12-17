@@ -4,51 +4,90 @@
 
   #top-bar-logo {
 
-    @media only screen and (min-width: 40.063em) {
+    @media #{$medium-up} {
       width: 100px;
       margin: 16px 40px;
     }
 
-    @media only screen and (max-width: 40.063em) {
+    @media #{$medium-down} {
       width: 100px;
       margin: 16px 12px;
     }
   }
 
   .toggle-topbar.menu-icon {
+    a {
+      span:before {
+        content: "";
+        position: absolute;
+        display: block;
+        background-color: #888888;
+        top: 25%;
+        right: (($topbar-height / 3) * 1.35);
+        width: 0;
+        height: 16px;
+        transition: width 50ms ease-in-out 50ms, transform 100ms ease-in-out;
+      }
+      span:after {
+        transition: height 100ms ease-in-out 100ms, box-shadow 100ms ease-in-out 120ms, transform 100ms ease-in-out;
+      }
+    }
+  }
 
-    @media only screen and (max-width: 40.063em) {
-      a {
-        color: #888888 !important;
+  .top-bar-section {
 
-        span:after {
-          box-shadow: 0 0 0 1px #888888, 0 7px 0 1px #888888, 0 14px 0 1px #888888;
-        }
+    ul li {
+      background-color: #fff;
+
+      & > a, & > select {
+        padding-left: 1rem;
       }
     }
   }
 
   .menu {
 
-    @media only screen and (min-width: 40.063em) {
+    @media #{$medium-up} {
       float: right;
     }
 
     .makeMeCd a {
 
-      @media only screen and (min-width: 40.063em) {
+      @media #{$medium-up} {
         background-color: #e03b00 !important;
         color: #fff;
       }
 
-      @media only screen and (max-width: 40.063em) {
-        width: 100px;
-        margin: 16px 12px;
+      @media #{$medium-down} {
       }
     }
   }
-}
 
-.top-bar-section ul li {
-  background-color: #fff;
+  &.expanded {
+
+    .toggle-topbar.menu-icon {
+        a {
+
+          span {
+
+            &:before {
+              width: 2px;
+              transform: rotate(45deg);
+              transition: width 200ms ease-in-out, transform 300ms ease-in-out;
+            }
+
+            &:after {
+              box-shadow: none;
+              background-color: #888888;
+              height: 2px;
+              margin-top: -2px;
+              transform: rotate(45deg);
+              transition: height 200ms ease-in-out, transform 300ms ease-in-out;
+            }
+          }
+
+
+        }
+    }
+  }
 }

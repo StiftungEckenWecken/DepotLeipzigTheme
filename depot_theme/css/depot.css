@@ -4763,7 +4763,7 @@ meta.foundation-mq-topbar {
         height: 34px;
         line-height: 33px;
         padding: 0 2.9166666667rem 0 1.3541666667rem;
-        color: #FFFFFF;
+        color: #888888;
         position: relative; }
         .top-bar .toggle-topbar.menu-icon a span::after {
           content: "";
@@ -4773,7 +4773,7 @@ meta.foundation-mq-topbar {
           top: 50%;
           margin-top: -8px;
           right: 1.3541666667rem;
-          box-shadow: 0 0 0 1px #FFFFFF, 0 7px 0 1px #FFFFFF, 0 14px 0 1px #FFFFFF;
+          box-shadow: 0 0 0 1px #888888, 0 7px 0 1px #888888, 0 14px 0 1px #888888;
           width: 16px; }
         .top-bar .toggle-topbar.menu-icon a span:hover:after {
           box-shadow: 0 0 0 1px "", 0 7px 0 1px "", 0 14px 0 1px ""; }
@@ -6720,15 +6720,26 @@ label {
     .top-bar #top-bar-logo {
       width: 100px;
       margin: 16px 40px; } }
-  @media only screen and (max-width: 40.063em) {
+  @media only screen and (max-width: 64em) {
     .top-bar #top-bar-logo {
       width: 100px;
       margin: 16px 12px; } }
-  @media only screen and (max-width: 40.063em) {
-    .top-bar .toggle-topbar.menu-icon a {
-      color: #888888 !important; }
-      .top-bar .toggle-topbar.menu-icon a span:after {
-        box-shadow: 0 0 0 1px #888888, 0 7px 0 1px #888888, 0 14px 0 1px #888888; } }
+  .top-bar .toggle-topbar.menu-icon a span:before {
+    content: "";
+    position: absolute;
+    display: block;
+    background-color: #888888;
+    top: 25%;
+    right: 1.828125rem;
+    width: 0;
+    height: 16px;
+    transition: width 50ms ease-in-out 50ms, transform 100ms ease-in-out; }
+  .top-bar .toggle-topbar.menu-icon a span:after {
+    transition: height 100ms ease-in-out 100ms, box-shadow 100ms ease-in-out 120ms, transform 100ms ease-in-out; }
+  .top-bar .top-bar-section ul li {
+    background-color: #fff; }
+    .top-bar .top-bar-section ul li > a, .top-bar .top-bar-section ul li > select {
+      padding-left: 1rem; }
   @media only screen and (min-width: 40.063em) {
     .top-bar .menu {
       float: right; } }
@@ -6736,13 +6747,17 @@ label {
     .top-bar .menu .makeMeCd a {
       background-color: #e03b00 !important;
       color: #fff; } }
-  @media only screen and (max-width: 40.063em) {
-    .top-bar .menu .makeMeCd a {
-      width: 100px;
-      margin: 16px 12px; } }
-
-.top-bar-section ul li {
-  background-color: #fff; }
+  .top-bar.expanded .toggle-topbar.menu-icon a span:before {
+    width: 2px;
+    transform: rotate(45deg);
+    transition: width 200ms ease-in-out, transform 300ms ease-in-out; }
+  .top-bar.expanded .toggle-topbar.menu-icon a span:after {
+    box-shadow: none;
+    background-color: #888888;
+    height: 2px;
+    margin-top: -2px;
+    transform: rotate(45deg);
+    transition: height 200ms ease-in-out, transform 300ms ease-in-out; }
 
 @media only screen and (min-width: 40.063em) {
   .page-user main#main-content {
@@ -6785,12 +6800,12 @@ label {
   background-color: transparent;
   box-shadow: none; }
 
+@media only screen and (max-width: 64em) {
+  .page-ressourcen .views-view-grid.cols-3 [class*="col-"] {
+    width: calc(100%/2 - 10px); } }
+
 @media only screen and (max-width: 40em) {
   .page-ressourcen .views-view-grid.cols-3 [class*="col-"] {
     width: calc(100%/1 - 10px); } }
-
-@media only screen and (min-width: 40.063em) and (max-width: 64em) {
-  .page-ressourcen .views-view-grid.cols-3 [class*="col-"] {
-    width: calc(100%/2 - 10px); } }
 
 /*# sourceMappingURL=depot.css.map */
