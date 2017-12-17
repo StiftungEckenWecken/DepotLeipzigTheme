@@ -4,4 +4,18 @@
     background-color: transparent;
     box-shadow: none;
   }
+
+  .views-view-grid.cols-3 {
+
+    [class*="col-"] {
+
+      @media #{$medium-down} {
+        width: calc(#{100% / 2} - 10px);
+      }
+
+      @media #{$small-down} {
+        width: calc(#{100% / 1} - 10px);
+      }
+    }
+  }
 }

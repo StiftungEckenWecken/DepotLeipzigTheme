@@ -6785,4 +6785,12 @@ label {
   background-color: transparent;
   box-shadow: none; }
 
+@media only screen and (max-width: 40em) {
+  .page-ressourcen .views-view-grid.cols-3 [class*="col-"] {
+    width: calc(100%/1 - 10px); } }
+
+@media only screen and (min-width: 40.063em) and (max-width: 64em) {
+  .page-ressourcen .views-view-grid.cols-3 [class*="col-"] {
+    width: calc(100%/2 - 10px); } }
+
 /*# sourceMappingURL=depot.css.map */
