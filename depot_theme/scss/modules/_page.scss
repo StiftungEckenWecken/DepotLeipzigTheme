@@ -4,10 +4,12 @@
   main#main-content {
     background-color: #fff;
     box-shadow: 0 0 6px rgba(102, 102, 102, 0.2);
+    margin-top: 15px;
+    min-height: calc(100vh - 110px);
 
     @media only screen and (min-width: 40.063em) {
       max-width: 970px;
-      margin: 0 auto;
+      margin: 30px auto 0;
     }
 
     .main {
@@ -16,6 +18,5 @@
         padding: 2rem;
       }
     }
-
   }
 }

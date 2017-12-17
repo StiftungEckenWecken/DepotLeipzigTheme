@@ -3,6 +3,26 @@
   main#main-content {
     background-color: transparent;
     box-shadow: none;
+    margin-top: 0;
+  }
+
+  .main {
+    margin-top: 20px;
+  }
+
+  .ressource-page-button-group {
+
+    & > li {
+      width: 100%;
+      margin-bottom: 10px;
+
+      @media #{$medium-up} {
+        margin: 0 -2px;
+        display: inline-block;
+        width: 50%;
+      }
+
+    }
   }
 
   .views-view-grid.cols-3 {
@@ -14,8 +34,69 @@
       }
 
       @media #{$small-down} {
-        width: calc(#{100% / 1} - 10px);
+        width: 100%;
       }
     }
+  }
+
+  .view-header {
+    margin-bottom: 40px;
+  }
+
+  .view-filters {
+    margin-bottom: 40px;
+
+    .views-exposed-form {
+
+      .views-exposed-widgets {
+        display: flex;
+        flex-wrap: nowrap;
+
+        @media #{$small-only} {
+          flex-wrap: wrap;
+          justify-content: space-between;
+        }
+
+        .views-exposed-widget {
+          padding-right: 0;
+          padding-top: 0;
+
+          @media #{$small-only} {
+            flex-basis: calc(50% - .5rem);
+          }
+
+          & ~ .views-exposed-widget {
+            margin-left: .5rem;
+          }
+
+          &.views-widget-filter-name {
+
+            @media #{$small-only} {
+              flex-basis: 100%;
+            }
+          }
+
+          &.views-submit-button {
+
+            @media #{$small-only} {
+              flex-basis: 100%;
+            }
+
+            .form-submit {
+              margin-top: calc(1rem + 12px);
+              padding: .7rem 2rem;
+
+              @media #{$small-only} {
+                margin-top: 0;
+                padding: 1rem 2rem;
+                width: 100%;
+              }
+            }
+          }
+
+        }
+      }
+    }
+
   }
 }

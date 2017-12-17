@@ -13,7 +13,6 @@
     width: 100%;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
     background-color: transparent;
   }
 
@@ -24,7 +23,11 @@
     &.cols-#{$i} {
 
       [class*="col-"] {
-        width: calc(#{100% / $i} - 10px);
+        width: calc(#{100% / $i} - ((10px * #{$i - 1}) / #{$i}));
+
+        & ~ [class*="col-"] {
+          margin-left: 10px;
+        }
       }
     }
   }
