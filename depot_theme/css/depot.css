@@ -6781,4 +6781,8 @@ label {
       padding-right: 2rem;
       float: right; } }
 
+.page-ressourcen main#main-content {
+  background-color: transparent;
+  box-shadow: none; }
+
 /*# sourceMappingURL=depot.css.map */
