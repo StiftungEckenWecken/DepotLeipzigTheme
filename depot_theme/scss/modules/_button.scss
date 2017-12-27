@@ -1,4 +1,10 @@
 button, .button {
+  cursor: pointer;
+
+  a {
+    cursor: pointer;
+    color: inherit;
+  }
 }
 
 .logged-in #button-group-logged-out {

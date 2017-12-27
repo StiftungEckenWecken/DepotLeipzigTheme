@@ -6556,6 +6556,12 @@ fieldset legend {
     #depot-footer-menu ul li.active-trail a {
       font-weight: bold; }
 
+button, .button {
+  cursor: pointer; }
+  button a, .button a {
+    cursor: pointer;
+    color: inherit; }
+
 .logged-in #button-group-logged-out {
   display: none; }
 
@@ -6574,17 +6580,23 @@ fieldset legend {
   background-color: #c83401; }
 
 .page main#main-content {
-  background-color: #fff;
-  box-shadow: 0 0 6px rgba(102, 102, 102, 0.2);
   margin-top: 15px;
-  min-height: calc(100vh - 110px); }
+  min-height: calc(100vh - 170px); }
   @media only screen and (min-width: 40.063em) {
     .page main#main-content {
       max-width: 970px;
       margin: 30px auto 0; } }
-  @media only screen and (min-width: 40.063em) {
-    .page main#main-content .main {
-      padding: 2rem; } }
+  .page main#main-content .main {
+    background-color: #fff;
+    box-shadow: 0 0 6px rgba(102, 102, 102, 0.2); }
+    @media only screen and (min-width: 40.063em) {
+      .page main#main-content .main {
+        padding: 2rem; } }
+
+.page .breadcrumbs {
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid #EFEFEF; }
 
 label {
   font-size: 1rem; }
@@ -6717,11 +6729,11 @@ label {
     display: block; }
     .res-elem.res-mein-depot-elem .views-field-nothing .button.secondary {
       margin-bottom: 2px; }
+  .res-elem .views-field-nothing .button.secondary:hover {
+    background-color: #e13b01;
+    color: #fff; }
   .res-elem:hover {
     box-shadow: 0 0 6px rgba(102, 102, 102, 0.6); }
-    .res-elem:hover .views-field-nothing .button.secondary {
-      background-color: #e13b01;
-      color: #fff; }
 
 .top-bar {
   border-bottom: #d8d8d8;
@@ -6771,7 +6783,7 @@ label {
 
 @media only screen and (min-width: 40.063em) {
   .page-user main#main-content {
-    max-width: 600px; } }
+    max-width: 750px; } }
 
 .page-user main#main-content #page-title {
   font-size: 1.5rem;
@@ -6864,5 +6876,16 @@ label {
             margin-top: 0;
             padding: 1rem 2rem;
             width: 100%; } }
+
+.view-ressourcen-detailseite .row {
+  position: relative; }
+
+.view-ressourcen-detailseite .follow-box {
+  position: absolute;
+  width: 360px;
+  transition: top 10ms; }
+  .view-ressourcen-detailseite .follow-box.follow {
+    position: fixed;
+    top: 10px; }
 
 /*# sourceMappingURL=depot.css.map */

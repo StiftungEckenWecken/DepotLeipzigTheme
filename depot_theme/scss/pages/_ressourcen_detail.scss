@@ -1,0 +1,17 @@
+.view-ressourcen-detailseite {
+
+  .row {
+    position: relative;
+  }
+
+  .follow-box {
+    position: absolute;
+    width: 360px;
+    transition: top 10ms;
+
+    &.follow {
+      position: fixed;
+      top: 10px;
+    }
+  }
+}
