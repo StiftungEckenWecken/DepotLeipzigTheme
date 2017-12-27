@@ -6,6 +6,7 @@
         drupal_not_found();
         drupal_exit();
       }
+      
       foreach($resource as $res) : 
 
         $res['user'] = user_load($res['uid']);
