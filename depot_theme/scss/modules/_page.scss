@@ -3,7 +3,7 @@
 
   main#main-content {
     margin-top: 15px;
-    min-height: calc(100vh - 170px);
+    min-height: calc(100vh - 150px);
 
     @media only screen and (min-width: 40.063em) {
       max-width: 970px;
@@ -13,6 +13,7 @@
     .main {
       background-color: #fff;
       box-shadow: 0 0 6px rgba(102, 102, 102, 0.2);
+      font-weight: normal;
 
       @media only screen and (min-width: 40.063em) {
         padding: 2rem;

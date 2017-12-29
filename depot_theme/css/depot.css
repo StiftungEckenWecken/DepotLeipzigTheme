@@ -6581,14 +6581,15 @@ button, .button {
 
 .page main#main-content {
   margin-top: 15px;
-  min-height: calc(100vh - 170px); }
+  min-height: calc(100vh - 150px); }
   @media only screen and (min-width: 40.063em) {
     .page main#main-content {
       max-width: 970px;
       margin: 30px auto 0; } }
   .page main#main-content .main {
     background-color: #fff;
-    box-shadow: 0 0 6px rgba(102, 102, 102, 0.2); }
+    box-shadow: 0 0 6px rgba(102, 102, 102, 0.2);
+    font-weight: normal; }
     @media only screen and (min-width: 40.063em) {
       .page main#main-content .main {
         padding: 2rem; } }
@@ -6781,6 +6782,28 @@ label {
     transform: rotate(45deg);
     transition: height 200ms ease-in-out, transform 300ms ease-in-out; }
 
+#sliding-popup.sliding-popup-bottom {
+  background-color: #4483a9; }
+
+#sliding-popup .popup-content {
+  display: block; }
+  #sliding-popup .popup-content #popup-text {
+    margin-top: .5rem;
+    margin-bottom: 0; }
+  #sliding-popup .popup-content #popup-buttons {
+    margin: 0; }
+    #sliding-popup .popup-content #popup-buttons button {
+      margin-top: 1rem;
+      margin-bottom: 1rem;
+      font-size: 1rem;
+      font-weight: normal;
+      border-color: #fff;
+      border-radius: 0;
+      color: #333333;
+      background: #fff none; }
+      #sliding-popup .popup-content #popup-buttons button:hover {
+        background-color: #d8d8d8; }
+
 @media only screen and (min-width: 40.063em) {
   .page-user main#main-content {
     max-width: 750px; } }
@@ -6821,8 +6844,12 @@ label {
   background-color: transparent;
   box-shadow: none;
   margin-top: 0; }
+  .page-ressourcen main#main-content .main {
+    background-color: transparent;
+    box-shadow: none; }
 
 .page-ressourcen .main {
+  background-color: transparent;
   margin-top: 20px; }
 
 .page-ressourcen .ressource-page-button-group > li {
