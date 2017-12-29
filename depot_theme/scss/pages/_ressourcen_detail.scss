@@ -1,7 +1,21 @@
 .view-ressourcen-detailseite {
 
+  #page-title {
+    display: none;
+  }
+
   .row {
     position: relative;
+  }
+
+  .fi {
+    margin-right: 7px;
+  }
+
+  .callout {
+    border: 1px solid #b9b9b9;
+    padding: 14px;
+    margin-bottom: 10px;
   }
 
   .follow-box {
@@ -9,9 +23,64 @@
     width: 360px;
     transition: top 10ms;
 
+    .panel {
+      background-color: #fff;
+
+      h4, h5 {
+        font-weight: bold;
+      }
+    }
+
     &.follow {
       position: fixed;
       top: 10px;
     }
   }
+
+  .orbit-container {
+
+    .orbit-bullets-container {
+      display: none;
+    }
+  }
+
+  .ressource-title {
+    margin-top: 1rem;
+  }
+
+  #res-detail-meta-info {
+    padding: 0 .5rem;
+    margin-bottom: .5rem;
+
+    ul {
+      list-style: none;
+      margin: 0;
+
+      li {
+        text-align: left;
+        font-size: 0.85em;
+        line-height: 2.5em;
+        float: left;
+
+        & ~ li {
+          margin-left: 1rem;
+        }
+      }
+    }
+  }
 }
+
+  #res-detail-desc {
+    padding: 1.5rem;
+    background-color: #fff;
+  }
+
+  .accordion {
+
+    .accordion-navigation {
+
+      .row {
+        margin: 0;
+      }
+    }
+  }

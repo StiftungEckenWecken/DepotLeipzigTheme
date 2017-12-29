@@ -190,9 +190,9 @@ foreach ($resource as $res) :
         </div>
         <div class="row">
             <div class="medium-7 column">
-                <h1 itemprop="name"><?= $res['name']; ?><?php echo strpos('default-thumbnail', $res['field_bild_ii']); ?></h1>
+                <h1 class="ressource-title" itemprop="name"><?= $res['name']; ?><?php echo strpos('default-thumbnail', $res['field_bild_ii']); ?></h1>
                 <section id="res-detail-meta-info">
-                    <ul>
+                    <ul class="clearfix">
                         <li><i class="fi fi-flag"></i><!--<?= t('Kategorie'); ?>:--><span
                                     itemprop="category"><?= $res['field_kategorie']; ?></span></li>
                         <li>
@@ -204,6 +204,8 @@ foreach ($resource as $res) :
                         </li>
                     </ul>
                 </section>
+
+                <hr/>
 
                 <section id="res-detail-desc" itemprop="description">
                     <p><?= strip_tags($res['field_beschreibung']); ?></p>
