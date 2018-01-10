@@ -227,7 +227,7 @@ foreach ($resource as $res) :
                                                 class="member-since">| <?= date_format($created, 'd.m.Y'); ?></span></p>
 									<?php if (isset($res['user']->field_organisation_website['und'])) : ?>
                                         <p><?= t('Website'); ?>: <a
-                                                    href="<?= $res['user']->field_organisation_website['und'][0]['value']; ?>"><?= $res['user']->field_organisation_website['und'][0]['value']; ?></a>
+                                                    href="<?= $res['user']->field_organisation_website['und'][0]['value']; ?>" target="_blank"><?= $res['user']->field_organisation_website['und'][0]['value']; ?></a>
                                         </p>
 									<?php endif; ?></div>
 							<?php else : ?>
@@ -261,15 +261,15 @@ foreach ($resource as $res) :
                             <a href="#res-detail-links" class="accordion-title"><?= t('Links'); ?></a>
                             <div class="content" id="res-detail-links">
 								<?php if (!empty($res['field_links_i'])) : ?><p><i class="fi fi-paperclip"></i><a
-                                            href="<?= $res['field_links_i']; ?>"
+                                            href="<?= $res['field_links_i']; ?>" target="_blank"
                                             title="<?= t('Externen Link öffnen'); ?>"><?= $res['field_links_i']; ?></a>
                                     </p><?php endif; ?>
 								<?php if (!empty($res['field_links_ii'])) : ?><p><i class="fi fi-paperclip"></i><a
-                                            href="<?= $res['field_links_ii']; ?>"
+                                            href="<?= $res['field_links_ii']; ?>" target="_blank"
                                             title="<?= t('Externen Link öffnen'); ?>"><?= $res['field_links_ii']; ?></a>
                                     </p><?php endif; ?>
 								<?php if (!empty($res['field_links_iii'])) : ?><p><i class="fi fi-paperclip"></i><a
-                                            href="<?= $res['field_links_iii']; ?>"
+                                            href="<?= $res['field_links_iii']; ?>" target="_blank"
                                             title="<?= t('Externen Link öffnen'); ?>"><?= $res['field_links_iii']; ?></a>
                                     </p><?php endif; ?>
 								<?php if (!empty($res['field_upload_i'])) : ?>
