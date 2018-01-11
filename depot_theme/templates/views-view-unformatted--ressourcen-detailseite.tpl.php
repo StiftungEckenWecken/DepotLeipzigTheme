@@ -1,5 +1,6 @@
 <?php global $base_url;
 global $user;
+
 $resource = $view->style_plugin->rendered_fields;
 if (empty($resource))
 {
@@ -29,6 +30,11 @@ foreach ($resource as $res) :
 		if (!$event['blocking'])
 			unset($blocked_events[$key]);
 	}
+
+	// Re-arrange filtered views-output
+	//if (strlen($res['field_adresse_postleitzahl']) == 4){
+	//    $res['field_adresse_postleitzahl'] = '0'.$res['field_adresse_postleitzahl'];
+	//}
 
 	// SEO: Set individual Breadcrumbs
 	$breadcrumb   = array();
@@ -133,54 +139,60 @@ foreach ($resource as $res) :
                 <div class="follow-box">
                     <div class="panel" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
                         <h5><?= t('Preis'); ?></h5>
-                        <p><span itemprop="price"><?= $res['field_kosten']; ?>€ <?= $res['field_abrechnungstakt']; ?></span>
-			                <?php if (!empty($res['field_kosten_2'])) : ?>
-                                | <?= t('Ermäßigt'); ?>: <?= $res['field_kosten_2']; ?>€
-			                <?php endif; ?>
-			                <?php if (!empty($res['field_kaution'])) : ?>
-                                | <?= t('Kaution'); ?>: <?= $res['field_kaution']; ?>€ (<?= t('pro Einheit'); ?>)
-			                <?php endif; ?></p>
-		                <?php if (!empty($res['field_gemeinwohl']) && $res['field_gemeinwohl'] == 'Ja') : ?>
+                        <p>
+                            <span itemprop="price"><?= $res['field_kosten']; ?> <?= $res['field_abrechnungstakt']; ?></span>
+							<?php if (!empty($res['field_kosten_2'])) : ?>
+                                | <?= t('Ermäßigt'); ?>: <?= $res['field_kosten_2']; ?>
+							<?php endif; ?>
+							<?php if (!empty($res['field_kaution'])) : ?>
+                                | <?= t('Kaution'); ?>: <?= $res['field_kaution']; ?> (<?= t('pro Einheit'); ?>)
+							<?php endif; ?></p>
+						<?php if (!empty($res['field_gemeinwohl']) && $res['field_gemeinwohl'] == 'Ja') : ?>
                             <p>
                                 <span class="label warning"><?= t('Achtung!'); ?></span> <?= t('Reservierungen nur durch dem Gemeinwohl verpflichtete Organisationen!'); ?>
                             </p>
-		                <?php endif; ?>
-		                <?php if (!$res_is_active) : ?>
+						<?php endif; ?>
+						<?php if (!$res_is_active) : ?>
                             <a href="#" class="button small warning expand"><?= t('Genehmigung ausstehend :('); ?></a>
-		                <?php endif; ?>
-		                <?php if (isset($ressource['field_gemeinwohl']['und'][0]['value']) && !in_array(ROLE_ORGANISATION_AUTH_NAME, $user->roles)) : ?>
+						<?php endif; ?>
+						<?php if (isset($ressource['field_gemeinwohl']['und'][0]['value']) && !in_array(ROLE_ORGANISATION_AUTH_NAME, $user->roles)) : ?>
                             <a href="#" class="button small expand ci"
                                title="<?= t('Nur durch gemeinnützige Organisationen reservierbar'); ?>"><i
                                         class="fi fi-check"></i><?= t('Nur durch Organisationen reservierbar'); ?></a>
-		                <?php else : ?>
-                            <a href="#" id="availability_calendar_btn" class="button small expand ci" onclick="cal.show();"
+						<?php else : ?>
+                            <a href="#" id="availability_calendar_btn" class="button small expand ci"
+                               onclick="cal.show();"
                                title="<?= t('Verfügbarkeit prüfen'); ?>"><i
                                         class="fi fi-check"></i><?= t('Verfügbarkeit prüfen'); ?></a>
-		                <?php endif; ?>
+						<?php endif; ?>
                     </div><!-- /.panel -->
 
-	                <?php if ($user_is_owner) : ?>
+					<?php if ($user_is_owner) : ?>
                         <ul class="button-group even-2">
                             <li><a href="/<?= current_path(); ?>/edit" id="contact_agent_form_btn" class="button small"><i
                                             class="fi fi-pencil"></i><?= t('Ressource bearbeiten'); ?></a></li>
                             <li><a href="#" data-reveal-id="verfuegbarkeitenModal" class="button small"><i
                                             class="fi fi-calendar"></i><?= t('Verfügbarkeiten ändern'); ?></a></li>
                         </ul>
-	                <?php elseif ($res['user']->data['contact']) : ?>
-                        <a href="/user/<?= $res['uid']; ?>/contact" id="contact_agent_btn" class="button small expand"><i
+					<?php elseif ($res['user']->data['contact']) : ?>
+                        <a href="/user/<?= $res['uid']; ?>/contact" id="contact_agent_btn"
+                           class="button small expand"><i
                                     class="fi fi-torso"></i><?= t('Anbieter kontaktieren'); ?></a>
-	                <?php endif; ?>
+					<?php endif; ?>
                     <a href="#" id="share_btn" class="button secondary small expand" data-dropdown="res-detail-share-dd"
-                       aria-controls="autoCloseExample" aria-expanded="false"><i class="fi fi-share"></i><?= t('Teilen'); ?>
+                       aria-controls="autoCloseExample" aria-expanded="false"><i
+                                class="fi fi-share"></i><?= t('Teilen'); ?>
                     </a>
-                    <ul id="res-detail-share-dd" class="f-dropdown" data-dropdown-content tabindex="-1" aria-hidden="true"
+                    <ul id="res-detail-share-dd" class="f-dropdown" data-dropdown-content tabindex="-1"
+                        aria-hidden="true"
                         aria-autoclose="false" tabindex="-1">
                         <li><a target="_blank" href="https://twitter.com/intent/tweet?text=<?php global $base_url;
-			                echo $base_url . '/' . current_path(); ?>"
+							echo $base_url . '/' . current_path(); ?>"
                                title="<?= t('Auf !network teilen', array('!network' => 'Twitter')); ?>">Twitter</a></li>
                         <li><a target="_blank"
                                href="https://www.facebook.com/sharer/sharer.php?u=<?= $base_url . '/' . current_path(); ?>"
-                               title="<?= t('Auf !network teilen', array('!network' => 'Facebook')); ?>">Facebook</a></li>
+                               title="<?= t('Auf !network teilen', array('!network' => 'Facebook')); ?>">Facebook</a>
+                        </li>
                         <li>
                             <a href="mailto:?subject=<?= t('Entdecke das Depot Leipzig!') ?>&amp;body=<?= $base_url . '/' . current_path(); ?>">E-Mail</a>
                         </li>
@@ -190,7 +202,8 @@ foreach ($resource as $res) :
         </div>
         <div class="row">
             <div class="medium-7 column">
-                <h1 class="ressource-title" itemprop="name"><?= $res['name']; ?><?php echo strpos('default-thumbnail', $res['field_bild_ii']); ?></h1>
+                <h1 class="ressource-title"
+                    itemprop="name"><?= $res['name']; ?><?php echo strpos('default-thumbnail', $res['field_bild_ii']); ?></h1>
                 <section id="res-detail-meta-info">
                     <ul class="clearfix">
                         <li><i class="fi fi-flag"></i><!--<?= t('Kategorie'); ?>:--><span
@@ -226,15 +239,20 @@ foreach ($resource as $res) :
                                         (<?= $res['user']->field_organisation_typ['und'][0]['value'] ?>) <span
                                                 class="member-since">| <?= date_format($created, 'd.m.Y'); ?></span></p>
 									<?php if (isset($res['user']->field_organisation_website['und'])) : ?>
-                                        <p><?= t('Website'); ?>: <a
-                                                    href="<?= $res['user']->field_organisation_website['und'][0]['value']; ?>" target="_blank"><?= $res['user']->field_organisation_website['und'][0]['value']; ?></a>
+                                        <p>
+											<?= t('Website'); ?>:
+                                            <a href="<?= $res['user']->field_organisation_website['und'][0]['value']; ?>"
+                                               target="_blank">
+												<?= $res['user']->field_organisation_website['und'][0]['value']; ?>
+                                            </a>
                                         </p>
 									<?php endif; ?></div>
 							<?php else : ?>
                                 <div class="user-badge two-digits medium-1 column"><?= substr($res['user']->field_vorname['und'][0]['value'], 0, 1); ?><?= substr($res['user']->field_nachname['und'][0]['value'], 0, 1); ?></div>
                                 <div class="medium-11 column">
-                                    <p><?= $res['user']->field_anrede['und'][0]['value']; ?> <?= $res['name_1']; ?>
-                                        <span class="member-since">| <?= date_format($created, 'd.m.Y'); ?></span></p>
+                                    <p><?= $res['user']->field_anrede['und'][0]['value']; ?> <?= $res['user']->field_vorname['und'][0]['value'] ?> <?= $res['user']->field_nachname['und'][0]['value'] ?>
+                                        <span class="member-since">| <?= t('Mitgleid seit') . ' ' . date_format($created, 'd.m.Y'); ?></span>
+                                    </p>
                                 </div>
 							<?php endif; ?>
                         </div>
@@ -260,18 +278,33 @@ foreach ($resource as $res) :
                         <li class="accordion-navigation">
                             <a href="#res-detail-links" class="accordion-title"><?= t('Links'); ?></a>
                             <div class="content" id="res-detail-links">
-								<?php if (!empty($res['field_links_i'])) : ?><p><i class="fi fi-paperclip"></i><a
-                                            href="<?= $res['field_links_i']; ?>" target="_blank"
-                                            title="<?= t('Externen Link öffnen'); ?>"><?= $res['field_links_i']; ?></a>
-                                    </p><?php endif; ?>
-								<?php if (!empty($res['field_links_ii'])) : ?><p><i class="fi fi-paperclip"></i><a
-                                            href="<?= $res['field_links_ii']; ?>" target="_blank"
-                                            title="<?= t('Externen Link öffnen'); ?>"><?= $res['field_links_ii']; ?></a>
-                                    </p><?php endif; ?>
-								<?php if (!empty($res['field_links_iii'])) : ?><p><i class="fi fi-paperclip"></i><a
-                                            href="<?= $res['field_links_iii']; ?>" target="_blank"
-                                            title="<?= t('Externen Link öffnen'); ?>"><?= $res['field_links_iii']; ?></a>
-                                    </p><?php endif; ?>
+								<?php if (!empty($res['field_links_i'])) : ?>
+                                    <p>
+                                        <i class="fi fi-paperclip"></i>
+                                        <a href="<?= $res['field_links_i']; ?>" target="_blank"
+                                           title="<?= t('Externen Link öffnen'); ?>">
+											<?= $res['field_links_i']; ?>
+                                        </a>
+                                    </p>
+								<?php endif; ?>
+								<?php if (!empty($res['field_links_ii'])) : ?>
+                                    <p>
+                                        <i class="fi fi-paperclip"></i>
+                                        <a href="<?= $res['field_links_ii']; ?>" target="_blank"
+                                           title="<?= t('Externen Link öffnen'); ?>">
+											<?= $res['field_links_ii']; ?>
+                                        </a>
+                                    </p>
+								<?php endif; ?>
+								<?php if (!empty($res['field_links_iii'])) : ?>
+                                    <p>
+                                    <i class="fi fi-paperclip"></i>
+                                    <a href="<?= $res['field_links_iii']; ?>" target="_blank"
+                                       title="<?= t('Externen Link öffnen'); ?>">
+										<?= $res['field_links_iii']; ?>
+                                    </a>
+                                    </p>
+                                <?php endif; ?>
 								<?php if (!empty($res['field_upload_i'])) : ?>
                                     <p><?= $res['field_upload_i']; ?></p><?php endif; ?>
 								<?php if (!empty($res['field_upload_ii'])) : ?>
