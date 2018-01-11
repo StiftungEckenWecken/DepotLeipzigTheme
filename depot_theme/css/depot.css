@@ -6435,7 +6435,7 @@ html.js input.throbbing {
   position: absolute;
   top: 62px; }
 
-.form-item .description:before, .field-type-image.field-widget-image-image .form-type-managed-file label:before, .field-type-image.field-widget-image-image .form-type-managed-file label:after {
+.form-item .description:before, .field-type-image.field-widget-image-image .form-type-managed-file label:before, .field-type-image.field-widget-image-image .form-type-managed-file label:after, .field-type-file.field-widget-file-generic .form-type-managed-file label:before, .field-type-file.field-widget-file-generic .form-type-managed-file label:after {
   font-family: "foundation-icons";
   font-style: normal;
   font-weight: normal;
@@ -6619,48 +6619,79 @@ label {
 .form-select {
   padding-right: 2rem; }
 
-.field-type-image.field-widget-image-image .form-type-managed-file label {
+.field-type-image.field-widget-image-image .form-type-managed-file label, .field-type-file.field-widget-file-generic .form-type-managed-file label {
   position: relative;
-  max-width: 50%;
+  max-width: 145px;
   margin: 0 auto;
   padding: 5%;
   background-color: #FAFAFA;
   border: 1px solid #cccccc;
   border-radius: 5px;
   text-align: center; }
-  .field-type-image.field-widget-image-image .form-type-managed-file label:before {
-    position: absolute;
-    bottom: 14px;
-    right: 27%;
-    display: block;
-    content: "\f199";
-    font-size: 14px;
-    color: #4d4d4d;
-    background-color: #ffffff;
-    border-radius: 50%;
-    border: 2px solid;
-    width: 22px;
-    height: 22px;
-    padding-top: 2.5px; }
-  .field-type-image.field-widget-image-image .form-type-managed-file label:after {
-    display: block;
-    content: "\f125";
-    font-size: 50px;
-    color: #4d4d4d; }
-  .field-type-image.field-widget-image-image .form-type-managed-file label:hover {
-    border: 1px solid #4d4d4d;
-    background-color: #f3f2f2; }
-    .field-type-image.field-widget-image-image .form-type-managed-file label:hover:before {
-      background-color: #f3f2f2; }
 
-.field-type-image.field-widget-image-image .form-type-managed-file .image-widget input[type="file"] {
+.field-type-image.field-widget-image-image .form-type-managed-file .image-widget input[type="file"], .field-type-image.field-widget-image-image .form-type-managed-file .file-widget input[type="file"], .field-type-file.field-widget-file-generic .form-type-managed-file .image-widget input[type="file"], .field-type-file.field-widget-file-generic .form-type-managed-file .file-widget input[type="file"] {
   display: none; }
 
-.field-type-image.field-widget-image-image .form-type-managed-file .image-widget .image-widget-data {
+.field-type-image.field-widget-image-image .form-type-managed-file .image-widget .image-widget-data, .field-type-image.field-widget-image-image .form-type-managed-file .file-widget .image-widget-data, .field-type-file.field-widget-file-generic .form-type-managed-file .image-widget .image-widget-data, .field-type-file.field-widget-file-generic .form-type-managed-file .file-widget .image-widget-data {
   width: 100%; }
-  .field-type-image.field-widget-image-image .form-type-managed-file .image-widget .image-widget-data button[type="submit"] {
-    display: block;
-    margin: 20px auto 0; }
+
+.field-type-image.field-widget-image-image .form-type-managed-file .image-widget button[type="submit"], .field-type-image.field-widget-image-image .form-type-managed-file .file-widget button[type="submit"], .field-type-file.field-widget-file-generic .form-type-managed-file .image-widget button[type="submit"], .field-type-file.field-widget-file-generic .form-type-managed-file .file-widget button[type="submit"] {
+  display: block;
+  margin: 20px auto 0; }
+
+.field-type-image.field-widget-image-image .form-type-managed-file label:before {
+  position: absolute;
+  bottom: 14px;
+  right: 27%;
+  display: block;
+  content: "\f199";
+  font-size: 14px;
+  color: #4d4d4d;
+  background-color: #ffffff;
+  border-radius: 50%;
+  border: 2px solid;
+  width: 22px;
+  height: 22px;
+  padding-top: 2.5px; }
+
+.field-type-image.field-widget-image-image .form-type-managed-file label:after {
+  display: block;
+  content: "\f125";
+  font-size: 50px;
+  color: #4d4d4d; }
+
+.field-type-image.field-widget-image-image .form-type-managed-file label:hover {
+  border: 1px solid #4d4d4d;
+  background-color: #f3f2f2; }
+  .field-type-image.field-widget-image-image .form-type-managed-file label:hover:before {
+    background-color: #f3f2f2; }
+
+.field-type-file.field-widget-file-generic .form-type-managed-file label:before {
+  position: absolute;
+  bottom: 14px;
+  right: 27%;
+  display: block;
+  content: "\f199";
+  font-size: 14px;
+  color: #4d4d4d;
+  background-color: #ffffff;
+  border-radius: 50%;
+  border: 2px solid;
+  width: 22px;
+  height: 22px;
+  padding-top: 2.5px; }
+
+.field-type-file.field-widget-file-generic .form-type-managed-file label:after {
+  display: block;
+  content: "\f18e";
+  font-size: 50px;
+  color: #4d4d4d; }
+
+.field-type-file.field-widget-file-generic .form-type-managed-file label:hover {
+  border: 1px solid #4d4d4d;
+  background-color: #f3f2f2; }
+  .field-type-file.field-widget-file-generic .form-type-managed-file label:hover:before {
+    background-color: #f3f2f2; }
 
 .field-name-field-beschreibung,
 .field-name-field-gemeinwohl,
