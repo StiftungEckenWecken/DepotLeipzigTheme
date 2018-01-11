@@ -91,6 +91,7 @@
 
 // Fix for some Drupal CSS quirks (Drupalisms).
 @import "base/drupal";
+@import "base/icons";
 @import "base/elements";
 @import "base/grid";
 
@@ -118,6 +119,7 @@
 // Pages
  @import "pages/user";
  @import "pages/ressourcen";
+ @import "pages/ressourcen_neu";
  @import "pages/ressourcen_detail";
 
 // States

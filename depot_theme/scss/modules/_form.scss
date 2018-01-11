@@ -3,17 +3,169 @@ label {
 }
 
 .form-item {
+  position: relative;
   margin-top: .2rem;
+
+  .description {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 0;
+    color: transparent;
+    background-color: transparent;
+    transition: box-shadow 200ms ease-in-out, color 200ms ease-in-out, background-color 200ms ease-in-out;
+    z-index: 10;
+
+    &:before {
+      @extend %foundation-icons;
+      content: "\f15e";
+      color: #4c4c4c;
+      font-size: 25px;
+      position: absolute;
+      top: -16px;
+      right: -10px;
+      cursor: pointer;
+      transition: color 200ms ease-in-out;
+    }
+
+    &:hover {
+      font-size: 1rem;
+      background-color: #ffffff;
+      box-shadow: 0 0 6px rgba(102, 102, 102, 0.2);
+      padding: 1rem 1.2rem;
+      max-width: 45%;
+      min-width: 250px;
+      color: #222;
+
+      &:before {
+        color: $primary-color;
+      }
+    }
+  }
 }
 
 .form-select {
   padding-right: 2rem;
 }
 
-.form-type-checkbox .option {
-  padding-left: 8px;
-  position: absolute;
-  margin-top: -4px;
+.field-type-image.field-widget-image-image {
+
+  .form-type-managed-file {
+
+    label {
+      position: relative;
+      max-width: 50%;
+      margin: 0 auto;
+      padding: 5%;
+      background-color: #FAFAFA;
+      border: 1px solid #cccccc;
+      border-radius: 5px;
+      text-align: center;
+
+      &:before {
+        @extend %foundation-icons;
+        position: absolute;
+        bottom: 14px;
+        right: 27%;
+        display: block;
+        content: "\f199";
+        font-size: 14px;
+        color: #4d4d4d;
+        background-color: #ffffff;
+        border-radius: 50%;
+        border: 2px solid;
+        width: 22px;
+        height: 22px;
+        padding-top: 2.5px;
+      }
+
+      &:after {
+        @extend %foundation-icons;
+        display: block;
+        content: "\f125";
+        font-size: 50px;
+        color: #4d4d4d;
+      }
+
+      &:hover {
+        border: 1px solid #4d4d4d;
+        background-color: #f3f2f2;
+
+        &:before {
+          background-color: #f3f2f2;
+        }
+      }
+    }
+
+    .image-widget {
+      input[type="file"] {
+        display: none;
+      }
+
+      .image-widget-data {
+        width: 100%;
+
+        button[type="submit"] {
+          display: block;
+          margin: 20px auto 0;
+        }
+      }
+    }
+  }
+}
+
+.field-name-field-beschreibung,
+.field-name-field-gemeinwohl,
+.field-name-field-nutzungsbedingungen,
+.field-name-field--ffnungszeiten {
+  width: 100%;
+  float: left;
+  padding: 0 .9375rem;
+}
+
+.form-type-checkbox {
+  @include clearfix;
+
+  input[type="checkbox"] {
+    float: left;
+    margin-top: 4px;
+
+    & + label {
+
+      width: 82%;
+    }
+  }
+}
+
+.form-type-checkbox:not(.form-item-field-verleihvertrag--und) .description {
+  position: relative;
+  display: inline-block;
+  font-size: 1rem;
+  color: $form-label-font-color;
+  margin-left: 0.5rem;
+  margin-right: 1rem;
+  width: 85%;
+  top: initial;
+  right: initial;
+  transition: none;
+
+  &:before {
+    content: none;
+  }
+
+  &:hover {
+    position: relative;
+    display: inline-block;
+    font-size: 1rem;
+    color: $form-label-font-color;
+    margin-left: 0.5rem;
+    margin-right: 1rem;
+    width: 85%;
+    box-shadow: none;
+    max-width: 100%;
+    background-color: transparent;
+    padding: inherit;
+  }
 }
 
 .form-type-textarea .description {
@@ -21,35 +173,36 @@ label {
 }
 
 .fieldset-toggle {
-  height: 0;
+  position: relative;
+  height: 29px;
   overflow: hidden;
   padding-top: 0;
-}
 
-.fieldset-toggle legend {
-  margin-left: 32px;
-  cursor: pointer;
-}
+  legend {
+    margin-left: 32px;
+    cursor: pointer;
 
-.fieldset-toggle legend:before {
-  content: '▴';
-  position: relative;
-  transform: rotate(180deg);
-  font-size: 1.5em;
-  cursor: pointer;
-  margin-top: -6px;
-  margin-left: -40px;
-  color: #323131;
-  background: #fff;
-  transition: 0.25s transform;
-}
+    &:before {
+      content: '▴';
+      position: absolute;
+      top: 0;
+      left: 26px;
+      transform: rotate(180deg);
+      font-size: 1.2rem;
+      cursor: pointer;
+      color: #323131;
+      background: #fff;
+      transition: transform 250ms ease-in-out;
+    }
+  }
 
-.fieldset-toggle.toggled {
-  height: auto;
-}
+  &.toggled {
+    height: auto;
 
-.fieldset-toggle.toggled legend:before {
-  transform: rotate(90deg);
+    legend:before {
+      transform: rotate(90deg);
+    }
+  }
 }
 
 #edit-field-buchung-bedingungen {
