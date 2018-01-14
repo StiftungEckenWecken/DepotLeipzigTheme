@@ -52,7 +52,7 @@ label {
 
   .form-type-managed-file {
 
-    label {
+    & > label {
       position: relative;
       max-width: 145px;
       margin: 0 auto;
@@ -61,11 +61,33 @@ label {
       border: 1px solid #cccccc;
       border-radius: 5px;
       text-align: center;
+
+      label {
+        &:before, &:after {
+          content: none;
+        }
+      }
     }
 
     .image-widget, .file-widget {
+
+      .image-preview {
+        width: 100%;
+        display: block;
+
+        img {
+          display: block;
+          margin: 0 auto;
+          max-width: 100%;
+          max-height: 300px;
+        }
+      }
+
       input[type="file"] {
-        display: none;
+        //display: none; // todo: enable if direct upload is enabled
+        display: block;
+        max-width: 300px;
+        margin: 0 auto;
       }
 
       .image-widget-data {
@@ -84,7 +106,13 @@ label {
 
   .form-type-managed-file {
 
-    label {
+    & > label {
+
+      label {
+        &:before, &:after {
+          content: none;
+        }
+      }
 
       &:before {
         @extend %foundation-icons;
@@ -127,7 +155,7 @@ label {
 
   .form-type-managed-file {
 
-    label {
+    & > label {
 
       &:before {
         @extend %foundation-icons;

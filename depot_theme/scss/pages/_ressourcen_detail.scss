@@ -19,9 +19,12 @@
   }
 
   .follow-box {
-    position: absolute;
-    width: 360px;
-    transition: top 10ms;
+
+    @media #{$medium-up} {
+      position: absolute;
+      width: 360px;
+      transition: top 10ms;
+    }
 
     .panel {
       background-color: #fff;

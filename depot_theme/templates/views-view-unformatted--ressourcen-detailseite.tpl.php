@@ -49,16 +49,10 @@ foreach ($resource as $res) :
 	?>
     <script type="text/javascript">
         $ = jQuery;
-        $(document).ready(function () {
-            $('#availability_calendar_btn').click(function () {
-				<?php if (!user_is_logged_in()): ?>
-                $('.d-confirm-button').html('<?= t('Jetzt einloggen und reservieren'); ?>!');
-				<?php endif; ?>
-            });
-        });
+
+        <?php if (user_is_logged_in()): ?>
         // kept here for debugging purpose
         var blockedEvents = <?= json_encode($blocked_events); ?>;
-
         console.log(blockedEvents);
         var now = new Date();
         var cal = new ResourceCal({
@@ -68,6 +62,7 @@ foreach ($resource as $res) :
             button: '<?= t('Jetzt reservieren'); ?>!',
             blockedPeriods: blockedEvents,
             totalAmount: <?= $res['field_anzahl_einheiten']; ?>,
+            amountHint: '<a id="link-detail-oeffnungszeiten" href="#res-detail-oeffnungszeiten">Öffnungszeiten</a> für Beginn/Ende beachten!',
             onConfirm: function () {
                 $('#calResFormBegin').val(this.selectedDates[0] / 1000);
                 $('#calResFormEnd').val(this.selectedDates[1] / 1000);
@@ -75,6 +70,20 @@ foreach ($resource as $res) :
                 $('#calResForm').submit();
             }
         });
+
+        $(document).ready(function () {
+            $('#availability_calendar_btn').click(function () {
+                cal.show();
+                setTimeout(function () {
+                    $('#link-detail-oeffnungszeiten').click(function () {
+                        cal.hide();
+                    });
+                }, 100);
+            });
+
+
+        });
+        <?php endif; ?>
     </script>
     <form id="calResForm" method="GET"
           action="<?= (!user_is_logged_in() ? '/user/login?destination=' : '') ?>/reservierungen/neu">
@@ -155,16 +164,23 @@ foreach ($resource as $res) :
 						<?php if (!$res_is_active) : ?>
                             <a href="#" class="button small warning expand"><?= t('Genehmigung ausstehend :('); ?></a>
 						<?php endif; ?>
-						<?php if (isset($ressource['field_gemeinwohl']['und'][0]['value']) && !in_array(ROLE_ORGANISATION_AUTH_NAME, $user->roles)) : ?>
-                            <a href="#" class="button small expand ci"
-                               title="<?= t('Nur durch gemeinnützige Organisationen reservierbar'); ?>"><i
-                                        class="fi fi-check"></i><?= t('Nur durch Organisationen reservierbar'); ?></a>
-						<?php else : ?>
-                            <a href="#" id="availability_calendar_btn" class="button small expand ci"
-                               onclick="cal.show();"
-                               title="<?= t('Verfügbarkeit prüfen'); ?>"><i
-                                        class="fi fi-check"></i><?= t('Verfügbarkeit prüfen'); ?></a>
+						<?php if (!user_is_logged_in()): ?>
+                            <a href="/user/login?destination=/reservierungen/neu" id="availability_calendar_btn" class="button small expand ci" type="submit"
+                               title="<?= t('Jetzt einloggen und reservieren'); ?>"><i
+                                        class="fi fi-check"></i><?= t('Jetzt einloggen und reservieren'); ?></a>
+						<?php else: ?>
+							<?php if (isset($ressource['field_gemeinwohl']['und'][0]['value']) && !in_array(ROLE_ORGANISATION_AUTH_NAME, $user->roles)) : ?>
+                                <a href="#" class="button small expand ci"
+                                   title="<?= t('Nur durch gemeinnützige Organisationen reservierbar'); ?>"><i
+                                            class="fi fi-check"></i><?= t('Nur durch Organisationen reservierbar'); ?>
+                                </a>
+							<?php else : ?>
+                                <a href="#" id="availability_calendar_btn" class="button small expand ci"
+                                   title="<?= t('Verfügbarkeit prüfen'); ?>"><i
+                                            class="fi fi-check"></i><?= t('Verfügbarkeit prüfen'); ?></a>
+							<?php endif; ?>
 						<?php endif; ?>
+
                     </div><!-- /.panel -->
 
 					<?php if ($user_is_owner) : ?>
@@ -298,13 +314,13 @@ foreach ($resource as $res) :
 								<?php endif; ?>
 								<?php if (!empty($res['field_links_iii'])) : ?>
                                     <p>
-                                    <i class="fi fi-paperclip"></i>
-                                    <a href="<?= $res['field_links_iii']; ?>" target="_blank"
-                                       title="<?= t('Externen Link öffnen'); ?>">
-										<?= $res['field_links_iii']; ?>
-                                    </a>
+                                        <i class="fi fi-paperclip"></i>
+                                        <a href="<?= $res['field_links_iii']; ?>" target="_blank"
+                                           title="<?= t('Externen Link öffnen'); ?>">
+											<?= $res['field_links_iii']; ?>
+                                        </a>
                                     </p>
-                                <?php endif; ?>
+								<?php endif; ?>
 								<?php if (!empty($res['field_upload_i'])) : ?>
                                     <p><?= $res['field_upload_i']; ?></p><?php endif; ?>
 								<?php if (!empty($res['field_upload_ii'])) : ?>

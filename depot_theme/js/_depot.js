@@ -41,7 +41,8 @@
         }
 
         var $followBoxes = $('.follow-box');
-        if ($followBoxes.length > 0) {
+
+        if ($followBoxes.length > 0 && $(window).width() > 641) {
             var followBoxes = [];
 
             for (var i = 0; i < $followBoxes.length; i++) {

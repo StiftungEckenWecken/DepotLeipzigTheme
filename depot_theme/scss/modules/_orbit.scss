@@ -1,0 +1,21 @@
+
+.orbit-container {
+
+  .orbit-slides-container {
+
+    li[itemprop="image"] {
+      background-color: rgba(80, 95, 103, 0.2);
+
+      a {
+        display: block;
+
+        img {
+          display: block;
+          max-width: 100%;
+          max-height: 100%;
+          margin: 0 auto;
+        }
+      }
+    }
+  }
+}
