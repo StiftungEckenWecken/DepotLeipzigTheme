@@ -25,10 +25,11 @@ foreach ($resource as $res) :
 
 	// Append ONLY blocked events to DOM
 	$blocked_events = depot_get_available_units_by_rid($res['type_id'], (new DateTime(date('Y-m-d')))->format('Y-m-d H:i'), (new DateTime(date('Y-m-d', strtotime(date("Y-m-d", time()) . " + 365 day"))))->format('Y-m-d H:i'));
+	$blocked_events_array = array();
 	foreach ($blocked_events as $key => $event)
 	{
-		if (!$event['blocking'])
-			unset($blocked_events[$key]);
+		if ($event['blocking'])
+			array_push($blocked_events_array, $blocked_events[$key]);
 	}
 
 	// Re-arrange filtered views-output
@@ -52,7 +53,7 @@ foreach ($resource as $res) :
 
         <?php if (user_is_logged_in()): ?>
         // kept here for debugging purpose
-        var blockedEvents = <?= json_encode($blocked_events); ?>;
+        var blockedEvents = <?= json_encode($blocked_events_array); ?>;
         console.log(blockedEvents);
         var now = new Date();
         var cal = new ResourceCal({
