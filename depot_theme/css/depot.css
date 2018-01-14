@@ -6739,6 +6739,7 @@ label {
   .field-type-file.field-widget-file-generic .form-type-managed-file > label:hover:before {
     background-color: #f3f2f2; }
 
+.form-wrapper,
 .field-name-field-beschreibung,
 .field-name-field-gemeinwohl,
 .field-name-field-nutzungsbedingungen,
