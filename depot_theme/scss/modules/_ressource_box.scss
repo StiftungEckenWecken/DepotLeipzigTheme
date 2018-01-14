@@ -1,9 +1,9 @@
 
 .res-elem {
   position: relative;
-  padding: 0 0 12px 0;
+  padding: 0 0 16px 0;
   transition: box-shadow 0.4s;
-  margin-bottom: 10px;
+  margin: 0 auto 10px;
   background-color: #fff;
   box-shadow: 0 0 6px transparentize($steel, .8);
   backface-visibility: hidden;
@@ -11,21 +11,31 @@
   overflow: hidden;
   cursor: pointer;
 
-  @media only screen and (min-width: 40.063em) {
-    //width: 29%;
-    //margin: 2%;
-  }
-
   .views-field-field-bild-i {
     margin-bottom: 10px;
 
     img {
-      width: 100%;
+      display: block;
+      width: auto;
+      max-width: 100%;
+      height: auto;
+      max-height: 100%;
+      margin: 0 auto;
     }
 
     .field-content {
-      max-height: 211px;
+      height: 64vw;
+      max-height: 210px;
       overflow: hidden;
+
+      @media only screen and (min-width: 620px) {
+        height: 35vw;
+        max-height: 290px;
+      }
+
+      @media only screen and (min-width: 925px) {
+        height: 200px;
+      }
     }
   }
 
@@ -33,7 +43,7 @@
 
     &:not(.views-field-field-bild-i) {
       font-size: 0.9em;
-      margin: 0 16px 0 16px;
+      margin: 0 8px 0 16px;
     }
 
     &.views-field-field-bezirk {
@@ -81,7 +91,7 @@
       position: absolute;
       top: 5%;
       right: 0;
-      background-color: #fff;
+      background-color: $secondary-color;
       margin: 0;
       padding: 5px 6px 5px 5px;
       font-size: 0.7em;
@@ -89,7 +99,7 @@
 
       .field-content {
         a {
-          color: $secondary-color;
+          color: #ffffff;
 
           &:hover {
             text-decoration: underline;
