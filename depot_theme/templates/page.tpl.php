@@ -251,7 +251,7 @@
         <div class="row">
 
             <div class="medium-4 column">
-                <p>&copy; Copyright <?php print date('Y') . ', ' . $site_name; ?></p>
+                <p>&copy; Copyright <?php print date('Y') . ', Stiftung "Ecken Wecken"'; ?></p>
             </div>
 
             <div id="depot-footer-menu" class="medium-8 column">
