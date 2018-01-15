@@ -251,7 +251,7 @@ foreach ($resource as $res) :
 
 							if ($res['user']->is_organisation) : ?>
                                 <div class="user-badge medium-1 column"><?= substr($res['user']->field_organisation_name['und'][0]['value'], 0, 1); ?></div>
-                                <div class="medium-11 column"><p>
+                                <div class="medium-10 column"><p>
                                         <strong><?= $res['user']->field_organisation_name['und'][0]['value']; ?></strong>
                                         (<?= $res['user']->field_organisation_typ['und'][0]['value'] ?>) <span
                                                 class="member-since">| <?= date_format($created, 'd.m.Y'); ?></span></p>
@@ -266,9 +266,9 @@ foreach ($resource as $res) :
 									<?php endif; ?></div>
 							<?php else : ?>
                                 <div class="user-badge two-digits medium-1 column"><?= substr($res['user']->field_vorname['und'][0]['value'], 0, 1); ?><?= substr($res['user']->field_nachname['und'][0]['value'], 0, 1); ?></div>
-                                <div class="medium-11 column">
+                                <div class="medium-10 column">
                                     <p><?= $res['user']->field_anrede['und'][0]['value']; ?> <?= $res['user']->field_vorname['und'][0]['value'] ?> <?= $res['user']->field_nachname['und'][0]['value'] ?>
-                                        <span class="member-since">| <?= t('Mitgleid seit') . ' ' . date_format($created, 'd.m.Y'); ?></span>
+                                        <span class="member-since">| <?= t('Mitglied seit') . ' ' . date_format($created, 'd.m.Y'); ?></span>
                                     </p>
                                 </div>
 							<?php endif; ?>
