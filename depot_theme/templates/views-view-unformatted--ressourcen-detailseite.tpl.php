@@ -253,7 +253,7 @@ foreach ($resource as $res) :
                                 <div class="user-badge medium-1 column"><?= substr($res['user']->field_organisation_name['und'][0]['value'], 0, 1); ?></div>
                                 <div class="medium-10 column"><p>
                                         <strong><?= $res['user']->field_organisation_name['und'][0]['value']; ?></strong>
-                                        (<?= $res['user']->field_organisation_typ['und'][0]['value'] ?>) <span
+                                        (<?= ucfirst($res['user']->field_organisation_typ['und'][0]['value']); ?>) <span
                                                 class="member-since">| <?= date_format($created, 'd.m.Y'); ?></span></p>
 									<?php if (isset($res['user']->field_organisation_website['und'])) : ?>
                                         <p>
