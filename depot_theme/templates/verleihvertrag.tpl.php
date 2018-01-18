@@ -20,7 +20,7 @@ $html = '<!DOCTYPE html>
               .medium-3 { width:24%;float:left; }
               .medium-4 { width:29%;float:left;padding-right:4%}
               .fake-table { border:1px solid grey; }
-              .fake-table div { text-align:center;padding-top:20px;border-bottom:1px solid grey;border-right:1px solid grey;height:80px; }
+              .fake-table div { text-align:center;padding-top:15px;border-bottom:1px solid grey;border-right:1px solid grey;height:65px; }
               .fake-table div.no-border { border-right:unset;}
               .aside-price p { line-height:1px; }
             </style>
@@ -45,7 +45,7 @@ $html = '<!DOCTYPE html>
             '.$booking_header.'
 
             <div class="container">
-              '. (!empty($ressource->field_verleihvertrag_text) ? $ressource->field_verleihvertrag_text['und'][0]['value'] : '') .'
+              '. (!empty($ressource['field_verleihvertrag_text']) ? '<br /><strong>Anmerkung Anbieter:</strong> '.$ressource['field_verleihvertrag_text']['und'][0]['value'] : '') .'
          
               <p>Ergänzungen (Platz für handschriftliche Ergänzungen):</p>
               <br /><br /><br />
@@ -69,12 +69,10 @@ $html = '<!DOCTYPE html>
                 <div class="medium-3">Empfangsbestätigung Ressource, Nutzer</div>
                 <div class="medium-3 no-border">Empfangsbestätigung Leihpreis u. Kaution, Anbieter</div>
                 
-                <div class="medium-6"><br /><br /></div>
-                <div class="medium-3"><br /><br /></div>
-                <div class="medium-3 no-border"><br /><br /></div>
+                <div class="medium-6"><br /></div>
+                <div class="medium-3"><br /></div>
+                <div class="medium-3 no-border"><br /></div>
               </div>
-
-              <br />
 
               <p>Die Rückgabe erfolgte am _____.______._________ , _________ Uhr.</p>
 
@@ -83,9 +81,9 @@ $html = '<!DOCTYPE html>
                 <div class="medium-3">Empfangsbestätigung Ressource, Anbieter</div>
                 <div class="medium-3 no-border">Empfangsbestätigung Kaution, Nutzer</div>
                 
-                <div class="medium-6"><br /><br /></div>
-                <div class="medium-3"><br /><br /></div>
-                <div class="medium-3 no-border"><br /><br /></div>
+                <div class="medium-6"><br /></div>
+                <div class="medium-3"><br /></div>
+                <div class="medium-3 no-border"><br /></div>
               </div>
               
             </div>

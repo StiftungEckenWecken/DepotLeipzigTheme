@@ -442,7 +442,7 @@
         $(document).ajaxSuccess(function(event, xhr, settings){
             // Modal rendered, set events
 
-            $("#edit-recurringyesno").click(function(){
+            $("#edit-recurringyesno,.form-item-recurringYesNo").click(function(){
                 $(".toggleable").toggleClass("hide");
             });
 

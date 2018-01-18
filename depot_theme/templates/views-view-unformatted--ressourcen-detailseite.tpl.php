@@ -45,7 +45,7 @@ foreach ($resource as $res) :
 	drupal_set_breadcrumb($breadcrumb);
 
 	// SEO: Set page title TODO :(
-	drupal_set_title($res['name']);
+    drupal_set_title($res['name']);
 
 	?>
     <script type="text/javascript">
@@ -86,6 +86,7 @@ foreach ($resource as $res) :
         });
         <?php endif; ?>
     </script>
+    <style type="text/css">.asterisk{font-size:0.7em;line-height:0;color:grey;}</style>
     <form id="calResForm" method="GET"
           action="<?= (!user_is_logged_in() ? '/user/login?destination=' : '') ?>/reservierungen/neu">
         <input type="hidden" id="calResFormRid" name="rid" value="<?= $res['type_id']; ?>"/>
@@ -149,38 +150,42 @@ foreach ($resource as $res) :
                 <div class="follow-box">
                     <div class="panel" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
                         <h5><?= t('Preis'); ?></h5>
+                        <?php $asterisk = (!empty($res['field_mwst']) ? '<span class="asterisk">*</span>' : ''); ?>
                         <p>
-                            <span itemprop="price"><?= $res['field_kosten']; ?> <?= $res['field_abrechnungstakt']; ?></span>
+                            <span itemprop="price"><?= $res['field_kosten']; ?> <?= $res['field_abrechnungstakt'].$asterisk; ?></span>
 							<?php if (!empty($res['field_kosten_2'])) : ?>
-                                | <?= t('Ermäßigt'); ?>: <?= $res['field_kosten_2']; ?>
+                                | <?= t('Ermäßigt'); ?>: <?= $res['field_kosten_2'].$asterisk; ?>
 							<?php endif; ?>
 							<?php if (!empty($res['field_kaution'])) : ?>
                                 | <?= t('Kaution'); ?>: <?= $res['field_kaution']; ?> (<?= t('pro Einheit'); ?>)
 							<?php endif; ?></p>
-						<?php if (!empty($res['field_gemeinwohl']) && $res['field_gemeinwohl'] == 'Ja') : ?>
-                            <p>
-                                <span class="label warning"><?= t('Achtung!'); ?></span> <?= t('Reservierungen nur durch dem Gemeinwohl verpflichtete Organisationen!'); ?>
-                            </p>
-						<?php endif; ?>
-						<?php if (!$res_is_active) : ?>
-                            <a href="#" class="button small warning expand"><?= t('Genehmigung ausstehend :('); ?></a>
-						<?php endif; ?>
-						<?php if (!user_is_logged_in()): ?>
-                            <a href="/user/login?destination=/reservierungen/neu" id="availability_calendar_btn" class="button small expand ci" type="submit"
-                               title="<?= t('Jetzt einloggen und reservieren'); ?>"><i
-                                        class="fi fi-check"></i><?= t('Jetzt einloggen und reservieren'); ?></a>
-						<?php else: ?>
-							<?php if (isset($ressource['field_gemeinwohl']['und'][0]['value']) && !in_array(ROLE_ORGANISATION_AUTH_NAME, $user->roles)) : ?>
-                                <a href="#" class="button small expand ci"
-                                   title="<?= t('Nur durch gemeinnützige Organisationen reservierbar'); ?>"><i
-                                            class="fi fi-check"></i><?= t('Nur durch Organisationen reservierbar'); ?>
-                                </a>
-							<?php else : ?>
-                                <a href="#" id="availability_calendar_btn" class="button small expand ci"
-                                   title="<?= t('Verfügbarkeit prüfen'); ?>"><i
-                                            class="fi fi-check"></i><?= t('Verfügbarkeit prüfen'); ?></a>
-							<?php endif; ?>
-						<?php endif; ?>
+                            <?php if (!empty($res['field_gemeinwohl']) && $res['field_gemeinwohl'] == 'Ja') : ?>
+                                <p>
+                                    <span class="label warning"><?= t('Achtung!'); ?></span> <?= t('Reservierungen nur durch dem Gemeinwohl verpflichtete Organisationen!'); ?>
+                                </p>
+                            <?php endif; ?>
+                            <?php if (!$res_is_active) : ?>
+                                <a href="#" class="button small warning expand"><?= t('Genehmigung ausstehend :('); ?></a>
+                            <?php endif; ?>
+                            <?php if (!empty($res['field_mwst'])) : ?>
+                                <p class="asterisk">* <?= t('Zzgl. MwSt. von @mwst%.',array('@mwst' => $res['field_mwst'])); ?></p>
+                            <?php endif; ?>
+                            <?php if (!user_is_logged_in()): ?>
+                                <a href="/user/login?destination=/reservierungen/neu" id="availability_calendar_btn" class="button small expand ci" type="submit"
+                                title="<?= t('Jetzt einloggen und reservieren'); ?>"><i
+                                            class="fi fi-check"></i><?= t('Jetzt einloggen und reservieren'); ?></a>
+                            <?php else: ?>
+                                <?php if (isset($ressource['field_gemeinwohl']['und'][0]['value']) && !in_array(ROLE_ORGANISATION_AUTH_NAME, $user->roles)) : ?>
+                                    <a href="#" class="button small expand ci"
+                                    title="<?= t('Nur durch gemeinnützige Organisationen reservierbar'); ?>"><i
+                                                class="fi fi-check"></i><?= t('Nur durch Organisationen reservierbar'); ?>
+                                    </a>
+                                <?php else : ?>
+                                    <a href="#" id="availability_calendar_btn" class="button small expand ci"
+                                    title="<?= t('Verfügbarkeit prüfen'); ?>"><i
+                                                class="fi fi-check"></i><?= t('Verfügbarkeit prüfen'); ?></a>
+                                <?php endif; ?>
+                            <?php endif; ?>
 
                     </div><!-- /.panel -->
 
