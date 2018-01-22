@@ -190,12 +190,14 @@ foreach ($resource as $res) :
                     </div><!-- /.panel -->
 
 					<?php if ($user_is_owner) : ?>
-                        <ul class="button-group even-2">
-                            <li><a href="/<?= current_path(); ?>/edit" id="contact_agent_form_btn" class="button small"><i
-                                            class="fi fi-pencil"></i><?= t('Ressource bearbeiten'); ?></a></li>
-                            <li><a href="#" data-reveal-id="verfuegbarkeitenModal" class="button small"><i
-                                            class="fi fi-calendar"></i><?= t('Verfügbarkeiten ändern'); ?></a></li>
-                        </ul>
+                        <div class="button-group">
+                            <a href="/<?= current_path(); ?>/edit" id="contact_agent_form_btn" class="button small expand">
+                                <i class="fi fi-pencil"></i><?= t('Ressource bearbeiten'); ?>
+                            </a>
+                            <a href="#" data-reveal-id="verfuegbarkeitenModal" class="button small expand">
+                                <i class="fi fi-calendar"></i><?= t('Verfügbarkeiten ändern'); ?>
+                            </a>
+                        </div>
 					<?php elseif ($res['user']->data['contact']) : ?>
                         <a href="/user/<?= $res['uid']; ?>/contact" id="contact_agent_btn"
                            class="button small expand"><i
