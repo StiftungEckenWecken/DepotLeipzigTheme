@@ -195,7 +195,7 @@ label {
 
 }
 
-.form-wrapper,
+.form-wrapper:not(.field-name-field-anzahl-einheiten):not(.field-name-field-minimale-anzahl),
 .field-name-field-beschreibung,
 .field-name-field-gemeinwohl,
 .field-name-field-nutzungsbedingungen,
