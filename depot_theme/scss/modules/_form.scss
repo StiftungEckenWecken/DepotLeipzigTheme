@@ -1,5 +1,9 @@
 label {
   font-size: 1rem;
+
+  &.option {
+    position: absolute;
+  }
 }
 
 .form-item {
@@ -195,7 +199,7 @@ label {
 
 }
 
-.form-wrapper:not(.field-name-field-anzahl-einheiten):not(.field-name-field-minimale-anzahl),
+.form-wrapper:not(.field-name-field-anzahl-einheiten):not(.field-name-field-minimale-anzahl):not(#edit-field-ausleiher-name):not(#edit-field-ausleiher-telefonnummer):not(#edit-field-ausleiher-email),
 .field-name-field-beschreibung,
 .field-name-field-gemeinwohl,
 .field-name-field-nutzungsbedingungen,
