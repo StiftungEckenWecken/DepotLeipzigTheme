@@ -263,9 +263,10 @@ foreach ($resource as $res) :
                                         (<?= ucfirst($res['user']->field_organisation_typ['und'][0]['value']); ?>) <span
                                                 class="member-since">| <?= date_format($created, 'd.m.Y'); ?></span></p>
 									<?php if (isset($res['user']->field_organisation_website['und'])) : ?>
+                                    <?php $arrParsedUrl = parse_url($res['user']->field_organisation_website['und'][0]['value']); ?>
                                         <p>
 											<?= t('Website'); ?>:
-                                            <a href="<?= $res['user']->field_organisation_website['und'][0]['value']; ?>"
+                                            <a href="<?= !empty($arrParsedUrl['scheme']) ? $res['user']->field_organisation_website['und'][0]['value'] : 'http://' . $res['user']->field_organisation_website['und'][0]['value']; ?>"
                                                target="_blank">
 												<?= $res['user']->field_organisation_website['und'][0]['value']; ?>
                                             </a>
