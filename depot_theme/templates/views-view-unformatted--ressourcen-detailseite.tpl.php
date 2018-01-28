@@ -56,30 +56,31 @@ foreach ($resource as $res) :
         var blockedEvents = <?= json_encode($blocked_events_array); ?>;
         console.log(blockedEvents);
         var now = new Date();
-        var cal = new ResourceCal({
+        var calOptions = {
             range: true,
             lang: 'de',
             weekStart: 1,
             button: '<?= t('Jetzt reservieren'); ?>!',
             blockedPeriods: blockedEvents,
             totalAmount: <?= $res['field_anzahl_einheiten']; ?>,
-            amountHint: '<a id="link-detail-oeffnungszeiten" href="#res-detail-oeffnungszeiten">Öffnungszeiten</a> für Beginn/Ende beachten!',
             onConfirm: function () {
                 $('#calResFormBegin').val(this.selectedDates[0] / 1000);
                 $('#calResFormEnd').val(this.selectedDates[1] / 1000);
                 $('#calResFormEinheiten').val(this.selectedAmount);
                 $('#calResForm').submit();
             }
-        });
+        };
+
+        <?php if (!empty($res['field__ffnungszeiten'])):?>
+        calOptions.amountHint = '<div id="detail-oeffnungszeiten"><span id="link-detail-oeffnungszeiten">Öffnungszeiten</span> für Beginn/Ende beachten! ' +
+            '<span id="detail-oeffnungszeiten-text">' + '<?= strip_tags($res['field__ffnungszeiten']); ?>' + '</span></div>';
+        <?php endif; ?>
+
+        var cal = new ResourceCal(calOptions);
 
         $(document).ready(function () {
             $('#availability_calendar_btn').click(function () {
                 cal.show();
-                setTimeout(function () {
-                    $('#link-detail-oeffnungszeiten').click(function () {
-                        cal.hide();
-                    });
-                }, 100);
             });
 
 

@@ -7191,4 +7191,34 @@ label {
 .accordion .accordion-navigation .row {
   margin: 0; }
 
+.ResourceCal #detail-oeffnungszeiten {
+  position: relative; }
+  .ResourceCal #detail-oeffnungszeiten #link-detail-oeffnungszeiten {
+    color: #e13b01;
+    cursor: pointer; }
+    .ResourceCal #detail-oeffnungszeiten #link-detail-oeffnungszeiten:hover {
+      text-decoration: underline; }
+      .ResourceCal #detail-oeffnungszeiten #link-detail-oeffnungszeiten:hover ~ #detail-oeffnungszeiten-text {
+        position: absolute;
+        top: 35px;
+        left: 0;
+        display: block;
+        background-color: #ffffff;
+        border: 1px solid #eaeaea;
+        padding: 1rem 1.2rem;
+        color: #222;
+        z-index: 11; }
+        .ResourceCal #detail-oeffnungszeiten #link-detail-oeffnungszeiten:hover ~ #detail-oeffnungszeiten-text:before {
+          content: '';
+          position: absolute;
+          top: -10px;
+          left: calc(50% - 10px);
+          width: 0;
+          height: 0;
+          border-left: 10px solid transparent;
+          border-right: 10px solid transparent;
+          border-bottom: 10px solid #eaeaea; }
+  .ResourceCal #detail-oeffnungszeiten #detail-oeffnungszeiten-text {
+    display: none; }
+
 /*# sourceMappingURL=depot.css.map */

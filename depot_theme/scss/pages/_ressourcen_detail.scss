@@ -74,17 +74,62 @@
   }
 }
 
-  #res-detail-desc {
-    padding: 1.5rem;
-    background-color: #fff;
-  }
+#res-detail-desc {
+  padding: 1.5rem;
+  background-color: #fff;
+}
 
-  .accordion {
+.accordion {
 
-    .accordion-navigation {
+  .accordion-navigation {
 
-      .row {
-        margin: 0;
-      }
+    .row {
+      margin: 0;
     }
   }
+}
+
+.ResourceCal {
+
+  #detail-oeffnungszeiten {
+    position: relative;
+
+    #link-detail-oeffnungszeiten {
+      color: $primary-color;
+      cursor: pointer;
+
+      &:hover {
+        text-decoration: underline;
+
+        & ~ #detail-oeffnungszeiten-text {
+          position: absolute;
+          top: 35px;
+          left: 0;
+          display: block;
+          background-color: #ffffff;
+          border: 1px solid #eaeaea;
+          padding: 1rem 1.2rem;
+          color: #222;
+          z-index: 11;
+
+          &:before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: calc(50% - 10px);
+            width: 0;
+            height: 0;
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+            border-bottom: 10px solid #eaeaea;
+          }
+        }
+      }
+    }
+
+    #detail-oeffnungszeiten-text {
+      display: none;
+    }
+
+  }
+}
