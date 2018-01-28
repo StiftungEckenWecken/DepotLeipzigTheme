@@ -6,6 +6,17 @@ label {
   }
 }
 
+form {
+
+  fieldset.column {
+
+    @media #{$medium-down} {
+      padding: 0;
+    }
+  }
+}
+
+
 .form-item {
   position: relative;
   margin-top: .2rem;
@@ -26,9 +37,10 @@ label {
       color: #4c4c4c;
       font-size: 25px;
       position: absolute;
-      top: -16px;
-      right: -10px;
+      top: -21px;
+      right: -15px;
       cursor: pointer;
+      padding: 5px;
       transition: color 200ms ease-in-out;
     }
 
@@ -40,6 +52,7 @@ label {
       max-width: 45%;
       min-width: 250px;
       color: #222;
+      z-index: 11;
 
       &:before {
         color: $primary-color;
@@ -217,7 +230,7 @@ label {
     margin-top: 4px;
 
     & + label {
-
+      position: relative;
       width: 82%;
     }
   }
@@ -261,8 +274,11 @@ label {
 .fieldset-toggle {
   position: relative;
   height: 29px;
-  overflow: hidden;
   padding-top: 0;
+
+  @media #{$medium-down} {
+    overflow-y: visible;
+  }
 
   legend {
     margin-left: 32px;

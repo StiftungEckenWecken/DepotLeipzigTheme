@@ -6616,6 +6616,10 @@ label {
   label.option {
     position: absolute; }
 
+@media only screen and (max-width: 64em) {
+  form fieldset.column {
+    padding: 0; } }
+
 .form-item {
   position: relative;
   margin-top: .2rem; }
@@ -6633,9 +6637,10 @@ label {
       color: #4c4c4c;
       font-size: 25px;
       position: absolute;
-      top: -16px;
-      right: -10px;
+      top: -21px;
+      right: -15px;
       cursor: pointer;
+      padding: 5px;
       transition: color 200ms ease-in-out; }
     .form-item .description:hover {
       font-size: 1rem;
@@ -6644,7 +6649,8 @@ label {
       padding: 1rem 1.2rem;
       max-width: 45%;
       min-width: 250px;
-      color: #222; }
+      color: #222;
+      z-index: 11; }
       .form-item .description:hover:before {
         color: #e13b01; }
 
@@ -6759,6 +6765,7 @@ label {
   float: left;
   margin-top: 4px; }
   .form-type-checkbox input[type="checkbox"] + label {
+    position: relative;
     width: 82%; }
 
 .form-type-checkbox:not(.form-item-field-verleihvertrag--und) .description {
@@ -6793,8 +6800,10 @@ label {
 .fieldset-toggle {
   position: relative;
   height: 29px;
-  overflow: hidden;
   padding-top: 0; }
+  @media only screen and (max-width: 64em) {
+    .fieldset-toggle {
+      overflow-y: visible; } }
   .fieldset-toggle legend {
     margin-left: 32px;
     cursor: pointer; }
