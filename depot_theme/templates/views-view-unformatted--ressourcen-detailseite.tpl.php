@@ -172,7 +172,7 @@ foreach ($resource as $res) :
                                 <p class="asterisk">* <?= t('Zzgl. MwSt. von @mwst%.',array('@mwst' => $res['field_mwst'])); ?></p>
                             <?php endif; ?>
                             <?php if (!user_is_logged_in()): ?>
-                                <a href="/user/login?destination=/reservierungen/neu" id="availability_calendar_btn" class="button small expand ci" type="submit"
+                                <a href="/user/login?destination=/ressourcen/<?= $res['type_id']; ?>" id="availability_calendar_btn" class="button small expand ci" type="submit"
                                 title="<?= t('Jetzt einloggen und reservieren'); ?>"><i
                                             class="fi fi-check"></i><?= t('Jetzt einloggen und reservieren'); ?></a>
                             <?php else: ?>

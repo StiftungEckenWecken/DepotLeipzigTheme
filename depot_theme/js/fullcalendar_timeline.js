@@ -1,5 +1,33 @@
 (function ($) {
 
+    // Production steps of ECMA-262, Edition 5, 15.4.4.18
+    // === polyfill
+    if (!Array.prototype.forEach) {
+      Array.prototype.forEach = function(callback, thisArg) {
+        var T, k;
+        if (this === null) {
+          throw new TypeError(' this is null or not defined');
+        }
+        var O = Object(this);
+        var len = O.length >>> 0;
+        if (typeof callback !== "function") {
+          throw new TypeError(callback + ' is not a function');
+        }
+        if (arguments.length > 1) {
+          T = thisArg;
+        }
+        k = 0;
+        while (k < len) {
+          var kValue;
+          if (k in O) {
+            kValue = O[k];
+            callback.call(T, kValue, k, O);
+          }
+          k++;
+        }
+      };
+    }
+
     // Define our objects.
     Drupal.batCalendar = Drupal.batCalendar || {};
     Drupal.batCalendar.Modal = Drupal.batCalendar.Modal || {};
@@ -142,11 +170,11 @@
                     return false;
                   }
     
-                  for (date of enumerateDaysBetweenDates(selectInfo.start, selectInfo.end)) {
+                  enumerateDaysBetweenDates(selectInfo.start, selectInfo.end).forEach(function(element, date){
                     if (!isInsideBusinessHour(business_hours, date.day(), '00:00', '24:00')) {
                       return false;
                     }
-                  }
+                  });
     
                   if (!isInsideBusinessHour(business_hours, end_day, '00:00', selectInfo.end.format('HH:mm'))) {
                     return false;
@@ -271,7 +299,7 @@
         }
     
         function isInsideBusinessHour(business_hours, day, start, end) {
-          for (business_hour of business_hours) {
+          business_hours.forEach(function (business_hour, index){
             if (business_hour.dow.indexOf(day) >= 0) {
               var business_start = moment.duration(business_hour.start);
               var business_end = moment.duration(business_hour.end);
@@ -283,7 +311,7 @@
                 return true;
               }
             }
-          }
+          });
     
           return false;
         }
@@ -442,7 +470,7 @@
         $(document).ajaxSuccess(function(event, xhr, settings){
             // Modal rendered, set events
 
-            $("#edit-recurringyesno,.form-item-recurringYesNo").click(function(){
+            $(".form-item-recurringYesNo input").click(function(){
                 $(".toggleable").toggleClass("hide");
             });
 
