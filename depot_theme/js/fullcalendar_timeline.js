@@ -470,10 +470,6 @@
         $(document).ajaxSuccess(function(event, xhr, settings){
             // Modal rendered, set events
 
-            $(".form-item-recurringYesNo input").click(function(){
-                $(".toggleable").toggleClass("hide");
-            });
-
             $("#edit-recurringeventmaxdate").datepicker({
                 dateFormat: "dd.mm.yy",
             });
