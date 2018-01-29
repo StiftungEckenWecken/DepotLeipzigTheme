@@ -73,7 +73,7 @@ foreach ($resource as $res) :
 
         <?php if (!empty($res['field__ffnungszeiten'])):?>
         calOptions.amountHint = '<div id="detail-oeffnungszeiten"><span id="link-detail-oeffnungszeiten">Öffnungszeiten</span> für Beginn/Ende beachten! ' +
-            '<span id="detail-oeffnungszeiten-text">' + '<?= strip_tags($res['field__ffnungszeiten']); ?>' + '</span></div>';
+            '<span id="detail-oeffnungszeiten-text">' + '<?= preg_replace( "/\r|\n/", "", strip_tags($res['field__ffnungszeiten'])); ?>' + '</span></div>';
         <?php endif; ?>
 
         var cal = new ResourceCal(calOptions);
