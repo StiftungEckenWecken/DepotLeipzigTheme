@@ -31,7 +31,7 @@ $info-color: #a0d3e8;
 
 $body-bg: #f0eeec;
 
-$button-function-factor: -20% !default;
+$button-function-factor: -20%;
 
 $button-bg-color: $secondary-color;
 $button-border-color: $secondary-color;
@@ -43,6 +43,8 @@ $topbar-link-color: #333333;
 $topbar-link-color-hover: #000;
 $topbar-link-bg: #fff;
 $topbar-link-bg-hover: #d8d8d8;
+$topbar-menu-link-color: #888888;
+$topbar-menu-icon-color: #888888;
 $row-width: rem-calc(1120);
 
 // We use these to control header font sizes

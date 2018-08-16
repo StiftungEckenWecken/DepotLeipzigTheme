@@ -1,0 +1,35 @@
+#sliding-popup {
+
+  &.sliding-popup-bottom {
+    background-color: $secondary-color;
+  }
+
+  .popup-content {
+    display: block;
+
+    #popup-text {
+      margin-top: .5rem;
+      margin-bottom: 0;
+    }
+
+    #popup-buttons {
+      margin: 0;
+
+      button {
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+        font-size: 1rem;
+        font-weight: normal;
+        border-color: #fff;
+        border-radius: 0;
+        color: #333333;
+        background: #fff none;
+
+        &:hover {
+          background-color: #d8d8d8;
+        }
+      }
+    }
+  }
+
+}

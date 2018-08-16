@@ -6,7 +6,14 @@
   margin-top: 20px;
   background-color: rgba(255, 255, 255, 0.7);
 
-  @media only screen and (max-width: 40.063em) {
+  @media #{$medium-down} {
+    padding-bottom: 50px;
+
+    & > .row {
+      display: flex;
+      flex-wrap: wrap;
+      flex-direction: column-reverse;
+    }
 
     ul {
       display: none;
@@ -30,24 +37,51 @@
   font-size: 0.85em;
 }
 
-#depot-footer-menu ul {
-  list-style: none;
-  float: right;
+#depot-footer-menu {
 
-  li {
-    float: left;
-    padding-left: 20px;
+  @media #{$medium-down} {
+    float: none;
+    margin-bottom: 20px;
+  }
 
-    a {
-      color: inherit;
+  .menu {
+    list-style: none;
+    float: right;
 
-      &:hover {
-        text-decoration: underline;
+    li {
+      float: left;
+      padding-left: 20px;
+
+      a {
+        color: inherit;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+
+      &.active-trail a {
+        font-weight: bold;
       }
     }
 
-    &.active-trail a {
-      font-weight: bold;
+    @media #{$medium-down} {
+      display: block;
+      width: 100%;
+      float: none;
+      margin: 0;
+
+      li {
+        float: none;
+        padding: 0;
+        padding-bottom: 5px;
+        padding-left: 10px;
+        border-bottom: 1px solid #4d4d4d;
+
+        &:last-of-type {
+          border-bottom: none;
+        }
+      }
     }
   }
 }

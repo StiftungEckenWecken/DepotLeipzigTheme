@@ -38,6 +38,7 @@ stylesheets[all][] = css/foundation.min.css
 ; Foundation JavaScript.
 
 ; External libraries used by Foundation (minified). Add more via Gruntfile.js.
+scripts[] = js/moment.min.js
 scripts[] = js/libs.min.js
 
 ; Foundation framework scripts (minified).

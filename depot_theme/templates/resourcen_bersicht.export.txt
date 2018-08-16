@@ -16,11 +16,11 @@ $handler->display->display_options['access']['type'] = 'none';
 $handler->display->display_options['cache']['type'] = 'none';
 $handler->display->display_options['query']['type'] = 'views_query';
 $handler->display->display_options['exposed_form']['type'] = 'basic';
-$handler->display->display_options['exposed_form']['options']['submit_button'] = 'Filtern';
+$handler->display->display_options['exposed_form']['options']['submit_button'] = 'Finden';
 $handler->display->display_options['exposed_form']['options']['exposed_sorts_label'] = 'Sortieren';
 $handler->display->display_options['exposed_form']['options']['sort_asc_label'] = 'Aufsteigend';
 $handler->display->display_options['exposed_form']['options']['sort_desc_label'] = 'Absteigend';
-$handler->display->display_options['exposed_form']['options']['autosubmit'] = TRUE;
+$handler->display->display_options['exposed_form']['options']['autosubmit_hide'] = FALSE;
 $handler->display->display_options['pager']['type'] = 'full';
 $handler->display->display_options['pager']['options']['items_per_page'] = '24';
 $handler->display->display_options['pager']['options']['offset'] = '0';
@@ -42,15 +42,15 @@ $handler->display->display_options['header']['area_text_custom']['label'] = 'Int
 $handler->display->display_options['header']['area_text_custom']['empty'] = TRUE;
 $handler->display->display_options['header']['area_text_custom']['content'] = '<p>Das <span class="rs">Depot Leipzig</span> ist Deine Plattform um das Verwalten und Teilen von Ressourcen noch einfacher und attraktiver zu machen. Schau\' rein und mach mit!</p>
 
-<p class="text-center"><strong>So geht\'s: 1. Ressource aussuchen - 2. Verfügbarkeit prüfen - 3. Reservierung anfragen</strong></p>
+<!-- <p class="text-center"><strong>So geht\'s: 1. Ressource aussuchen - 2. Verfügbarkeit prüfen - 3. Reservierung anfragen</strong></p> !-->
 <ul class="button-group even-2 stack-for-small ressource-page-button-group" id="button-group-logged-out">
-	<li><a href="/user/login?destination=/ressourcen/neu" class="button small"><i class="fi fi-unlock"></i> Einloggen & Ressource anlegen</a></li>
-	<li><a href="/faq" class="button small"><i class="fi fi-megaphone"></i> Mehr erfahren</a></li>
+  <li><a href="/user/login?destination=/ressourcen/neu" class="button small"><i class="fi fi-unlock"></i> Einloggen & Ressource anlegen</a></li>
+  <li><a href="/faq" class="button small"><i class="fi fi-megaphone"></i> Mehr erfahren</a></li>
 </ul>
 
 <ul class="button-group even-2 stack-for-small ressource-page-button-group" id="button-group-logged-in">
-	<li><a href="/ressourcen/neu" class="button small"><i class="fi fi-pencil"></i> Ressource anlegen</a></li>
-	<li><a href="/mein-depot" class="button small ci"><i class="fi fi-star"></i> Mein Depot</a></li>
+  <li><a href="/ressourcen/neu" class="button small"><i class="fi fi-pencil"></i> Ressource anlegen</a></li>
+  <li><a href="/mein-depot" class="button small ci"><i class="fi fi-star"></i> Mein Depot</a></li>
 </ul>';
 /* Fußbereich: Global: View area */
 $handler->display->display_options['footer']['view']['id'] = 'view';
@@ -87,8 +87,8 @@ $handler->display->display_options['fields']['field_bild_i']['alter']['path'] = 
 $handler->display->display_options['fields']['field_bild_i']['element_label_colon'] = FALSE;
 $handler->display->display_options['fields']['field_bild_i']['click_sort_column'] = 'fid';
 $handler->display->display_options['fields']['field_bild_i']['settings'] = array(
-'image_style' => 'medium',
-'image_link' => '',
+  'image_style' => 'medium',
+  'image_link' => '',
 );
 /* Feld: Typ: Kategorie */
 $handler->display->display_options['fields']['field_kategorie']['id'] = 'field_kategorie';
@@ -110,8 +110,8 @@ $handler->display->display_options['fields']['field_adresse_postleitzahl']['excl
 $handler->display->display_options['fields']['field_adresse_postleitzahl']['element_label_colon'] = FALSE;
 $handler->display->display_options['fields']['field_adresse_postleitzahl']['type'] = 'number_integer';
 $handler->display->display_options['fields']['field_adresse_postleitzahl']['settings'] = array(
-'thousand_separator' => '',
-'prefix_suffix' => 1,
+  'thousand_separator' => '',
+  'prefix_suffix' => 1,
 );
 /* Feld: Typ: Bezirk */
 $handler->display->display_options['fields']['field_bezirk']['id'] = 'field_bezirk';
@@ -131,8 +131,8 @@ $handler->display->display_options['fields']['field_anzahl_einheiten']['alter'][
 $handler->display->display_options['fields']['field_anzahl_einheiten']['element_label_colon'] = FALSE;
 $handler->display->display_options['fields']['field_anzahl_einheiten']['type'] = 'number_unformatted';
 $handler->display->display_options['fields']['field_anzahl_einheiten']['settings'] = array(
-'thousand_separator' => '',
-'prefix_suffix' => 1,
+  'thousand_separator' => '',
+  'prefix_suffix' => 1,
 );
 /* Feld: Type revision: Name */
 $handler->display->display_options['fields']['name']['id'] = 'name';
@@ -151,8 +151,8 @@ $handler->display->display_options['fields']['field_kosten']['alter']['text'] = 
 $handler->display->display_options['fields']['field_kosten']['element_label_colon'] = FALSE;
 $handler->display->display_options['fields']['field_kosten']['type'] = 'number_unformatted';
 $handler->display->display_options['fields']['field_kosten']['settings'] = array(
-'thousand_separator' => '',
-'prefix_suffix' => 1,
+  'thousand_separator' => '',
+  'prefix_suffix' => 1,
 );
 /* Feld: Typ: Preis ermäßigt */
 $handler->display->display_options['fields']['field_kosten_2']['id'] = 'field_kosten_2';
@@ -165,8 +165,8 @@ $handler->display->display_options['fields']['field_kosten_2']['element_label_co
 $handler->display->display_options['fields']['field_kosten_2']['hide_empty'] = TRUE;
 $handler->display->display_options['fields']['field_kosten_2']['type'] = 'number_unformatted';
 $handler->display->display_options['fields']['field_kosten_2']['settings'] = array(
-'thousand_separator' => '',
-'prefix_suffix' => 1,
+  'thousand_separator' => '',
+  'prefix_suffix' => 1,
 );
 /* Feld: Typ: Abrechnungstakt */
 $handler->display->display_options['fields']['field_abrechnungstakt_1']['id'] = 'field_abrechnungstakt_1';
@@ -194,91 +194,99 @@ $handler->display->display_options['filters']['type']['id'] = 'type';
 $handler->display->display_options['filters']['type']['table'] = 'bat_types';
 $handler->display->display_options['filters']['type']['field'] = 'type';
 $handler->display->display_options['filters']['type']['value'] = array(
-'depot' => 'depot',
+  'depot' => 'depot',
 );
-/* Filter criterion: Typ: Bezirk (field_bezirk) */
-$handler->display->display_options['filters']['field_bezirk_state_id']['id'] = 'field_bezirk_state_id';
-$handler->display->display_options['filters']['field_bezirk_state_id']['table'] = 'field_data_field_bezirk';
-$handler->display->display_options['filters']['field_bezirk_state_id']['field'] = 'field_bezirk_state_id';
-$handler->display->display_options['filters']['field_bezirk_state_id']['exposed'] = TRUE;
-$handler->display->display_options['filters']['field_bezirk_state_id']['expose']['operator_id'] = 'field_bezirk_state_id_op';
-$handler->display->display_options['filters']['field_bezirk_state_id']['expose']['label'] = 'Bezirk';
-$handler->display->display_options['filters']['field_bezirk_state_id']['expose']['operator'] = 'field_bezirk_state_id_op';
-$handler->display->display_options['filters']['field_bezirk_state_id']['expose']['identifier'] = 'bezirk_id';
-$handler->display->display_options['filters']['field_bezirk_state_id']['expose']['remember_roles'] = array(
-2 => '2',
-1 => 0,
-);
-$handler->display->display_options['filters']['field_bezirk_state_id']['group_info']['label'] = 'Bezirk (field_bezirk)';
-$handler->display->display_options['filters']['field_bezirk_state_id']['group_info']['identifier'] = 'field_bezirk_state_id';
-$handler->display->display_options['filters']['field_bezirk_state_id']['group_info']['group_items'] = array(
-1 => array(
-'title' => '',
-'operator' => '=',
-'value' => array(
-'value' => '',
-'min' => '',
-'max' => '',
-),
-),
-2 => array(
-'title' => '',
-'operator' => '=',
-'value' => array(
-'value' => '',
-'min' => '',
-'max' => '',
-),
-),
-3 => array(
-'title' => '',
-'operator' => '=',
-'value' => array(
-'value' => '',
-'min' => '',
-'max' => '',
-),
-),
+$handler->display->display_options['filters']['type']['group'] = 1;
+/* Filter criterion: Typ: Beschriftung */
+$handler->display->display_options['filters']['name']['id'] = 'name';
+$handler->display->display_options['filters']['name']['table'] = 'bat_types';
+$handler->display->display_options['filters']['name']['field'] = 'name';
+$handler->display->display_options['filters']['name']['operator'] = 'contains';
+$handler->display->display_options['filters']['name']['group'] = 1;
+$handler->display->display_options['filters']['name']['exposed'] = TRUE;
+$handler->display->display_options['filters']['name']['expose']['operator_id'] = 'name_op';
+$handler->display->display_options['filters']['name']['expose']['label'] = 'Suche';
+$handler->display->display_options['filters']['name']['expose']['operator'] = 'name_op';
+$handler->display->display_options['filters']['name']['expose']['identifier'] = 'name';
+$handler->display->display_options['filters']['name']['expose']['remember_roles'] = array(
+  2 => '2',
+  1 => '1',
+  3 => 0,
+  4 => 0,
 );
 /* Filter criterion: Typ: Kategorie (field_kategorie) */
 $handler->display->display_options['filters']['field_kategorie_state_id']['id'] = 'field_kategorie_state_id';
 $handler->display->display_options['filters']['field_kategorie_state_id']['table'] = 'field_data_field_kategorie';
 $handler->display->display_options['filters']['field_kategorie_state_id']['field'] = 'field_kategorie_state_id';
+$handler->display->display_options['filters']['field_kategorie_state_id']['group'] = 1;
 $handler->display->display_options['filters']['field_kategorie_state_id']['exposed'] = TRUE;
 $handler->display->display_options['filters']['field_kategorie_state_id']['expose']['operator_id'] = 'field_kategorie_state_id_op';
 $handler->display->display_options['filters']['field_kategorie_state_id']['expose']['label'] = 'Kategorie';
 $handler->display->display_options['filters']['field_kategorie_state_id']['expose']['operator'] = 'field_kategorie_state_id_op';
 $handler->display->display_options['filters']['field_kategorie_state_id']['expose']['identifier'] = 'kategorie_id';
 $handler->display->display_options['filters']['field_kategorie_state_id']['expose']['remember_roles'] = array(
-2 => '2',
-1 => 0,
+  2 => '2',
+  1 => 0,
 );
-/* Filter criterion: Typ: Beschriftung */
-$handler->display->display_options['filters']['name']['id'] = 'name';
-$handler->display->display_options['filters']['name']['table'] = 'bat_types';
-$handler->display->display_options['filters']['name']['field'] = 'name';
-$handler->display->display_options['filters']['name']['operator'] = 'contains';
-$handler->display->display_options['filters']['name']['exposed'] = TRUE;
-$handler->display->display_options['filters']['name']['expose']['operator_id'] = 'name_op';
-$handler->display->display_options['filters']['name']['expose']['label'] = 'Stichwort';
-$handler->display->display_options['filters']['name']['expose']['operator'] = 'name_op';
-$handler->display->display_options['filters']['name']['expose']['identifier'] = 'name';
-$handler->display->display_options['filters']['name']['expose']['remember_roles'] = array(
-2 => '2',
-1 => '1',
-3 => 0,
-4 => 0,
+/* Filter criterion: Typ: Bezirk (field_bezirk) */
+$handler->display->display_options['filters']['field_bezirk_state_id']['id'] = 'field_bezirk_state_id';
+$handler->display->display_options['filters']['field_bezirk_state_id']['table'] = 'field_data_field_bezirk';
+$handler->display->display_options['filters']['field_bezirk_state_id']['field'] = 'field_bezirk_state_id';
+$handler->display->display_options['filters']['field_bezirk_state_id']['group'] = 1;
+$handler->display->display_options['filters']['field_bezirk_state_id']['exposed'] = TRUE;
+$handler->display->display_options['filters']['field_bezirk_state_id']['expose']['operator_id'] = 'field_bezirk_state_id_op';
+$handler->display->display_options['filters']['field_bezirk_state_id']['expose']['label'] = 'Bezirk';
+$handler->display->display_options['filters']['field_bezirk_state_id']['expose']['operator'] = 'field_bezirk_state_id_op';
+$handler->display->display_options['filters']['field_bezirk_state_id']['expose']['identifier'] = 'bezirk_id';
+$handler->display->display_options['filters']['field_bezirk_state_id']['expose']['remember_roles'] = array(
+  2 => '2',
+  1 => 0,
+  3 => 0,
+  4 => 0,
+);
+$handler->display->display_options['filters']['field_bezirk_state_id']['group_info']['label'] = 'Bezirk (field_bezirk)';
+$handler->display->display_options['filters']['field_bezirk_state_id']['group_info']['identifier'] = 'field_bezirk_state_id';
+$handler->display->display_options['filters']['field_bezirk_state_id']['group_info']['group_items'] = array(
+  1 => array(
+    'title' => '',
+    'operator' => '=',
+    'value' => array(
+      'value' => '',
+      'min' => '',
+      'max' => '',
+    ),
+  ),
+  2 => array(
+    'title' => '',
+    'operator' => '=',
+    'value' => array(
+      'value' => '',
+      'min' => '',
+      'max' => '',
+    ),
+  ),
+  3 => array(
+    'title' => '',
+    'operator' => '=',
+    'value' => array(
+      'value' => '',
+      'min' => '',
+      'max' => '',
+    ),
+  ),
 );
 /* Filter criterion: Typ: Aktiviert (field_aktiviert) */
 $handler->display->display_options['filters']['field_aktiviert_value']['id'] = 'field_aktiviert_value';
 $handler->display->display_options['filters']['field_aktiviert_value']['table'] = 'field_data_field_aktiviert';
 $handler->display->display_options['filters']['field_aktiviert_value']['field'] = 'field_aktiviert_value';
 $handler->display->display_options['filters']['field_aktiviert_value']['value'] = array(
-1 => '1',
+  1 => '1',
 );
+$handler->display->display_options['filters']['field_aktiviert_value']['group'] = 1;
 
 /* Display: Page */
 $handler = $view->new_display('page', 'Page', 'page');
+$handler->display->display_options['defaults']['use_ajax'] = FALSE;
 $handler->display->display_options['path'] = 'ressourcen';
 $handler->display->display_options['menu']['type'] = 'normal';
 $handler->display->display_options['menu']['title'] = 'Ressourcen';
@@ -287,49 +295,49 @@ $handler->display->display_options['menu']['name'] = 'main-menu';
 $handler->display->display_options['menu']['context'] = 0;
 $handler->display->display_options['menu']['context_only_inline'] = 0;
 $translatables['ressourcen_bersicht'] = array(
-t('Master'),
-t('Ressourcen teilen - Gemeinwohl stärken'),
-t('more'),
-t('Filtern'),
-t('Reset'),
-t('Sortieren'),
-t('Aufsteigend'),
-t('Absteigend'),
-t('Items per page'),
-t('- All -'),
-t('Offset'),
-t('« erste Seite'),
-t('‹ vorherige Seite'),
-t('nächste Seite ›'),
-t('letzte Seite »'),
-t('Intro text'),
-t('<p>Das <span class="rs">Depot Leipzig</span> ist Deine Plattform um das Verwalten und Teilen von Ressourcen noch einfacher und attraktiver zu machen. Schau\' rein und mach mit!</p>
+  t('Master'),
+  t('Ressourcen teilen - Gemeinwohl stärken'),
+  t('more'),
+  t('Finden'),
+  t('Reset'),
+  t('Sortieren'),
+  t('Aufsteigend'),
+  t('Absteigend'),
+  t('Items per page'),
+  t('- All -'),
+  t('Offset'),
+  t('« erste Seite'),
+  t('‹ vorherige Seite'),
+  t('nächste Seite ›'),
+  t('letzte Seite »'),
+  t('Intro text'),
+  t('<p>Das <span class="rs">Depot Leipzig</span> ist Deine Plattform um das Verwalten und Teilen von Ressourcen noch einfacher und attraktiver zu machen. Schau\' rein und mach mit!</p>
 
-<p class="text-center"><strong>So geht\'s: 1. Ressource aussuchen - 2. Verfügbarkeit prüfen - 3. Reservierung anfragen</strong></p>
+<!-- <p class="text-center"><strong>So geht\'s: 1. Ressource aussuchen - 2. Verfügbarkeit prüfen - 3. Reservierung anfragen</strong></p> !-->
 <ul class="button-group even-2 stack-for-small ressource-page-button-group" id="button-group-logged-out">
-	<li><a href="/user/login?destination=/ressourcen/neu" class="button small"><i class="fi fi-unlock"></i> Einloggen & Ressource anlegen</a></li>
-	<li><a href="/faq" class="button small"><i class="fi fi-megaphone"></i> Mehr erfahren</a></li>
+  <li><a href="/user/login?destination=/ressourcen/neu" class="button small"><i class="fi fi-unlock"></i> Einloggen & Ressource anlegen</a></li>
+  <li><a href="/faq" class="button small"><i class="fi fi-megaphone"></i> Mehr erfahren</a></li>
 </ul>
 
 <ul class="button-group even-2 stack-for-small ressource-page-button-group" id="button-group-logged-in">
-	<li><a href="/ressourcen/neu" class="button small"><i class="fi fi-pencil"></i> Ressource anlegen</a></li>
-	<li><a href="/mein-depot" class="button small ci"><i class="fi fi-star"></i> Mein Depot</a></li>
+  <li><a href="/ressourcen/neu" class="button small"><i class="fi fi-pencil"></i> Ressource anlegen</a></li>
+  <li><a href="/mein-depot" class="button small ci"><i class="fi fi-star"></i> Mein Depot</a></li>
 </ul>'),
-t('Keine Ressourcen'),
-t('<p class="text-center"><span class="warning label">Nix da...</span> ...wir konnten keine Ressourcen mit diesen Filterangaben finden :(</p>'),
-t('.'),
-t(','),
-t('[field_kategorie]'),
-t('<i class="fi fi-marker"></i>[field_adresse_postleitzahl] ([field_bezirk])'),
-t('<i class="fi fi-thumbnails"></i>Einheiten: [field_anzahl_einheiten-value]'),
-t('[field_kosten-value] €'),
-t('(erm. [field_kosten_2] €)'),
-t('/ [field_abrechnungstakt]'),
-t('<br />
+  t('Keine Ressourcen'),
+  t('<p class="text-center"><span class="warning label">Nix da...</span> ...wir konnten keine Ressourcen mit diesen Filterangaben finden :(</p>'),
+  t('.'),
+  t(','),
+  t('[field_kategorie]'),
+  t('<i class="fi fi-marker"></i>[field_adresse_postleitzahl] ([field_bezirk])'),
+  t('<i class="fi fi-thumbnails"></i>Einheiten: [field_anzahl_einheiten-value]'),
+  t('[field_kosten-value] €'),
+  t('(erm. [field_kosten_2] €)'),
+  t('/ [field_abrechnungstakt]'),
+  t('<br />
 <a class="button secondary small expand" href="ressourcen/[type_id]">&raquo; [name] reservieren!</a>'),
-t('Bezirk'),
-t('Bezirk (field_bezirk)'),
-t('Kategorie'),
-t('Stichwort'),
-t('Page'),
+  t('Suche'),
+  t('Kategorie'),
+  t('Bezirk'),
+  t('Bezirk (field_bezirk)'),
+  t('Page'),
 );

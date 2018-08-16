@@ -1,21 +1,35 @@
 
 .page {
+  overflow-x: hidden;
+  width: 100%;
 
   main#main-content {
-    background-color: #fff;
-    box-shadow: 0 0 6px rgba(102, 102, 102, 0.2);
+    margin-top: 15px;
+    min-height: calc(100vh - 150px);
 
-    @media only screen and (min-width: 40.063em) {
+    @media #{$medium-up} {
       max-width: 970px;
-      margin: 0 auto;
+      margin: 30px auto 0;
     }
 
     .main {
+      background-color: #fff;
+      box-shadow: 0 0 6px rgba(102, 102, 102, 0.2);
+      font-weight: normal;
 
-      @media only screen and (min-width: 40.063em) {
+      @media #{$medium-up} {
         padding: 2rem;
       }
     }
+  }
 
+  .breadcrumbs {
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid $silver;
+
+    @media #{$medium-down} {
+      display: none;
+    }
   }
 }

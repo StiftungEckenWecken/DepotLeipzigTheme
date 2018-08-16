@@ -1,0 +1,148 @@
+.page-ressourcen {
+
+  main#main-content {
+    background-color: transparent;
+    box-shadow: none;
+    margin-top: 0;
+
+    .main {
+      background-color: transparent;
+      box-shadow: none;
+    }
+  }
+
+  .main {
+    background-color: transparent;
+    margin-top: 20px;
+  }
+
+  .ressource-page-button-group {
+
+    & > li {
+      width: 100%;
+      margin-bottom: 10px;
+
+      @media #{$medium-up} {
+        margin: 0 -2px;
+        display: inline-block;
+        width: 50%;
+      }
+
+    }
+  }
+
+  .views-view-grid.cols-3 {
+
+    [class*="col-"] {
+
+      @media #{$medium-down} {
+        width: calc(#{100% / 2} - 10px);
+      }
+
+      @media #{$small-down} {
+        width: 100%;
+      }
+    }
+  }
+
+  .view-header {
+    margin-bottom: 40px;
+  }
+
+  .view-filters {
+    margin-bottom: 40px;
+
+    .views-exposed-form {
+
+      .views-exposed-widgets {
+        display: flex;
+        flex-wrap: nowrap;
+
+        @media #{$small-only} {
+          flex-wrap: wrap;
+          justify-content: space-between;
+        }
+
+        .views-exposed-widget {
+          padding-right: 0;
+          padding-top: 0;
+
+          @media #{$small-only} {
+            flex-basis: calc(50% - .5rem);
+          }
+
+          & ~ .views-exposed-widget {
+            margin-left: .5rem;
+          }
+
+          &.views-widget-filter-name {
+
+            @media #{$small-only} {
+              flex-basis: 100%;
+            }
+          }
+
+          &.views-submit-button {
+
+            @media #{$small-only} {
+              flex-basis: 100%;
+            }
+
+            .form-submit {
+              margin-top: calc(1rem + 12px);
+              padding: .7rem 2rem;
+
+              @media #{$small-only} {
+                margin-top: 0;
+                padding: 1rem 2rem;
+                width: 100%;
+              }
+            }
+          }
+
+        }
+      }
+    }
+
+  }
+
+  .view-ressourcen-bersicht {
+
+    .view-content {
+      display: flex;
+      flex-wrap: wrap;
+
+      .views-row {
+        width: 100%;
+        max-width: 330px;
+
+        @media only screen and (min-width: 620px) {
+          width: calc(50% - 5px);
+          margin-right: 10px;
+          margin-left: 0;
+          max-width: none;
+
+          &:nth-of-type(even) {
+            margin-right: 0;
+          }
+        }
+
+        @media only screen and (min-width: 925px)  {
+          $width: 100 / 3;
+          $cap: 10;
+          $minusCap: ($cap / 3) * 2;
+          width: calc(#{$width}% - #{$minusCap}px);
+          margin-right: #{$cap}px;
+
+          &:nth-of-type(even) {
+            margin-right: #{$cap}px;
+          }
+
+          &:nth-of-type(3n)  {
+            margin-right: 0;
+          }
+        }
+      }
+    }
+  }
+}
