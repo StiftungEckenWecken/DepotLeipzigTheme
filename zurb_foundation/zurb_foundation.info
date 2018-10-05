@@ -17,7 +17,7 @@ stylesheets[all][] = css/foundation.min.css
 scripts[] = js/vendor/modernizr.js
 
 ; Foundation framework scripts.
-scripts[] = js/foundation.min.js
+; scripts[] = js/foundation.min.js
 
 ; Regions are output in the page.tpl.php
 regions[header]              = Header

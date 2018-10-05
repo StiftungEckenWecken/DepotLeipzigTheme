@@ -7,8 +7,12 @@ label {
 }
 
 .form-item {
-  position: relative;
   margin-top: .2rem;
+}
+
+.form-item,
+.popup-item {
+  position: relative;
 
   .description {
     position: absolute;
@@ -199,14 +203,14 @@ label {
 
 }
 
-.form-wrapper:not(.field-name-field-anzahl-einheiten):not(.field-name-field-minimale-anzahl):not(#edit-field-ausleiher-name):not(#edit-field-ausleiher-telefonnummer):not(#edit-field-ausleiher-email),
+.form-wrapper:not(.field-name-field-anzahl-einheiten):not(.field-widget-bat-event-reference-autocomplete):not(.field-name-field-minimale-anzahl):not(#edit-field-ausleiher-name):not(#edit-field-ausleiher-telefonnummer):not(#edit-field-ausleiher-email),
 .field-name-field-beschreibung,
 .field-name-field-gemeinwohl,
 .field-name-field-nutzungsbedingungen,
 .field-name-field--ffnungszeiten {
   width: 100%;
   float: left;
-  padding: 0 .9375rem;
+  //padding: 0 .9375rem;
 }
 
 .form-type-checkbox {
@@ -312,7 +316,7 @@ label {
 }
 
 .form-item-field-fake-kategorie {
-  margin-top: 23px;
+
 }
 
 .form-item-field-nutzungsbedingungen-und .option {

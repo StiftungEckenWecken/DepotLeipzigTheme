@@ -1,4 +1,4 @@
-DOCUMENTATION
+﻿DOCUMENTATION
 ----------------------------------
 Please refer also to the community documentation:
   http://drupal.org/node/1948260
@@ -197,3 +197,8 @@ Try disabling FastClick in your subtheme by opening the Gruntfile and commenting
 '<%= global_vars.base_theme_path %>/js/vendor/fastclick.js'
 
 Trigger Grunt to recompile your theme, and reload to see if the issue persists.
+
+DEPOT TASKS----------------------------------
+
+grunt - watches and compiles js/src/*.js & scss/*.scss on the fly.
+grunt build - compile and compress js & css

@@ -1,1 +1,286 @@
-// Non-modular or client styles for the .l-content region.
+* {
+    font-family: Calibri, sans-serif;
+}
+
+h1, h1 *, h2, h2 *, h3, h3 *, h4, h4 *, h5, h5 *, h6, h6 *, .button, button {
+    font-family: 'Roboto Slab', serif;
+}
+
+.panel {
+    border: none;
+    box-shadow: $box-shadow;
+}
+
+.button {
+    
+    &.radius { // Deactivate for v2
+        border-radius: 0 !important;
+    }
+
+    i {
+        padding-right: 8px;
+    }
+}
+
+.user-badge, .icon-badge {
+    width: 40px;
+    height: 40px;
+    border-radius: 40px;
+    padding-top: 9px;
+    font-size: 0.8em;
+    background-color: #e03b00;
+    color: #fff;
+    text-align: center;
+    transition: 0.25s all;
+  
+    &.two-digits {
+      padding-left: 10px;
+    }
+  
+    &.secondary {
+      background-color: $body-bg;
+      color: $gray-2;
+
+      &:hover {
+        background-color: $gray-2;
+        color: #fff;
+      }
+    }
+  }
+  
+.icon-badge {
+    padding-top: 6px;
+    font-size: 1.15rem;
+    float: left;
+    margin-right: 8px;
+    cursor: help;
+}
+
+.rs,
+.accordion-title,
+.l-footer *,
+.form-type-checkbox:not(.form-item-field-verleihvertrag--und) .description, 
+fieldset legend, label {
+    font-family: 'Roboto Slab', serif !important;
+}
+
+fieldset {
+    border: none;
+}
+
+.top-bar-section ul li > a {
+    font-size: 0.9rem;
+}
+
+//.page-ressourcen .views-exposed-widgets > div {width:25%;}
+.page-ressourcen .views-exposed-form input, .page-ressourcen .views-exposed-form select, .page-ressourcen .views-exposed-form button {width:100%;}
+#edit-submit-ressourcen-bersicht {
+    font-size: 0.8125rem; 
+}
+.view-header:after { 
+    content:' ';
+    display:table;
+    box-sizing:border-box;
+    clear:both;
+}
+
+ul.breadcrumbs {
+    margin-bottom: 0;
+}
+
+// Resource list view
+// @see views-view-unformatted-ressourcen-bersicht.tpl.php
+
+$image-width: 100%; // give em' all a chance to expand!
+$image-hover-wrapper-transition: all 0.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+$image-hover-wrapper-transition-delay: 0.2s;
+$resource-name-padding: 10px;
+
+.view-resources-list {
+    margin-top: 30px;
+
+    .views-exposed-widget.views-widget-sort-by {
+        float: right;
+    }
+
+    /*.view-filters { 
+        display: none;
+    }*/
+} 
+
+.resource-wrapper {
+  position: relative; 
+  height: 190px;
+  overflow: hidden;
+  margin: 0.9375rem 1.5%; // @todo make flexible
+  padding: 0;
+  @media #{$medium-up} {
+    width: 30%;
+  }
+
+  &:hover {
+      .price-badge { 
+          //right: -100px;
+          opacity: 0;
+      }
+  }
+
+  &__title {
+    color: $white;
+    font-family: 'Roboto Slab', sans-serif;
+    font-weight: 100;
+    bottom: 0;
+    left: 0;
+    padding: 0 10px 4px 10px;
+    position: absolute;
+    width: 100%;
+    background: linear-gradient(0deg, rgba(0,0,0,0.85) 0%, rgba(241,241,241,0) 100%);
+    text-align: center;
+    z-index: 81;
+    font-size: 1.1rem;
+    text-shadow: 0 0 4px rgba(0,0,0,0.95);
+  }
+
+  a.resource-link {
+    display: inline-block;
+    letter-spacing: normal;
+    line-height: initial;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    width: 100%; // Ensures that reveal is 100% width BUT makes image unreadable
+  }
+
+  img {
+        float: left;
+        overflow: hidden;
+        width: $image-width;
+        max-width: auto;
+  }
+
+  .price-badge {
+        position: absolute;
+        right: $resource-name-padding;
+        top: $resource-name-padding;
+        transition: all 0.25s;
+        width: 50px;
+        height: 50px;
+        padding-left: 0;
+        padding-right: 0;
+        line-height: 0.9rem;
+
+        &.organizations-only {
+            background: $alert-color;
+        }
+  }
+
+  .resource-wrapper__reveal {
+    background-color: rgba(0, 0, 0, 0.5);
+    color: $white;
+    display: inline;
+    margin-left: -$image-width;
+    opacity: 0;
+    position: absolute;
+    max-width: 100%;
+    width: 100%;
+    height: 100%;
+    z-index: 80;
+    padding: 0 $resource-name-padding;
+    transition: $image-hover-wrapper-transition;
+    transition-delay: $image-hover-wrapper-transition-delay;
+
+    &:hover {
+        opacity: 1;
+        transition: $image-hover-wrapper-transition;
+    }
+
+    &:hover .resource-wrapper__reveal-content {
+        opacity: 1;
+        transform: translateY(-100%);
+        transition: $image-hover-wrapper-transition;
+        transition-delay: $image-hover-wrapper-transition-delay;
+    }
+
+    &-content {
+      top: 57px;
+      display: block;
+      opacity: 0;
+      position: absolute;
+      width: 100%;
+      transition: $image-hover-wrapper-transition;
+        
+      .user-badge {
+          margin-right: 15px;
+          margin-bottom: 5px; // max!!
+      }
+        
+      a {
+           color: $white;
+      }
+    }
+  }
+
+  &.only-gemeinwohl .resource-wrapper__reveal-content {
+    top: 126px;
+  }
+}
+
+// global select 2 custom settings
+.select2-container--default {
+    border: none;
+    width: 100% !important;
+
+    .select2-search__field {
+        padding-left: 10px !important;
+    }
+
+    .select2-selection--multiple {
+      background-color: $gray-1 !important;
+      border: none !important;
+      border-radius: 0 !important;
+      height: 46px !important;
+    }
+
+    .select2-search__field {
+        margin: 0;
+    }
+}
+
+.select2-container--default .select2-results__option--highlighted[aria-selected] {
+    background-color: $primary-color !important;
+}
+
+.select2-search--inline {
+  // display: none;
+}
+
+.select2-selection__choice {
+  background-color: $primary-color !important;
+  border-radius: 0 !important;
+  border: none !important;
+  padding: 7px 10px !important;
+  color: #fff;
+  font-family: 'Roboto Slab', Calibri, sans-serif;
+  font-size: 0.8rem;
+}
+
+.select2-selection__choice__remove {
+    padding-left: 8px;
+    float: right;
+}
+
+// HERE maps
+.H_ib_tail svg {
+    fill: #fff !important;
+}
+.H_ib_body {
+    // Bubble
+    background: #fff;
+    box-shadow: $box-shadow;
+    padding: 7px !important;
+    width: 220px;
+    color: $gray-2;
+}
+svg.H_icon {
+    fill: grey;
+}

@@ -1,10 +1,23 @@
-// Non-modular or client styles for .l-footer region.
-
 .l-footer {
-  border-top: 1px solid #d8d8d8;
-  padding-top: 12px;
-  margin-top: 20px;
-  background-color: rgba(255, 255, 255, 0.7);
+  height: 250px;
+  background-color: $gray-bg;
+  background: linear-gradient(0deg, rgba(241,241,241,1) 0%, rgba(241,241,241,0) 100%);
+  background-image: url('../images/skyline_fullwidth_no_logo.svg');
+  background-repeat: repeat-x;
+  background-position: bottom center;
+  background-size: 150%;
+  @media #{$medium-up} {
+    margin-top: 60px;
+  }
+
+  #footer__logo {
+    padding-bottom: 10px;
+    width: 150px;
+  }
+
+  #footer__sponsors-badge {
+    padding-top: 18px;
+  }
 
   @media #{$medium-down} {
     padding-bottom: 50px;
@@ -20,37 +33,30 @@
     }
   }
 
-  &:after {
-    opacity: 0.7;
-    content: '';
-    background: url('sites/all/themes/depot_theme/images/logo_s.png') no-repeat;
-    width: 238px;
-    height: 238px;
-    bottom: -50px;
-    left: -50px;
-    z-index: -1;
-    position: fixed;
-  }
 }
 
-#depot-footer-menu ul li a, .l-footer p {
-  font-size: 0.85em;
+.depot-footer-menu ul li a, .l-footer p {
+  font-size: 0.85rem;
 }
 
-#depot-footer-menu {
+.depot-footer-menu {
+  color: $text-color;
 
   @media #{$medium-down} {
     float: none;
     margin-bottom: 20px;
   }
 
-  .menu {
+  h6 {
+    text-transform: uppercase;
+    font-weight: 100;
+  }
+
+  ul.menu {
     list-style: none;
-    float: right;
+    margin: 0;
 
     li {
-      float: left;
-      padding-left: 20px;
 
       a {
         color: inherit;
@@ -75,8 +81,6 @@
         float: none;
         padding: 0;
         padding-bottom: 5px;
-        padding-left: 10px;
-        border-bottom: 1px solid #4d4d4d;
 
         &:last-of-type {
           border-bottom: none;

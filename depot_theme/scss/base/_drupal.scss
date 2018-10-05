@@ -6,6 +6,12 @@ $large-down: "#{$screen} and (max-width:#{upper-bound($large-range)})";
 $xlarge-down: "#{$screen} and (max-width:#{upper-bound($xlarge-range)})";
 $xxlarge-down: "#{$screen} and (max-width:#{lower-bound($xxlarge-range)})";
 
+#toolbar {
+  box-shadow: none;
+  -moz-box-shadow: none;
+  -webkit-box-shadow: none;
+}
+
 // Make the "sticky" Top Bar play nice with the "fixed" Admin Menu.
 .admin-menu .fixed {
   top: emCalc(29px);
@@ -103,21 +109,6 @@ html.js input.throbbing {
   }
 }
 
-.user-badge {
-  width: 40px;
-  height: 40px;
-  border-radius: 40px;
-  padding-top: 9px;
-  font-size: 0.8em;
-  background-color: #e03b00;
-  color: #fff;
-  text-align: center;
-}
-
-.user-badge.two-digits {
-  padding-left: 10px;
-}
-
 .page-user .breadcrumbs {
   display: none;
 }
@@ -176,18 +167,4 @@ html.js input.throbbing {
 
 #booking-status {
   float: right;
-}
-
-#wannabe-hero {
-  display: none;
-  background: url('/sites/all/themes/depot_theme/images/hero_sandwich.jpg') repeat-x;
-  height: 232px;
-  opacity: 0.7;
-  width: 100%;
-  position: absolute;
-  top: 62px;
-}
-
-.front #wannabe-hero {
-  //display: block !important;
 }

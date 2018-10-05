@@ -13,10 +13,13 @@ module.exports = function (grunt) {
 
     var bourbon = require('node-bourbon').includePaths;
 
-    // array of javascript libraries to include.
+    // array of javascript libraries (vendors) to include.
     var jsLibs = [
         '<%= global_vars.base_theme_path %>/js/vendor/placeholder.js',
-        '<%= global_vars.base_theme_path %>/js/vendor/fastclick.js'
+        '<%= global_vars.base_theme_path %>/js/vendor/fastclick.js',
+        'node_modules/select2/dist/js/select2.min.js',
+        'node_modules/select2/dist/js/i18n/de.js',
+        'node_modules/moment/min/moment.min.js'
     ];
 
     // array of foundation javascript components to include.
@@ -29,12 +32,12 @@ module.exports = function (grunt) {
         '<%= global_vars.base_theme_path %>/js/foundation/foundation.dropdown.js',
         '<%= global_vars.base_theme_path %>/js/foundation/foundation.equalizer.js',
         '<%= global_vars.base_theme_path %>/js/foundation/foundation.interchange.js',
-        '<%= global_vars.base_theme_path %>/js/foundation/foundation.joyride.js',
-        '<%= global_vars.base_theme_path %>/js/foundation/foundation.magellan.js',
-        '<%= global_vars.base_theme_path %>/js/foundation/foundation.offcanvas.js',
+        //'<%= global_vars.base_theme_path %>/js/foundation/foundation.joyride.js',
+        //'<%= global_vars.base_theme_path %>/js/foundation/foundation.magellan.js',
+        //'<%= global_vars.base_theme_path %>/js/foundation/foundation.offcanvas.js',
         '<%= global_vars.base_theme_path %>/js/foundation/foundation.orbit.js',
         '<%= global_vars.base_theme_path %>/js/foundation/foundation.reveal.js',
-        '<%= global_vars.base_theme_path %>/js/foundation/foundation.slider.js',
+        //'<%= global_vars.base_theme_path %>/js/foundation/foundation.slider.js',
         '<%= global_vars.base_theme_path %>/js/foundation/foundation.tab.js',
         '<%= global_vars.base_theme_path %>/js/foundation/foundation.tooltip.js',
         '<%= global_vars.base_theme_path %>/js/foundation/foundation.topbar.js'
@@ -42,7 +45,7 @@ module.exports = function (grunt) {
 
     // array of custom javascript files to include.
     var jsApp = [
-        'js/_*.js'
+        'js/src/*.js'
     ];
 
     grunt.initConfig({
@@ -52,8 +55,18 @@ module.exports = function (grunt) {
         sass: {
             dist: {
                 options: {
+                    sourceMap: false,
+                    outputStyle: 'compressed',
+                    includePaths: ['<%= global_vars.theme_scss %>', '<%= global_vars.base_theme_path %>/scss/'].concat(bourbon)
+                },
+                files: {
+                    '<%= global_vars.theme_css %>/<%= global_vars.theme_name %>.css': '<%= global_vars.theme_scss %>/<%= global_vars.theme_name %>.scss'
+                }
+            },
+            dev : {
+                options: {
                     sourceMap: true,
-                    // outputStyle: 'compressed',
+                    outputStyle: 'expanded',
                     includePaths: ['<%= global_vars.theme_scss %>', '<%= global_vars.base_theme_path %>/scss/'].concat(bourbon)
                 },
                 files: {
@@ -72,15 +85,41 @@ module.exports = function (grunt) {
             ]
         },
 
-        uglify: {
+        /*babel: {
             options: {
-                sourceMap: false
+                sourceMap: true,
+                presets: ['env']
             },
             dist: {
                 files: {
-                    'js/libs.min.js': [jsLibs],
-                    'js/foundation.min.js': [jsFoundation],
-                    'js/app.min.js': [jsApp]
+                    'js/dist/app.min.js': [jsApp]
+                } 
+            }
+        },*/
+
+        browserify: {
+            dist: {
+                files: {
+                    'js/dist/app.min.js': [jsApp]
+                },
+                options: {
+                    transform: [['babelify', { presets: "es2015" }]],
+                    browserifyOptions: {
+                        debug: true
+                    }
+                }
+            }
+        },
+
+        uglify: {
+            options: {
+                sourceMap: false,
+            },
+            dist: {
+                files: {
+                    'js/dist/libs.min.js': [jsLibs],
+                    'js/dist/foundation.min.js': [jsFoundation],
+                    'js/dist/app.min.js': 'js/dist/app.min.js'
                 }
             }
         },
@@ -90,7 +129,7 @@ module.exports = function (grunt) {
 
             sass: {
                 files: '<%= global_vars.theme_scss %>/**/*.scss',
-                tasks: ['sass'],
+                tasks: ['sass:dev'],
                 options: {
                     livereload: true
                 }
@@ -102,11 +141,11 @@ module.exports = function (grunt) {
                     jsFoundation,
                     '<%= jshint.all %>'
                 ],
-                tasks: ['jshint', 'uglify']
+                tasks: ['jshint', 'browserify']
             }
         }
     });
 
-    grunt.registerTask('build', ['jshint', 'uglify', 'sass']);
+    grunt.registerTask('build', ['jshint', 'browserify', 'uglify', 'sass']);
     grunt.registerTask('default', ['build', 'watch']);
 };

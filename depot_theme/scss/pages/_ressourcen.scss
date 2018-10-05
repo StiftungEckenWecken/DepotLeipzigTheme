@@ -103,10 +103,70 @@
         }
       }
     }
-
   }
+}
+  .view-resources-list {
 
-  .view-ressourcen-bersicht {
+    &__footer {
+      margin-top: 18px;
+    }
+
+    .views-widget-sort-by {
+      padding-top: 13px;
+    }
+
+    .select2-container--default {
+      @media #{medium-up} {
+        margin-left: 0.9375rem !important;
+      }
+    }
+
+    .button.depot-resources-list__no-results-reset-filter {
+      margin-top: 13px;
+    }
+
+    .item-list { // pagination
+        display: none;
+    }
+    #edit-name-wrapper,
+    #edit-name--2-wrapper { // schlagwort suche
+        display: none;
+    }
+    #edit-kategorie-id-wrapper label {
+        display: none;
+    }
+    .form-type-select {
+        label {
+            float: left;
+            padding-top: 6px;
+            padding-right: 16px;
+            font-weight: 100;
+            @media #{$small-only} {
+              font-size: 0.75rem;
+            }
+        }
+        select {
+            float: right;
+            width: 170px;
+            font-weight: normal;
+            border: none;
+        }
+    }
+
+    .ajax-progress .throbber {
+      position: fixed;
+      right: 2%;
+      bottom: 2%;
+      width: 32px;
+      height: 32px;
+      margin-top: -10px;
+      background-image: url('../icons/apple-touch-icon.png');
+      background-size: 32px;
+      animation-name: rotate;
+      animation-duration: 1.5s;
+      animation-iteration-count: infinite;
+      animation-timing-function: linear;
+    }
 
     .view-content {
       display: flex;
@@ -145,4 +205,3 @@
       }
     }
   }
-}

@@ -21,7 +21,7 @@ $html = '<!DOCTYPE html>
               .medium-4 { width:29%;float:left;padding-right:4%}
               .fake-table { border:1px solid grey; }
               .fake-table div { text-align:center;padding-top:15px;border-bottom:1px solid grey;border-right:1px solid grey;height:65px; }
-              .fake-table div.no-border { border-right:unset;}
+              .fake-table div.no-border { border-right:0;}
               .aside-price p { line-height:1px; }
             </style>
           </head>

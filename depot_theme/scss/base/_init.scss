@@ -1,3 +1,5 @@
+// Overwrite default settings.scss
+// with Depot theme specific variables
 @import "../../zurb_foundation/scss/foundation/functions";
 
 $white       : #FFFFFF;
@@ -20,37 +22,54 @@ $oil         : #333333;
 $jet         : #222222;
 $black       : #000000;
 
-// Depot theme specific variables
-
 $primary-color: #e13b01;
-$secondary-color: #4483a9;
+$secondary-color: #3c3c3c;
 $alert-color: #f04124;
 $success-color: #43AC6A;
 $warning-color: #f08a24;
 $info-color: #a0d3e8;
 
-$body-bg: #f0eeec;
+$gray-1: #e5e5e5;
+$gray-2: #555;
+$gray-bg: #f1f1f1;
 
-$button-function-factor: -20%;
+$button-function-factor: -10%;
+$button-med: rem-calc(13);
 
-$button-bg-color: $secondary-color;
-$button-border-color: $secondary-color;
-$button-bg-hover: scale-color($button-bg-color, $lightness: $button-function-factor);
+$body-bg: $gray-bg;
+$text-color: $gray-2;
+$text-color-hover: darken($text-color, 10);
 
-$topbar-bg: #fff;
+//$button-bg-color: $secondary-color;
+//$button-border-color: $secondary-color;
+//$button-bg-hover: scale-color($button-bg-color, $lightness: $button-function-factor);
+
+$topbar-bg: $body-bg;
+$topbar-menu-link-font-size: 0.8rem;
 $topbar-height: rem-calc(65);
-$topbar-link-color: #333333;
+$topbar-link-color: $text-color;
 $topbar-link-color-hover: #000;
-$topbar-link-bg: #fff;
+$topbar-link-font-family: 'Roboto Slab', sans-serif;
+$topbar-link-bg: none;
 $topbar-link-bg-hover: #d8d8d8;
 $topbar-menu-link-color: #888888;
 $topbar-menu-icon-color: #888888;
 $row-width: rem-calc(1120);
 
-// We use these to control header font sizes
+$accordion-navigation-bg-color: $silver;
+$accordion-navigation-hover-bg-color: scale-color($accordion-navigation-bg-color, $lightness: -5%);
+$accordion-navigation-active-bg-color: scale-color($accordion-navigation-bg-color, $lightness: -3%);
+$accordion-navigation-font-color: $jet;
+
+$alert-font-size: rem-calc(15);
+
+ // We use these to control header font sizes
  $h1-font-size: rem-calc(28);
  $h2-font-size: rem-calc(24);
  $h3-font-size: rem-calc(20);
  $h4-font-size: rem-calc(19);
  $h5-font-size: rem-calc(17);
  $h6-font-size: 1rem;
+
+ $crumb-padding: 1.5rem 0.875rem 0;
+ $box-shadow: 0 0 6px rgba(102, 102, 102, 0.2);

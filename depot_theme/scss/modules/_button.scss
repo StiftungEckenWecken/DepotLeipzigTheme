@@ -5,6 +5,26 @@ button, .button {
     cursor: pointer;
     color: inherit;
   }
+
+  &.white {
+    background-color: $white;
+    border-color: $white;
+    color: $primary-color;
+
+    &:hover {
+      background-color: $gray-1;
+      border-color: $gray-1;
+      color: $gray-2;
+    }
+  }
+
+  &.ci {
+    background-color: $primary-color;
+    
+    &:hover {
+      background-color: darken($primary-color, 5);
+    }
+  }
 }
 
 .logged-in #button-group-logged-out {
@@ -21,12 +41,4 @@ button, .button {
   &:hover {
     background-color: darken($primary-color, 5);
   }
-}
-
-.button.ci {
-  background-color: $primary-color;
-}
-
-.button.ci:hover {
-  background-color: darken($primary-color, 5);
 }

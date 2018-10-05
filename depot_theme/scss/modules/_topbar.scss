@@ -1,16 +1,20 @@
-.top-bar {
-  border-bottom: #d8d8d8;
-  box-shadow: 0 0 6px rgba(64, 64, 64, 0.5);
+header.l-header {
+  @media #{$small-only} {
+    border-bottom: 1px solid #fff
+  }
+}
 
+.top-bar {
+  
   #top-bar-logo {
 
     @media #{$medium-up} {
-      width: 100px;
+      width: 110px;
       margin: 16px 40px;
     }
 
     @media #{$medium-down} {
-      width: 100px;
+      width: 110px;
       margin: 16px 12px;
     }
   }
@@ -37,15 +41,44 @@
   .top-bar-section {
 
     ul li {
-      background-color: #fff;
+      background: $gray-bg;
 
       & > a, & > select {
+        color: $secondary-color;
         padding-left: 1rem;
       }
     }
   }
 
   .menu {
+
+    li.leaf.active-trail {
+      background: $topbar-link-bg-hover;
+
+      a {
+        color: $topbar-link-color-hover;
+      }
+    }
+
+    .user-menu-user-link {
+
+      &:before {
+        content : '';
+        position: absolute;
+        background: url('../images/avatar.png');
+        width: 36px;
+        height: 36px;
+        margin-left: 116px;
+        margin-top: 14px;
+        @media #{$small-only} {
+          margin-top: 5px;
+        }
+      }
+
+      a {
+        padding-right: 70px !important;
+      }
+    }
 
     @media #{$medium-up} {
       float: right;
@@ -54,8 +87,8 @@
     .makeMeCd a {
 
       @media #{$medium-up} {
-        background-color: #e03b00 !important;
-        color: #fff;
+        //background-color: #e03b00 !important;
+        //color: #fff;
       }
 
       @media #{$medium-down} {
@@ -89,5 +122,65 @@
 
         }
     }
+  }
+}
+
+// Change region section
+#main-menu__region-selected {
+  &.active-trail {
+    background: $topbar-link-bg-hover;
+
+    a {
+      color: $topbar-link-color-hover;
+    }
+  }
+  a {
+
+  }
+}
+
+#depot-region-select {
+  position: absolute;
+  height: 300px;
+  width: 600px;
+  font-family: $topbar-link-font-family;
+  box-shadow: $box-shadow;
+  top: 60px;
+  background-color: #fff;
+  left: 10%;
+  overflow: hidden;
+  z-index: 9999;
+  display: none;
+
+  &__header {
+    border-bottom: 1px solid $gray-bg;
+    padding: 0.8rem 0.9375rem 0.4rem 0.9375rem;
+    margin-bottom: 8px;
+  }
+
+  &__list {
+    max-height: 100%;
+    overflow-y: scroll;
+
+    ul {
+
+      li {
+        width: 100%;
+        background-color: #fff;
+        font-family: $topbar-link-font-family;
+
+        a {
+          line-height: 2.5rem;
+        }
+
+        &.active, li:hover {
+          background-color: $body-bg;
+        }
+      }
+    }
+  }
+
+  &__map {
+
   }
 }
