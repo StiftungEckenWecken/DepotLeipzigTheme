@@ -1,20 +1,24 @@
 /**
  * Depot UI
  * 
- * @version 2.0.0
+ * @version 2.0.1
  * @author Felix Albroscheit
  * @see https://www.drupal.org/docs/7/api/javascript-api
  * @see http://es6-features.org/#Constants
+ * @todo Move page-specific events into own files
  * 
  */
 
 import Maps from './depot-maps';
+import { loadavg } from 'os';
 
 ;(function ($, window, document, undefined) {
     'use strict';
 
+    let selectize;
+
     Drupal.behaviors.depot = { 
-        attach : function (context, settings) {
+        attach (context, settings) {
 
             // Enable "smooth scroll" on internal links
             function filterPath(string) {
@@ -25,11 +29,11 @@ import Maps from './depot-maps';
             }
             
             var locationPath = filterPath(location.pathname);
-            
+
             $('a[href*="#"]').each(function () {
 
               var thisPath = filterPath(this.pathname) || locationPath;
-              var hash = this.hash;
+              var hash = this.hash.replace('#%22','');
 
               if ($("#" + hash.replace(/#/, '')).length) {
                 if (locationPath === thisPath && (location.hostname === this.hostname || !this.hostname) && this.hash.replace(/#/, '')) {
@@ -59,7 +63,7 @@ import Maps from './depot-maps';
 
             $('#main-menu', context).once('toggle_region_select', () => {
                 // Events to open, close and adjust region select section
-                $('#main-menu__region-selected').click(function() {
+                $('__#main-menu__region-selected').click(function() {
                     const selected = $(this);
 
                     selected.addClass('active-trail');
@@ -113,25 +117,28 @@ import Maps from './depot-maps';
         if ($('#depot-resources-map').length === 1) {
 
           $('#depot-resources-map', context).once('add-map', () => {
-
             const resourcesMap = new Maps(document.getElementById('depot-resources-map'), settings.depot, depotResourceMarkers);
-
           });
 
         }
 
         if ($('body').hasClass('section-ressourcen') &&
-            !$('body').hasClass('page-ressourcen-edit')) {
+            !$('body').hasClass('page-ressourcen-edit') &&
+            !$('#resources-list-selectize').length) {
             // Ressource details view
+
+            if (location.hash.indexOf('#sperrzeiten') >= 0) {
+                $('#openVerfuegbarkeitenModal').click();
+            }
 
             $('#availability_calendar_btn').click(function () {
                 if (typeof cal !== 'undefined' &&
                     typeof cal.show === 'function') {
                     cal.show();
+                    return false;
                 } else {
                     console.log('depot.js - ATTENTION: Missing or corrupt resourceCal settings');
                 }
-                return false;
             });
             
             if (typeof depotResourceMarker !== 'undefined') {
@@ -155,63 +162,150 @@ import Maps from './depot-maps';
             }
         }
 
-        if ($('.depot-resources-list').length >= 1 ||
-            $('.depot-resources-list__no-results').length >= 1) {
-            // Autoselect filter-box for resources-view
+        if ($('.view-resources-list').length >= 1) {
+            // = Is front or /ressourcen page
 
-            // Make '<Alle>' unselectable
-            $('#edit-kategorie-id option')
-              .first()
-              .remove();
+            $('body', context).once('resources-list-selectize', function() {
 
-            $('#edit-kategorie-id').select2({
-                placeholder: settings.depot.t_filterKategorienPlaceholder,
-                maximumSelectionLength: 1,
-               // allowClear: true,
-                multiple: true,
-                tags : false,
-                language : 'de'
-            }); 
+                if ($('body').hasClass('section-ressourcen')) {
+                    // = Is /ressourcen page
+                    // Prevent #resources-list-selectize to be multi-rendered
+                    $('#main-content').prepend($('#resources-list-selectize'));
+                }
+
+                let options = [];
+
+                // Map views-filter options to actual dropdown menu
+                $('#edit-kategorie-id option').each(function(){
+                    options.push({ value: $(this).val(), text: $(this).html().replace(/&amp;/, "&") });
+                });
+
+                const $selectize = $('#resources-list-selectize select').selectize({ 
+                    delimiter: ',',
+                    persist: false,
+                    maxItems: 2,
+                    options: options,
+                    placeholder: settings.depot.t_filterKategorienPlaceholder,
+                    closeAfterSelect: true,
+                    selectOnTab: true,
+                    create: function(input) { 
+                        return {
+                            value: input,
+                            text: input
+                        };
+                    },
+                    render: {
+                        option_create: function(data, escape) {
+                          // implement a "Nach Schlagwort xy suchen" message in dropdown
+                          if (escape(data.input).toString().length >= 3) {
+                            return `<div class="create">Nach Schlagwort "<strong>${escape(data.input)}</strong>" suchen&hellip;</div>`;
+                          }
+                        }
+                      },
+                });
+
+                selectize = $selectize[0].selectize;
+
+                // Bind "query-filter ADD" to views filters
+                selectize.on('option_add', function(val, data) {
+                    $('#resources-list-selectize__clear').removeClass('hide');
+
+                    $('#edit-kategorie-id').val([]);
+
+                    $('input[name="query"]').val(val)
+                          .trigger('change');
+                });
+
+                // Bind "all filters REMOVE" to views filters
+                selectize.on('clear', function() {
+                    $('#resources-list-selectize__clear').addClass('hide');
+
+                    $('input[name="query"]').val('');
+                
+                    $('#edit-kategorie-id').val([])
+                                           .trigger('change');
+                });
+
+                // Bind "deselect any item" to views filters
+                selectize.on('item_remove', function(val) {
+                    selectize.trigger('option_remove', val);
+                });
+
+                // Bind "remove any item/option" to views filters
+                selectize.on('option_remove', function(val) {
+                    if (!isNaN(val)) {
+                      // Category filter
+                      $('#edit-kategorie-id').val([])
+                                             .trigger('change');
+                    } else {
+                      // Schlagwort filter
+                      $('input[name="query"]').val('');
+                    }
+                });
+
+                // Bind "all filters REMOVE" to view filters
+                selectize.on('item_add', function(val, item) {
+
+                    $('#resources-list-selectize__clear').removeClass('hide');
+
+                    let type = 'category';
+
+                    if (!isNaN(val)) {
+                        // Category filter
+                        if ($('.selectize-input .item').not('.is-tag-item').length > 1) {
+                          // Allow only one category option
+                          const _val = $('.selectize-input .item').not('.is-tag-item')
+                                                                  .first()
+                                                                  .attr('data-value');
+
+                          selectize.removeOption(_val);
+                        }
+
+                        $('#edit-name').val('');
+                        $('#edit-kategorie-id').val(val)
+                                               .trigger('change');
+                    } else {
+                        // Schlagwort filter
+                        type = 'query';
+                        item.addClass('is-tag-item');
+
+                        if ($('.selectize-input .item.is-tag-item').length > 1) {
+                          // Allow only one query option
+                          const _val = $('.selectize-input .item.is-tag-item').first()
+                                                                              .attr('data-value');
+
+                          selectize.removeOption(_val);
+                        }
+                    }
+
+                    if (item.html().toString().indexOf('item-type') < 0) {
+                      item.html(item.html() + ` <span class="item-type">${settings.depot['t_search_type_' + type]}</span>`);
+                    }
+                });
+
+                $('#resources-list-selectize__clear').click(function() {
+                    selectize.clear();
+                });
+
+            }); // End "once render selectize" 
+
+            //$('#edit-kategorie-id-wrapper').addClass('medium-8 column');
+
+            // Enable auto-embedding of views filter results (front page only)
+            if (typeof Drupal.settings.views.ajaxViews.views_dom_id_startpage !== 'undefined') {
+                if (typeof Drupal.settings.views.ajaxViews.views_dom_id_startpage.view_display_id !== 'undefined') {
+                    Drupal.settings.views.ajaxViews.views_dom_id_startpage.view_display_id = 'page';
+                }
+            }
 
             $('.depot-resources-list__no-results-reset-filter').click(function() {
                 // Unset all filters
-                $('#edit-kategorie-id').val(null).trigger('change');
+                selectize.clear();
             });
-
-            $('#edit-kategorie-id-wrapper').addClass('medium-8 column');
-
-            //  $('.form-type-select.form-item-kategorie-id').insertBefore('.view-resources-list'); 
-            $('#views-exposed-form-resources-list-default').on('change', function(ev) {
-                //ev.preventDefault();
-                console.log('chaaaange form!');
-                return false;
-            });
-
-            $('#edit-kategorie-id').on('selection:update', function (e) {
-                console.log('update');
-            });
-
-            // Add event to copied, hidden select field
-            $('#edit-kategorie-id').on('select2:selecting', function (e) {
-                
-                //$('#edit-kategorie-id').removeAttr('multiple');
-                //console.log('now', $('#edit-kategorie-id'));
-
-                let data = e.params.data;
-                /**
-                 * data = {
-                 *   disabled[bool], element[html], id[str],
-                 *   selected[bool], text[str], title[str] 
-                 * }
-                 */
-            });
-
-            // Enable auto-embedding of views filter results
-            Drupal.settings.views.ajaxViews.views_dom_id_startpage.view_display_id = 'page';
             
             let countResources = 0;
 
-            $('.depot-resources-list .resource-wrapper').each(function(key, elem) {
+            $('.view-resources-list .resource-wrapper').each(function(key, elem) {
                 // CSS: nth-child?
                 if (key >= 9) {
                     $(elem).addClass('hide');
@@ -221,7 +315,7 @@ import Maps from './depot-maps';
 
             $('#depot-resources-list__btn-expand').click(function() {
                 $(this).addClass('hide');
-                $('.depot-resources-list .resource-wrapper.hide, #depot-resources-list__btn-show-more').removeClass('hide');
+                $('.view-resources-list .resource-wrapper.hide, #depot-resources-list__btn-show-more').removeClass('hide');
                 return false;
             });
 

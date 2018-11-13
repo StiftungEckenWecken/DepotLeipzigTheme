@@ -1,5 +1,12 @@
 <?php
   global $base_url;
+
+  $renderable_categories = '';
+
+  foreach ($content['body']['#object']->field_tax_kategorie['und'] as $key => $val) {
+    $renderable_categories .= ($key >= 1 ? ', ' : '') . '<a title="'.t('Alle Blog-Beiträge dieser Kategorie (öffnet neues Fenster)').'" target="_blank" href="/blog/'.$val['taxonomy_term']->name.'">'. $val['taxonomy_term']->name .'</a>';
+  }
+
   $postContent = render($content); 
   $word = str_word_count(strip_tags($postContent));
   $m = floor($word / 210);
@@ -9,6 +16,8 @@
 
 <p class="article-meta">
   <?= $date; ?> - <?= t('Lesezeit:'); ?> <?= $estimated_read_time; ?>
+  <br />Kategorie(n): <?= $renderable_categories; ?>
+
 </p>
 <div class="article-container">
 
@@ -21,7 +30,7 @@
         <div class="rounded-social-buttons">
           <a class="facebook social-button fi fi-social-facebook" href="https://www.facebook.com/sharer/sharer.php?u=<?= $base_url .'/'. drupal_get_path_alias(); ?>" target="_blank" title="Artikel auf Facebook teilen (externer Link)"></a>
           <a class="twitter social-button fi fi-social-twitter" href="https://twitter.com/intent/tweet?text=<?= $base_url .'/'. drupal_get_path_alias(); ?>" target="_blank" title="Artikel auf Twitter teilen (externer Link)"></a>
-          <a class="google-plus social-button fi fi-social-google-plus" href="https://plus.google.com/share?url=<?= $base_url .'/' . drupal_get_path_alias(); ?>" target="_blank" title="Artikel auf Google+ teilen (externer Link)"></a>
+          <a class="hide instagram social-button fi fi-social-instagram" href="https://instagram.com/#y" target="_blank" title="Besuche uns auf Instagram (externer Link)"></a>
           <a class="diaspora social-button fi fi-asterisk" href="https://sharetodiaspora.github.io/?title=Depot Leipzig - <?= $title; ?>&url=<?= $base_url .'/'. drupal_get_path_alias(); ?>" target="_blank" title="Artikel auf Diaspora* teilen (externer Link)"></a>
         </div>
       </div>

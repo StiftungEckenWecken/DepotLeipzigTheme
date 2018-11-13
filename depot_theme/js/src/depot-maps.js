@@ -55,6 +55,13 @@ export default class {
             }
         );
 
+        let mapZoomedCount = -1;
+
+        map.addEventListener('mapviewchangeend', function(ev) {
+            // Called after rendering and on changeZoom events
+            mapZoomedCount++;
+        });
+
         // Make map become "draggable"
         const behavior = new H.mapevents.Behavior(new H.mapevents.MapEvents(map)),
               ui = H.ui.UI.createDefault(map, defaultLayers, 'de-DE'),
@@ -79,7 +86,10 @@ export default class {
 
             ui.addBubble(bubble);
             map.setCenter(ev.target.getPosition());
-            map.zoomAt(14);
+
+            if (mapZoomedCount === 0) {
+              map.zoomAt(14);
+            }
 
         }, false);
 
@@ -92,15 +102,14 @@ export default class {
                 let markerOffset = 0;
                 const geoAsString = _marker.lat.toString() + _marker.lng.toString();
 
+                // Put margin onto markers sharing a place
                 if (typeof buffer[geoAsString] !== 'undefined') {
                     markerOffset = buffer[geoAsString];
-                    //_marker.lat + (0.000 + (markerOffset * 20));
+                    _marker.lng = _marker.lng + ((markerOffset * 1.0001 / 3000));
                     buffer[geoAsString]++;
                 } else {
                     buffer[geoAsString] = 1;
-                }
-
-                console.log(buffer[geoAsString]);
+                } 
 
                 const marker = new H.map.DomMarker({
                     lat : _marker.lat,

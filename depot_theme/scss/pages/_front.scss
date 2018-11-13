@@ -10,6 +10,10 @@ body.front {
         }
     }
 
+    .pagination-centered {
+        display: none;
+    }
+
     #front-header {
         background-color: $gray-bg;
         background-image: url('../images/skyline_fullwidth.svg');
@@ -72,7 +76,7 @@ body.front {
         $depot-blog-teaser-box-shadow: 0 0 0 3px;
 
         &-teaser {
-            @media #{small-only} {
+            @media #{$small-only} {
                 margin-bottom: 10px;
             }
 

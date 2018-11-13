@@ -184,3 +184,29 @@ header.l-header {
 
   }
 }
+
+@media #{$medium-up} {
+  body.logged-in .user-menu-user-link {
+    background-color: $primary-color !important;
+    border-radius: 0 0 0 45px;
+    padding-left: 10px; 
+
+    a {
+      color: $gray-bg !important;
+    }
+
+    &:hover {
+      background-color: darken($primary-color, 5) !important;
+
+      a {
+        color: $gray-bg !important;
+        background-color: transparent !important;
+      }
+    }
+
+    &:before {
+      background-image: url('../images/avatar_logged_in.png') !important;
+    }
+
+  }
+}

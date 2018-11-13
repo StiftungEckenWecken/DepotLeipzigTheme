@@ -2,7 +2,7 @@
 
         $resource['user'] = user_load($resource['uid']);
 	    $resource['user']->is_organisation = (in_array(ROLE_ORGANISATION_NAME, $resource['user']->roles) || in_array(ROLE_ORGANISATION_AUTH_NAME, $resource['user']->roles));
-        $resource['link'] = 'ressourcen/' . ($resource['field_slug'] != '' ? $resource['field_slug'] : $resource['type_id']);
+        $resource['link'] = '/ressourcen/' . ($resource['field_slug'] != '' ? $resource['field_slug'] : $resource['type_id']);
         $is_owner = (isset($depot_resources_owner) && $depot_resources_owner == $resource['uid']);
         $only_for_gemeinwohl = ($resource['field_gemeinwohl'] == 'Ja'); // i18nified boolean - süüüüüß <3
         // @todo For large reveal-contents, minimize its top value
@@ -10,7 +10,9 @@
 
     <div class="resource-wrapper medium-4 column<?= ($is_owner ? ' is-owner' : '') ?><?= ($only_for_gemeinwohl ? ' only-gemeinwohl' : '') ?>">
         <span class="resource-wrapper__title">
-            <?= $resource['name']; ?>
+            <a href="<?= $resource['link']; ?>">
+              <?= $resource['name']; ?>
+            </a>
         </span>
         
         <?php if (!$is_owner) : ?>
@@ -19,15 +21,17 @@
 
             <?= $resource['field_bild_i']; ?>
            
-            <?php if (trim($resource['field_kosten_2']) == '') : ?>
-            <div class="user-badge price-badge medium-1 column">
-              <?= t('Ab'); ?><br /><?= $resource['field_kosten_2']; ?>
-            </div>
-            <?php elseif (trim($resource['field_kosten']) != '') : ?>
-            <!-- .organizations-only -->
-            <div class="user-badge price-badge medium-1 column">
-              <?= t('Ab'); ?><br /><?= $resource['field_kosten']; ?>
-            </div>
+            <?php if (!$is_owner) : ?>
+                <?php if (trim($resource['field_kosten_2']) != '') : ?>
+                <div class="user-badge price-badge medium-1 column">
+                <?= t('Ab'); ?><br /><?= $resource['field_kosten_2']; ?>
+                </div>
+                <?php elseif (trim($resource['field_kosten']) != '') : ?>
+                <!-- .organizations-only -->
+                <div class="user-badge price-badge medium-1 column">
+                <?= t('Ab'); ?><br /><?= $resource['field_kosten']; ?>
+                </div>
+                <?php endif; ?>
             <?php endif; ?>
 
             <!--.resource-wrapper__reveal -->
@@ -38,7 +42,7 @@
                             <div class="user-badge medium-1 column">
                                 <i class="fi fi-pencil"></i>
                             </div>
-                            <a href="<?= $resource['link'] ?>/edit">
+                            <a href="/ressourcen/<?= $resource['type_id'] ?>/edit">
                                 <p><?= t('Ressource bearbeiten'); ?></p>
                             </a>
                         </div>

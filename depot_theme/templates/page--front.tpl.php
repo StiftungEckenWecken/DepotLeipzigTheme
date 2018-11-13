@@ -46,7 +46,7 @@
             </h1>
 
             <p>
-                <?= theme_get_setting('depot_frontpage_text_header'); ?>
+                <?= theme_get_setting('depot_frontpage_text_header')['value']; ?>
             </p>
 
             <div id="front-header__buttons">
@@ -100,6 +100,13 @@
                 <div id="depot-resources-map" class="map small-12 column"></div>
             </aside>
             <!--/.depot-resources-map -->
+
+            <div id="resources-list-selectize">
+                <select></select>
+                <div id="resources-list-selectize__clear" class="hide">
+                    x
+                </div>
+            </div>
 
             <?php 
             
@@ -157,7 +164,7 @@
 
         <div class="row">
             <div id="front-content-i__content" class="medium-6 medium-offset-6 column">
-                <?= theme_get_setting('depot_frontpage_text_content_i') ?>
+                <?= theme_get_setting('depot_frontpage_text_content_i')['value']; ?>
             </div>
         </div>
     </section>
@@ -175,7 +182,7 @@
 
         <div class="row">
             <div id="front-content-ii__content" class="medium-6 column">
-                <?= theme_get_setting('depot_frontpage_text_content_ii') ?>
+                <?= theme_get_setting('depot_frontpage_text_content_ii')['value']; ?>
             </div>
         </div>
     </section>

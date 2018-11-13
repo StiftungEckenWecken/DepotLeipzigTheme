@@ -8,7 +8,7 @@ h1, h1 *, h2, h2 *, h3, h3 *, h4, h4 *, h5, h5 *, h6, h6 *, .button, button {
 
 .panel {
     border: none;
-    box-shadow: $box-shadow;
+    // box-shadow: $box-shadow;
 }
 
 .button {
@@ -20,6 +20,14 @@ h1, h1 *, h2, h2 *, h3, h3 *, h4, h4 *, h5, h5 *, h6, h6 *, .button, button {
     i {
         padding-right: 8px;
     }
+}
+
+.views-table {
+    width: 100%;
+}
+
+.views-widget-sort-by {
+    display: none;
 }
 
 .user-badge, .icon-badge {
@@ -125,7 +133,7 @@ $resource-name-padding: 10px;
       }
   }
 
-  &__title {
+  &__title a {
     color: $white;
     font-family: 'Roboto Slab', sans-serif;
     font-weight: 100;
@@ -223,6 +231,10 @@ $resource-name-padding: 10px;
   &.only-gemeinwohl .resource-wrapper__reveal-content {
     top: 126px;
   }
+
+  &.is-owner .resource-wrapper__reveal-content {
+    top: 105px;
+  }
 }
 
 // global select 2 custom settings
@@ -234,6 +246,10 @@ $resource-name-padding: 10px;
         padding-left: 10px !important;
     }
 
+    .select2-search--inline {
+        width: 100%;
+    }
+
     .select2-selection--multiple {
       background-color: $gray-1 !important;
       border: none !important;
@@ -243,6 +259,7 @@ $resource-name-padding: 10px;
 
     .select2-search__field {
         margin: 0;
+        width: 100% !important;
     }
 }
 
@@ -254,7 +271,8 @@ $resource-name-padding: 10px;
   // display: none;
 }
 
-.select2-selection__choice {
+.select2-selection__choice,
+.selectize-control.multi .selectize-input [data-value] {
   background-color: $primary-color !important;
   border-radius: 0 !important;
   border: none !important;
@@ -262,6 +280,10 @@ $resource-name-padding: 10px;
   color: #fff;
   font-family: 'Roboto Slab', Calibri, sans-serif;
   font-size: 0.8rem;
+
+  &.is-tag-item {
+      background-color: #019ae1 !important;
+  }
 }
 
 .select2-selection__choice__remove {

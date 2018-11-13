@@ -120,13 +120,14 @@
 
 // Depot dependencies
  @import "../node_modules/select2/src/scss/core";
- 
 // Depot views
  @import "pages/user";
  @import "pages/ressourcen";
  @import "pages/ressourcen_form";
  @import "pages/ressourcen_detail";
  @import "pages/front";
+
+ @import "modules/selectize"
 
 // Older IE support
 // @import "vendor/ie";

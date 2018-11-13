@@ -1,10 +1,10 @@
 <?php
-// For depot V2:
+// depot V1.1:
 // @todo [IN DEPOT_THEME.info] remove unecessary drupal-core-stylesheets
-// @todo include web app icons
+// @todo [DONE] include web app icons
 // @todo [IN DEPOT_THEME.info] make several contents editable from backend
 // @todo [DONE] remove CDN dependency for fonts DONE
-// @todo Modify/Minify build-script 
+// @todo [DONE] Modify/Minify build-script 
 
 /**
  * Implements template_preprocess_html().
@@ -30,8 +30,8 @@ function depot_theme_preprocess_html(&$variables) {
   } else {
     
     drupal_add_css(path_to_theme(). '/RessourceCalendar/src/css/resourceCal.css');
-    drupal_add_js($theme_path.'/RessourceCalendar/src/js/resourceCal.js');
-    drupal_add_js($theme_path.'/RessourceCalendar/src/js/fastclick.js');
+    drupal_add_js($theme_path.'/RessourceCalendar/src/js/resourceCal.js'); //, array('scope' => 'footer'));
+    drupal_add_js($theme_path.'/RessourceCalendar/src/js/fastclick.js'); //, array('scope' => 'footer'));
   
   }
 
@@ -62,9 +62,11 @@ function depot_theme_preprocess_html(&$variables) {
   ));
 
   drupal_add_js(array('depot' => array(
-    't_filterKategorienPlaceholder' => t('Ressourcen nach Kategorien durchsuchen'),
+    't_filterKategorienPlaceholder' => t('Ressourcen nach Kategorie und/oder Schlagwort filtern'),
     't_addKategorienPlaceholder' => t('Max. 3 Kategorien'),
     't_map_open_resource' => t('Ressource öffnen (neues Fenster)'),
+    't_search_type_category' => t('Kategorie'),
+    't_search_type_query' => t('Schlagwort'),
     'maps_app_id' => MAPS_APP_ID,
     'maps_app_code' => MAPS_APP_CODE,
     'maps_default_lng' => 12.387772,
@@ -321,16 +323,31 @@ function depot_theme_menu_local_tasks_alter(&$data, $router_item, $root_path){
       $data['tabs'][0]['output'][] = array(
         '#theme' => 'menu_local_task',
         '#link' => array(
-          'title' => t('Mein Depot'),
+          'title' => t('Ressourcen'),
           'href' => 'mein-depot',
           'localized_options' => array(
             'attributes' => array(
-              'title' => t('Ressourcen & Reservierungen einsehen'),
+              'title' => t('Angelegte Ressourcen einsehen'),
             ),
           ),
         ),
         '#active' => false // $router_item['path'] == $root_path,
       );
+
+      $data['tabs'][0]['output'][] = array(
+        '#theme' => 'menu_local_task',
+        '#link' => array(
+          'title' => t('Reservierungen'),
+          'href' => 'mein-depot/reservierungen',
+          'localized_options' => array(
+            'attributes' => array(
+              'title' => t('Reservierungen einsehen'),
+            ),
+          ),
+        ),
+        '#active' => false // $router_item['path'] == $root_path,
+      );
+
       
       $data['tabs'][0]['output'][] = array(
         '#theme' => 'menu_local_task',

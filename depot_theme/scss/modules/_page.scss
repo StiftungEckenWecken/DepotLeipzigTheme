@@ -2,6 +2,9 @@
 .page {
   overflow-x: hidden;
   width: 100%;
+  @media #{$small-only}{
+    padding: 0 9px;
+  }
 
   main#main-content {
     margin-top: 15px;
@@ -45,6 +48,7 @@ body.node-type-artikel {
   $social-brand-twitter: #55acee;
   $social-brand-google-plus: #dd4b39;
   $social-brand-diaspora: #6b6b6b;
+  $social-brand-instagram: #8a3ab9;
 
   @mixin social-button($brand-color) {
     background: $brand-color;
@@ -185,6 +189,10 @@ body.node-type-artikel {
 
             &.diaspora {
               @include social-button($social-brand-diaspora)
+            }
+
+            &.instagram {
+              @include social-button($social-brand-instagram)
             }
           }
         }

@@ -1,3 +1,8 @@
+.front-page .view-resources-list .item-list {
+  // pagination
+  display: none;
+}
+
 .page-ressourcen {
 
   main#main-content {
@@ -105,6 +110,10 @@
     }
   }
 }
+
+.depot-resources-list {
+  width: 100%;
+}
   .view-resources-list {
 
     &__footer {
@@ -125,11 +134,7 @@
       margin-top: 13px;
     }
 
-    .item-list { // pagination
-        display: none;
-    }
-    #edit-name-wrapper,
-    #edit-name--2-wrapper { // schlagwort suche
+    .views-exposed-form { // schlagwort suche
         display: none;
     }
     #edit-kategorie-id-wrapper label {
@@ -158,6 +163,7 @@
       right: 2%;
       bottom: 2%;
       width: 32px;
+      z-index: 9999;
       height: 32px;
       margin-top: -10px;
       background-image: url('../icons/apple-touch-icon.png');

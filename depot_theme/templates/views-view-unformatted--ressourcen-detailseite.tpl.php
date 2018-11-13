@@ -57,7 +57,7 @@ foreach ($resources as $resource) :
         <?php endif; ?>
 
         if (typeof $ === 'undefined') {
-            $ = jQuery || {};
+            var $ = jQuery || {};
         }
 
         <?php if (user_is_logged_in()): ?>
@@ -92,6 +92,7 @@ foreach ($resources as $resource) :
 
         var cal = new ResourceCal(calOptions);
         <?php endif; ?>
+      
     </script>
     <style type="text/css">.asterisk{font-size:0.7em;line-height:0;color:grey;}</style>
     <form id="calResForm" method="GET"
@@ -196,7 +197,7 @@ foreach ($resources as $resource) :
                         <?php endif; ?>
 
                         <?php if (!user_is_logged_in()): ?>
-                            <a href="/user/login?destination=/ressourcen/<?= $resource['type_id'] ?>" id="availability_calendar_btn" class="button small expand ci" type="submit"
+                            <a href="/user/login?destination=/ressourcen/<?= $resource['field_slug'] ?>" id="availability_calendar_btn" class="button small expand ci" type="submit"
                             title="<?= t('Jetzt einloggen und reservieren'); ?>">
                               <i class="fi fi-check"></i><?= t('Jetzt einloggen und reservieren'); ?></a>
                         <?php else: 
@@ -226,14 +227,14 @@ foreach ($resources as $resource) :
                                 <li class="small-4 column"
                                     <?= ($resource_has_geodata) ? ' id="open-resource-map"' : ''; ?>
                                     title="<?= (!$resource_has_geodata) ? t('Ausleihbar in @ort', array('@ort' => $resource['field_adresse_postleitzahl'] . ' '. $resource['field_adresse_ort'])) : t('Abholort auf Karte anzeigen'); ?>"
-                                    data-reveal-id="depot-resource-map-modal">
+                                    <?= ($resource_has_geodata) ? 'data-reveal-id="depot-resource-map-modal"' : ''; ?>>
                                     <div class="icon-badge secondary">
                                         <i class="fi fi-marker"></i>
                                     </div>
                                     <?= $resource['field_adresse_postleitzahl']; ?> <?= $resource['field_adresse_ort']; ?>
                                 </li>
                                 <li class="small-4 column" 
-                                    title="<?= t('Bis zu @einheiten Stück ausleihbar.', array('@einheiten' => $resource['field_anzahl_einheiten'])); ?>">
+                                    title="<?= t('Bis zu @einheiten Stück ausleihbar', array('@einheiten' => $resource['field_anzahl_einheiten'])); ?>">
                                     <div class="icon-badge secondary">
                                         <i class="fi fi-star"></i>
                                     </div>                       
@@ -251,11 +252,12 @@ foreach ($resources as $resource) :
                             <a href="/ressourcen/<?= $resource['type_id']; ?>/edit" id="contact_agent_form_btn" class="button small white expand">
                                 <i class="fi fi-pencil"></i><?= t('Ressource bearbeiten'); ?>
                             </a>
-                            <a href="#" data-reveal-id="verfuegbarkeitenModal" class="button small white expand">
+                            <a href="#" id="openVerfuegbarkeitenModal" data-reveal-id="verfuegbarkeitenModal" class="button small white expand">
                                 <i class="fi fi-calendar"></i><?= t('Verfügbarkeiten ändern'); ?>
                             </a>
                         </div>
-					<?php elseif (user_is_logged_in() && $resource['user']->data['contact']) : ?>
+                    <?php endif;
+                        if (user_has_role(ROLE_ADMINISTRATOR) && $resource['user']->data['contact']) : ?>
                         <a href="/user/<?= $resource['uid']; ?>/contact" id="contact_agent_btn"
                            class="button white small expand"><i
                                     class="fi fi-torso"></i><?= t('Anbieter kontaktieren'); ?></a>
@@ -283,8 +285,8 @@ foreach ($resources as $resource) :
         </div>
         <div class="medium-7 column">
             <div class="resource-content">
-                <h1 class="ressource-title" itemprop="name">
-                    <?= $resource['name']; ?><?php echo strpos('default-thumbnail', $resource['field_bild_ii']); ?>
+                <h1 class="ressource-title" class="hide-for-small-only" itemprop="name">
+                    <?= $resource['name']; ?>
                 </h1>
 
                 <section id="res-detail-desc" itemprop="description">
@@ -303,7 +305,7 @@ foreach ($resources as $resource) :
                                 <div class="medium-10 column"><p>
                                         <strong><?= $resource['user']->field_organisation_name['und'][0]['value']; ?></strong>
                                         (<?= ucfirst($resource['user']->field_organisation_typ['und'][0]['value']); ?>) <span
-                                                class="member-since">| <?= date_format($created, 'd.m.Y'); ?></span></p>
+                                                class="member-since">| <?= t('Mitglied seit') .' '. date_format($created, 'd.m.Y'); ?></span></p>
 									<?php if (isset($resource['user']->field_organisation_website['und'])) : ?>
                                     <?php $arrParsedUrl = parse_url($resource['user']->field_organisation_website['und'][0]['value']); ?>
                                         <p>
@@ -318,7 +320,7 @@ foreach ($resources as $resource) :
                                 <div class="user-badge two-digits medium-1 column"><?= substr($resource['user']->field_vorname['und'][0]['value'], 0, 1); ?><?= substr($resource['user']->field_nachname['und'][0]['value'], 0, 1); ?></div>
                                 <div class="medium-10 column">
                                     <p><?= $resource['user']->field_anrede['und'][0]['value']; ?> <?= $resource['user']->field_vorname['und'][0]['value'] ?> <?= $resource['user']->field_nachname['und'][0]['value'] ?>
-                                        <span class="member-since">| <?= t('Mitglied seit') . ' ' . date_format($created, 'd.m.Y'); ?></span>
+                                        <span class="member-since">| <?= t('Mitglied seit') .' '. date_format($created, 'd.m.Y'); ?></span>
                                     </p>
                                 </div>
 							<?php endif; ?>

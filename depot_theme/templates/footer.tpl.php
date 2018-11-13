@@ -1,8 +1,8 @@
 <footer class="l-footer" role="contentinfo">
 
     <?php if ($site_name) : 
-          $menu_1 = menu_tree('main-menu');
-          $menu_2 = menu_tree('menu-footer-ber-uns-');
+          $menu_1 = menu_tree('menu-footer-ber-uns-');
+          $menu_2 = menu_tree('menu-footer-informationen-');
           $menu_3 = menu_tree('main-menu');
     ?>
         <div class="row">
@@ -26,7 +26,7 @@
             </div>
 
             <div class="depot-footer-menu medium-2 column">
-				<h6>Mein Depot</h6>
+				<h6>Informationen</h6>
                 <?php print drupal_render($menu_2); ?>
             </div>
 
