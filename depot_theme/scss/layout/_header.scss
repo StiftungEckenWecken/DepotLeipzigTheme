@@ -1,5 +1,4 @@
 // Non-modular or client styles for .l-header region.
-
 #buchung-header {
 
   h4 i {
@@ -16,5 +15,11 @@
     float: right;
     opacity: 0.5;
     margin-top: -32px;
+  }
+}
+
+.menu.depot-rp-logo-only-menu {
+  img {
+    max-width: 50px;
   }
 }

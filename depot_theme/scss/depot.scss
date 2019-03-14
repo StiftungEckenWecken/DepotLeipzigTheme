@@ -90,6 +90,7 @@
 // @import "base/common";
 
 // Fix for some Drupal CSS quirks (Drupalisms).
+@import "base/fonts";
 @import "base/drupal";
 @import "base/icons";
 @import "base/elements";
@@ -117,17 +118,17 @@
  @import "modules/sliding_popup";
  @import "modules/orbit";
 
-// Pages
+// Depot dependencies
+ @import "../node_modules/select2/src/scss/core";
+// Depot views
  @import "pages/user";
  @import "pages/ressourcen";
- @import "pages/ressourcen_neuedit";
+ @import "pages/ressourcen_form";
  @import "pages/ressourcen_detail";
+ @import "pages/front";
+ @import "pages/blog"; 
 
-// States
-// @import "states/collapse";
-
-// Themes
-// @import "theme/button-light";
+ @import "modules/selectize";
 
 // Older IE support
 // @import "vendor/ie";

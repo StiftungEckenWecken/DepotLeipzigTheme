@@ -1,0 +1,25 @@
+.page-ressourcen-neu, .page-ressourcen-edit {
+
+  main#main-content {
+
+    .main {
+      background-color: #fff;
+      box-shadow: 0 0 6px rgba(102, 102, 102, 0.2);
+    
+      fieldset > .column {
+        padding-left: 0;
+      }
+
+      #edit-field-gemeinwohl {
+        label {
+          font-weight: bold;
+        }
+
+        .description {
+          margin-top: 32px;
+        }
+      }
+    }
+  }
+
+}

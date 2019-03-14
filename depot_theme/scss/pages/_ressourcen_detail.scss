@@ -1,15 +1,15 @@
-.view-ressourcen-detailseite {
+.section-ressourcen.views-page {
 
   #page-title {
-    display: none;
+    padding-bottom: 10px;
+
+    @media #{$medium-up} {
+      display: none;
+    }
   }
 
-  .row {
+  #main-content .row {
     position: relative;
-  }
-
-  .fi {
-    margin-right: 7px;
   }
 
   .callout {
@@ -31,13 +31,30 @@
 
       h4, h5 {
         font-weight: bold;
-      }
+      } 
     }
 
     &.follow {
       position: fixed;
       top: 10px;
       z-index: 100;
+    }
+    
+    @keyframes fade-out-top {
+      0% {
+        opacity: 1;
+      }
+      100% {
+        opacity: 0;
+        top: -30px
+      }
+    }
+
+    &.fade-out {
+      animation-name: fade-out-top;
+      animation-duration: 0.4s;
+      -webkit-animation-fill-mode: forwards;
+      animation-fill-mode: forwards;
     }
   }
 
@@ -46,30 +63,66 @@
     .orbit-bullets-container {
       display: none;
     }
+
+    .depot-ressource-detail-slider li:first-child img {
+      min-height: 300px;
+      // Copied from #depot-resources-map
+      animation-duration: 1.5s;
+      animation-fill-mode: forwards;
+      animation-iteration-count: infinite;
+      animation-name: smartLoader;
+      animation-timing-function: linear;
+      background: -webkit-gradient(linear, left top, right top, color-stop(8%, #eeeeee), color-stop(18%, #dddddd), color-stop(33%, #eeeeee));
+      background: -webkit-linear-gradient(left, #eeeeee 8%, #dddddd 18%, #eeeeee 33%);
+      background: linear-gradient(to right, #eeeeee 8%, #dddddd 18%, #eeeeee 33%);          
+    }
   }
 
   .ressource-title {
     margin-top: 1rem;
   }
 
+  @keyframes scaleIn {
+    0% {
+      opacity: 0;
+      transform: scale(0.2);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
   #res-detail-meta-info {
-    padding: 0 .5rem;
-    margin-bottom: .5rem;
 
     ul {
       list-style: none;
       margin: 0;
 
       li {
-        text-align: left;
-        font-size: 0.85em;
-        line-height: 2.5em;
-        float: left;
+        text-align: center;
+        padding: 0 0.2rem;
+        animation-name: scaleIn;
+        animation-duration: 0.5s;
 
-        & ~ li {
-          margin-left: 1rem;
+        span {
+          line-height: 1.1rem;
+        }
+
+        .icon-badge {
+          float: none;
+          margin: 0 auto;
         }
       }
+    }
+  }
+
+  li#open-resource-map {
+
+    .icon-badge {
+      cursor: pointer;
+      background-image: url('../images/map_badge_preview.png');
+      background-position: center center;
     }
   }
 }

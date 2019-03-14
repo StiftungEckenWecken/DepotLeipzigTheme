@@ -7,7 +7,7 @@ $html = '<!DOCTYPE html>
         <html lang="en">
           <head>
             <meta charset="utf-8">
-            <title>Verleihvertrag_Depot_Leipzig_'.$booking->created.'</title>
+            <title>Verleihvertrag_depot_'.$booking->created.'</title>
             <style>
               body, h1, h2, h3, h4, h5, h6, * {
                 font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -21,7 +21,7 @@ $html = '<!DOCTYPE html>
               .medium-4 { width:29%;float:left;padding-right:4%}
               .fake-table { border:1px solid grey; }
               .fake-table div { text-align:center;padding-top:15px;border-bottom:1px solid grey;border-right:1px solid grey;height:65px; }
-              .fake-table div.no-border { border-right:unset;}
+              .fake-table div.no-border { border-right:0;}
               .aside-price p { line-height:1px; }
             </style>
           </head>
@@ -37,9 +37,9 @@ $html = '<!DOCTYPE html>
             <div id="intro">
               <h3 class="text-center">Verleihvertrag</h3>
               <p class="text-center italic">zwischen</p>
-              <p><strong>'.$ausleiher->field_vorname['und'][0]['safe_value'].' '. $ausleiher->field_nachname['und'][0]['safe_value'] .'</strong>, '. $ausleiher->field_user_adresse_strasse['und'][0]['safe_value'] .' '. $ausleiher->field_user_adresse_hausnummer['und'][0]['safe_value'] .', '.$ausleiher->field_user_adresse_postleitzahl['und'][0]['safe_value'].' '.$ausleiher->field_user_adresse_wohnort['und'][0]['safe_value'] . (isset($ausleiher->field_organisation_name['und'][0]['value']) ? ', handelnd für '. $ausleiher->field_organisation_name['und'][0]['safe_value'] : '') .'  <strong> (Nutzer) </strong> und</p>
-              <p><strong>'.$anbieter->field_vorname['und'][0]['safe_value'].' '. $anbieter->field_nachname['und'][0]['safe_value'] .'</strong>, '. $anbieter->field_user_adresse_strasse['und'][0]['safe_value'] .' '. $anbieter->field_user_adresse_hausnummer['und'][0]['safe_value'] .', '.$anbieter->field_user_adresse_postleitzahl['und'][0]['safe_value'].' '.$anbieter->field_user_adresse_wohnort['und'][0]['safe_value'] . (isset($anbieter->field_organisation_name['und'][0]['value']) ? ', handelnd für '. $anbieter->field_organisation_name['und'][0]['safe_value'] : '') .'  <strong> (Anbieter) </strong></p>
-              <p>Der Nutzer leiht vom Anbieter zu den in depot-leipzig.de für die u.g. Ressource bereitgestellten Nutzungsbedingungen (sofern vorhanden, s. Ressourcenseite unter "Links"):</p>
+              <p><strong>'.$ausleiher->field_vorname['und'][0]['safe_value'].' '. $ausleiher->field_nachname['und'][0]['safe_value'] .'</strong>, '. $ausleiher->field_user_adresse_strasse['und'][0]['safe_value'] .' '. $ausleiher->field_user_adresse_hausnummer['und'][0]['safe_value'] .', '.$ausleiher->field_user_adresse_postleitzahl['und'][0]['safe_value'].' '.$ausleiher->field_user_adresse_wohnort['und'][0]['safe_value'] . (isset($ausleiher->field_organisation_name['und'][0]['value']) ? ', handelnd für '. $ausleiher->field_organisation_name['und'][0]['safe_value'] : '') .'  <strong> (NutzerIn) </strong> und</p>
+              <p><strong>'.$anbieter->field_vorname['und'][0]['safe_value'].' '. $anbieter->field_nachname['und'][0]['safe_value'] .'</strong>, '. $anbieter->field_user_adresse_strasse['und'][0]['safe_value'] .' '. $anbieter->field_user_adresse_hausnummer['und'][0]['safe_value'] .', '.$anbieter->field_user_adresse_postleitzahl['und'][0]['safe_value'].' '.$anbieter->field_user_adresse_wohnort['und'][0]['safe_value'] . (isset($anbieter->field_organisation_name['und'][0]['value']) ? ', handelnd für '. $anbieter->field_organisation_name['und'][0]['safe_value'] : '') .'  <strong> (AnbieterIn) </strong></p>
+              <p>Die NutzerIn leiht vom Anbieter zu den unter depot.social für die u.g. Ressource bereitgestellten Nutzungsbedingungen (sofern vorhanden, s. Ressourcenseite unter "Links"):</p>
             </div>
 
             '.$booking_header.'
@@ -51,11 +51,11 @@ $html = '<!DOCTYPE html>
               <br /><br /><br />
               <div class="signment medium-6">
                 <p>_______________________________</p>
-                <p>(Unterschrift Nutzer)</p>
+                <p>(Unterschrift NutzerIn)</p>
               </div>
               <div class="signment medium-6">
                 <p>_______________________________</p>
-                <p>(Unterschrift Anbieter)</p>
+                <p>(Unterschrift AnbieterIn)</p>
               </div>
 
             </div> <!-- /container -->
@@ -66,8 +66,8 @@ $html = '<!DOCTYPE html>
 
               <div class="fake-table">
                 <div class="medium-6">Die Ressourcen wiesen folgende Mängel auf:</div>
-                <div class="medium-3">Empfangsbestätigung Ressource, Nutzer</div>
-                <div class="medium-3 no-border">Empfangsbestätigung Leihpreis u. Kaution, Anbieter</div>
+                <div class="medium-3">Empfangsbestätigung Ressource, NutzerIn</div>
+                <div class="medium-3 no-border">Empfangsbestätigung Leihpreis u. Kaution, AnbieterIn</div>
                 
                 <div class="medium-6"><br /></div>
                 <div class="medium-3"><br /></div>
@@ -78,8 +78,8 @@ $html = '<!DOCTYPE html>
 
               <div class="fake-table">
                 <div class="medium-6">Die Ressourcen wiesen folgende Mängel auf:</div>
-                <div class="medium-3">Empfangsbestätigung Ressource, Anbieter</div>
-                <div class="medium-3 no-border">Empfangsbestätigung Kaution, Nutzer</div>
+                <div class="medium-3">Empfangsbestätigung Ressource, AnbieterIn</div>
+                <div class="medium-3 no-border">Empfangsbestätigung Kaution, NutzerIn</div>
                 
                 <div class="medium-6"><br /></div>
                 <div class="medium-3"><br /></div>

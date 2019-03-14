@@ -4,23 +4,11 @@
   main#main-content {
 
     @media only screen and (min-width: 40.063em) {
-      max-width: 750px;
+      max-width: 860px;
     }
 
     #page-title {
-      font-size: 1.5rem;
-      padding: .5rem .2rem .4rem;
-    }
-
-    .main {
-
-      @media only screen and (min-width: 40.063em) {
-        padding: 1rem;
-      }
-
-      .button-group {
-        text-align: center;
-      }
+      padding: .5rem 0 0 0;
     }
   }
 
@@ -41,16 +29,20 @@
       input[type='text'], input[type='password'], input[type='email'], select, textarea {
 
         @media only screen and (min-width: 40.063em) {
-          width: 75%;
+          width: 100%;
         }
       }
 
       &.form-type-checkbox {
 
         .description {
-          margin-top: .2rem;
+          margin-top: 2.2rem;
         }
       }
+    }
+
+    #edit-contact {
+      display: none;
     }
 
     #edit-submit {

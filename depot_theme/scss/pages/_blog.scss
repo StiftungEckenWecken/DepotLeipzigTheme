@@ -1,0 +1,55 @@
+body.page-blog {
+    .page-title {
+        text-align: center;
+    }
+    
+    .views-field-field-tax-kategorie {
+        padding: 10px 0;
+
+        .views-label-field-tax-kategorie {
+            padding-right: 8px;
+        }
+    }
+
+    @media #{$small-only} {
+        .views-view-grid.cols-3 [class*="col-"] {
+        width: 100% !important;
+        }
+    }
+
+    &.views-page {
+        // /blog overview list
+        #page-title {
+            text-align: center;
+        }
+
+        .views-view-grid td {
+            .views-field-title {
+                text-align: center;
+            }
+            .views-field-created {
+                text-align: center;
+                color: #555;
+                padding-bottom: 6px;
+            }
+            .views-field-field-tax-kategorie {
+                .views-label { display: none; }
+                .field-content a {
+                    background-color: #a8a8a8;
+                    color: #fff;
+                    border-radius: 2px;
+                    padding:  2px 5px;
+                    transition: background-color 0.25s;
+
+                    &:hover {
+                        background-color: #e13b01;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.comment-wrapper .title {
+    padding-bottom: 15px;
+}
