@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?xml version="1.0" encoding="utf-8"?>
 <browserconfig>
     <msapplication>
@@ -7,3 +8,14 @@
         </tile>
     </msapplication>
 </browserconfig>
+=======
+<?xml version="1.0" encoding="utf-8"?>
+<browserconfig>
+    <msapplication>
+        <tile>
+            <square150x150logo src="/mstile-150x150.png"/>
+            <TileColor>#da532c</TileColor>
+        </tile>
+    </msapplication>
+</browserconfig>
+>>>>>>> 87fefedda3330ba011fcac45dfd806f850d1afc1

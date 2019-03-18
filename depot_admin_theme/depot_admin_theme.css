@@ -1,0 +1,9 @@
+.depot-booking-status-cancelled {
+    opacity: 0.5;
+    transition: opacity 0.25s;
+    cursor: no-drop;
+}
+
+.depot-booking-status-cancelled:hover {
+    opacity: 1;
+}

@@ -1,15 +1,25 @@
 .l-footer {
+<<<<<<< HEAD
+=======
+  height: 250px;
+>>>>>>> 87fefedda3330ba011fcac45dfd806f850d1afc1
   background-color: $gray-bg;
   background: linear-gradient(0deg, rgba(241,241,241,1) 0%, rgba(241,241,241,0) 100%);
   background-image: url('../images/skyline_fullwidth_no_logo.svg');
   background-repeat: repeat-x;
   background-position: bottom center;
+<<<<<<< HEAD
   background-size: 420%;
 
   @media #{$medium-up} {
     height: 250px;
     margin-top: 60px;
     background-size: 150%;
+=======
+  background-size: 150%;
+  @media #{$medium-up} {
+    margin-top: 60px;
+>>>>>>> 87fefedda3330ba011fcac45dfd806f850d1afc1
   }
 
   #footer__logo {

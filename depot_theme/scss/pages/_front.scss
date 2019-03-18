@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 body.front {
 
     background-color: $white;
@@ -201,4 +202,203 @@ $depot-blog-teaser-box-shadow: 0 0 0 3px;
             color: $text-color-hover;
         }
     }
+=======
+body.front {
+
+    background-color: $white;
+
+    main#main-content {
+        margin-top: 0;
+
+        .main {
+            box-shadow: none;
+        }
+    }
+
+    #front-header {
+        background-color: $gray-bg;
+        background-image: url('../images/skyline_fullwidth.svg');
+        background-repeat: repeat-x;
+        background-position: bottom center;
+        background-size: 340%;
+        text-align: center;
+        padding-top: 15px;
+        @media #{$medium-up} {
+          height: 500px;
+          padding-top: 80px;
+          background-size: 150%;
+        }
+
+        h1 {
+            color: $primary-color;
+
+            span {
+                font-weight: bold;
+            }
+        }
+
+        p {
+            max-width: 90%;
+
+            @media #{$medium-up} {
+              max-width: 50%;
+            }
+            margin: 0 auto;
+        }
+
+        &__buttons {
+            margin-top: 20px;
+
+            .button {
+              @media #{$small-only} {
+                  width: 90%;
+              }
+            }
+        }
+
+        .popup-item { // BUGGY WORKAROUND!
+            max-width: 39%;
+            margin: 0 auto;
+            margin-top: -18px;
+            margin-bottom: 50px;
+        }
+    }
+
+    .depot-blog {
+        @media #{$medium-up} {
+          margin-top: 20px;
+        }
+        
+        h3 {
+            text-align: center;
+            padding-bottom: 20px;
+        }
+
+        $depot-blog-teaser-box-shadow: 0 0 0 3px;
+
+        &-teaser {
+            @media #{small-only} {
+                margin-bottom: 10px;
+            }
+
+            &__date {
+                text-align: center;
+                text-transform: uppercase;
+                line-height: 0.8rem;
+                font-size: 0.8rem;
+                padding-top: 9px;
+                width: 50px;
+                height: 50px;
+                font-family: 'Roboto Slab', serif;
+                background-color: $gray-bg;
+                color: $gray-2;
+                border-radius: 99px;
+                float: left;
+                margin-right: 20px;
+                border: 2px solid #fff;
+                box-shadow: $depot-blog-teaser-box-shadow $gray-bg;
+                transition: all 0.25s;
+            }
+
+            h5 {
+                font-weight: 100;
+                color: $text-color;
+            }
+
+            p {
+                font-weight: 100;
+            }
+
+            &:hover {
+                .depot-blog-teaser__date {
+                    background-color: $gray-2;
+                    box-shadow: $depot-blog-teaser-box-shadow $gray-2;
+                    color: #fff;
+                }
+                
+                h5 {
+                    color: $text-color-hover;
+                }
+            }
+        }
+    }
+          
+      @keyframes smartLoader {
+        0% {
+          background-position: -468px 0
+        }
+        100% {
+          background-position: 468px 0
+        }
+      }
+
+    #depot-resources-map-wrapper {
+
+        #depot-resources-map {
+            padding: 0;
+            margin: 30px 0.9375rem 0 0.9375rem; 
+            height: 230px;
+            background: $body-bg;
+            animation-duration: 1.5s;
+            animation-fill-mode: forwards;
+            animation-iteration-count: infinite;
+            animation-name: smartLoader;
+            animation-timing-function: linear;
+            background: -webkit-gradient(linear, left top, right top, color-stop(8%, #eeeeee), color-stop(18%, #dddddd), color-stop(33%, #eeeeee));
+            background: -webkit-linear-gradient(left, #eeeeee 8%, #dddddd 18%, #eeeeee 33%);
+            background: linear-gradient(to right, #eeeeee 8%, #dddddd 18%, #eeeeee 33%);          
+        }
+    }
+
+    $front-content-i-height: 461px;
+    $front-content-ii-height: 476px;
+
+    .front-content {
+        h1, h2, h3, h4, h5, h6 {
+            color: $primary-color;
+        }
+
+        @media #{$small-only} {
+            .bg {
+                background: none !important;
+            }
+        }
+    }
+
+    #front-content-i {
+        margin-top: 30px;
+        min-height: $front-content-i-height;
+
+        .bg {
+            width: 47%;
+            position: absolute;
+            min-height: $front-content-i-height;
+            background-image: url('../images/front_content_i.png');
+            background-position-x: right;
+        }
+
+        &__content {
+
+        }
+    }
+
+    #front-content-ii {
+        margin-top: 30px;
+        min-height: $front-content-ii-height;
+
+        .bg {
+            width: 47%;
+            position: absolute;
+            right: 0;
+            min-height: $front-content-ii-height;
+            background-image: url('../images/front_content_iii.png');
+            background-position-x: left;
+        }
+
+        &__content { 
+
+        }
+    }
+
+>>>>>>> 87fefedda3330ba011fcac45dfd806f850d1afc1
 }

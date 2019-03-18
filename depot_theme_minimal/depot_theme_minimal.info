@@ -1,0 +1,7 @@
+name = Depot Minimal
+description = Custom sub-theme based on the the Zurb Foundation base theme. (root view)
+screenshot = images/screenshot.png
+
+core = 7.x
+engine = phptemplate
+base theme = depot_theme

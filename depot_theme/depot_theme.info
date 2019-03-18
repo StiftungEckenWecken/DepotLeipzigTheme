@@ -118,6 +118,11 @@ settings[zurb_foundation_messages_modal] = 0
 settings[zurb_foundation_pager_center] = 1
 
 ; Depot specific.
+<<<<<<< HEAD
 settings[depot_frontpage_text_header] = 'Das depot ist Deine regionale Plattform um das Verwalten und Teilen von Ressourcen noch einfacher zu machen.<br />Stärkt das Gemeinwohl und ist ökologisch!' 
 settings[depot_frontpage_text_content_i] = '<h2>Wie funktioniert das depot?</h2><p>Specifies the name of a callback function which will be called during an AJAX call. It can return HTML, a renderable array, or an array of AJAX Commands. This callback function is given the $form and $form_state parameters, allowing it to produce a result, which it returns for rendering.</p><h3>Wer macht mit?</h3><p>Specifies the name of a callback function which will be called during an AJAX call. It can return HTML, a renderable array, or an array of AJAX Commands. This callback function is given the $form and $form_state parameters, allowing it to produce a result, which it returns for rendering.</p>'
+=======
+settings[depot_frontpage_text_header] = 'Das Depot ist Deine regionale Plattform um das Verwalten und Teilen von Ressourcen noch einfacher zu machen.<br />Stärkt das Gemeinwohl und ist ökologisch!' 
+settings[depot_frontpage_text_content_i] = '<h2>Wie funktioniert das Depot?</h2><p>Specifies the name of a callback function which will be called during an AJAX call. It can return HTML, a renderable array, or an array of AJAX Commands. This callback function is given the $form and $form_state parameters, allowing it to produce a result, which it returns for rendering.</p><h3>Wer macht mit?</h3><p>Specifies the name of a callback function which will be called during an AJAX call. It can return HTML, a renderable array, or an array of AJAX Commands. This callback function is given the $form and $form_state parameters, allowing it to produce a result, which it returns for rendering.</p>'
+>>>>>>> 87fefedda3330ba011fcac45dfd806f850d1afc1
 settings[depot_frontpage_text_content_ii] = '<h2>Regionaler Partner werden</h2><p>Specifies the name of a callback function which will be called during an AJAX call. It can return HTML, a renderable array, or an array of AJAX Commands. This callback function is given the $form and $form_state parameters, allowing it to produce a result, which it returns for rendering.</p>'

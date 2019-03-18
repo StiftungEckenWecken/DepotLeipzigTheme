@@ -110,6 +110,7 @@
     }
   }
 }
+<<<<<<< HEAD
 
 .depot-resources-list {
   width: 100%;
@@ -124,6 +125,18 @@
       padding-top: 13px;
     }
 
+=======
+  .view-resources-list {
+
+    &__footer {
+      margin-top: 18px;
+    }
+
+    .views-widget-sort-by {
+      padding-top: 13px;
+    }
+
+>>>>>>> 87fefedda3330ba011fcac45dfd806f850d1afc1
     .select2-container--default {
       @media #{medium-up} {
         margin-left: 0.9375rem !important;
@@ -134,7 +147,15 @@
       margin-top: 13px;
     }
 
+<<<<<<< HEAD
     .views-exposed-form { // schlagwort suche
+=======
+    .item-list { // pagination
+        display: none;
+    }
+    #edit-name-wrapper,
+    #edit-name--2-wrapper { // schlagwort suche
+>>>>>>> 87fefedda3330ba011fcac45dfd806f850d1afc1
         display: none;
     }
     #edit-kategorie-id-wrapper label {
@@ -157,13 +178,20 @@
             border: none;
         }
     }
+<<<<<<< HEAD
  
+=======
+
+>>>>>>> 87fefedda3330ba011fcac45dfd806f850d1afc1
     .ajax-progress .throbber {
       position: fixed;
       right: 2%;
       bottom: 2%;
       width: 32px;
+<<<<<<< HEAD
       z-index: 9999;
+=======
+>>>>>>> 87fefedda3330ba011fcac45dfd806f850d1afc1
       height: 32px;
       margin-top: -10px;
       background-image: url('../icons/apple-touch-icon.png');

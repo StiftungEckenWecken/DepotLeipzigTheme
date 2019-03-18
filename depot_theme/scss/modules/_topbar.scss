@@ -155,12 +155,16 @@ header.l-header {
   &__header {
     border-bottom: 1px solid $gray-bg;
     padding: 0.8rem 0.9375rem 0.4rem 0.9375rem;
+<<<<<<< HEAD
 
     h5 a {
       font-size: 0.8rem;
       text-decoration: underline;
       padding-left: 4px;
     }
+=======
+    margin-bottom: 8px;
+>>>>>>> 87fefedda3330ba011fcac45dfd806f850d1afc1
   }
 
   &__list {
@@ -186,6 +190,7 @@ header.l-header {
   }
 
   &__map {
+<<<<<<< HEAD
     #depot-regions-map {
       height: 245px;
     }
@@ -214,6 +219,8 @@ header.l-header {
     &:before {
       background-image: url('../images/avatar_logged_in.png') !important;
     }
+=======
+>>>>>>> 87fefedda3330ba011fcac45dfd806f850d1afc1
 
   }
 }

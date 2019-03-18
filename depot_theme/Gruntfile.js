@@ -19,8 +19,12 @@ module.exports = function (grunt) {
         '<%= global_vars.base_theme_path %>/js/vendor/fastclick.js',
         'node_modules/select2/dist/js/select2.min.js',
         'node_modules/select2/dist/js/i18n/de.js',
+<<<<<<< HEAD
         'node_modules/moment/min/moment.min.js',
         'node_modules/selectize/dist/js/standalone/selectize.min.js'
+=======
+        'node_modules/moment/min/moment.min.js'
+>>>>>>> 87fefedda3330ba011fcac45dfd806f850d1afc1
     ];
 
     // array of foundation javascript components to include.

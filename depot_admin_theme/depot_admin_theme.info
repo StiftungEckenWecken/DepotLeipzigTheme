@@ -1,0 +1,6 @@
+name = Depot admin theme
+description = Based on "seven" theme; injects depot specific backend methods
+
+core = 7.x
+base theme = seven
+stylesheets[screen][] = depot_admin_theme.css
