@@ -1,8 +1,0 @@
-<?php
-
-/**
- * @file
- * Code for the Depot RP Entity feature.
- */
-
-include_once 'depot_rp_entity.features.inc';
