@@ -11,4 +11,4 @@ This is a child-theme based on Zurb Foundation 5. See *zurb_foundation/README.tx
 > [For development:] *cd* to theme-path, run *npm install node-sass grunt grunt-cli && npm install*
 
 ## License
-TODO
+GNU General Public License v2.0 (https://www.gnu.org/licenses/old-licenses/lgpl-2.0.html)
